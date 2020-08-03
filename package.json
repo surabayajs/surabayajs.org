@@ -8,7 +8,7 @@
     "now-build": "yarn build:assets && yarn build:web",
     "build": "env-cmd yarn build:assets && env-cmd yarn build:web",
     "build:assets": "node scripts/build.js",
-    "build:web": "yarn codegen && next build",
+    "build:web": "next build",
     "clean": "rimraf .next \"public/!(social.jpg)\"",
     "develop": "next dev",
     "format": "yarn format:index && yarn format:scripts && yarn format:src",
