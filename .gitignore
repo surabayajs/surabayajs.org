@@ -1,6 +1,10 @@
 .DS_Store
-.env
+.env*
+.next
+.vercel
 *.log
 node_modules
+public/**/*
 
 !.env.example
+!/public/social.jpg

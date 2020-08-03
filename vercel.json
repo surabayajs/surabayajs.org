@@ -1,0 +1,19 @@
+{
+  "env": {
+    "CONTENTFUL_API_KEY": "@contentful-api-key",
+    "CONTENTFUL_MGMT_KEY": "@contentful-mgmt-key",
+    "CONTENTFUL_SPACE_ID": "@contentful-space-id"
+  },
+  "build": {
+    "env": {
+      "CONTENTFUL_API_KEY": "@contentful-api-key",
+      "CONTENTFUL_MGMT_KEY": "@contentful-mgmt-key",
+      "CONTENTFUL_SPACE_ID": "@contentful-space-id"
+    }
+  },
+  "github": {
+    "autoAlias": true,
+    "enabled": true
+  },
+  "public": true
+}
