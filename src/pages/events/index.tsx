@@ -179,8 +179,8 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
                 >
                   <Link href={event.url} isExternal>
                     <Button as="span" variantColor="green">
-                      {isLastEventFinished(event) ? "View " : "Register on "}
-                      event page
+                      Register event{" "}
+                      {isLastEventFinished(event) && "(finished)"}
                     </Button>
                   </Link>
                   <Box size={2} />
@@ -190,7 +190,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
                     linkAs={`/events/${event.slug}`}
                   >
                     <Button as="span" variantColor="teal">
-                      More information
+                      View details
                     </Button>
                   </Link>
                 </Flex>

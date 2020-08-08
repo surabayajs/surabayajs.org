@@ -69,6 +69,7 @@ export const getStaticProps: GetStaticProps<EventPageProps> = async ({
                 jobTitle
                 employer
                 showEmployer
+                url
               }
               startDatetime
               endDatetime
@@ -78,6 +79,7 @@ export const getStaticProps: GetStaticProps<EventPageProps> = async ({
           onlineEvent
           location
           url
+          albumUrl
           quota
         }
       }
@@ -100,6 +102,14 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
   React.useEffect(() => {
     if (!event) router.replace("/404");
   }, []);
+
+  const Register = () => (
+    <Link href={event.url} isExternal>
+      <Button as="span" variantColor="green">
+        Register event {isLastEventFinished(event) && "(finished)"}
+      </Button>
+    </Link>
+  );
 
   return event ? (
     <Box>
@@ -125,7 +135,7 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
           <Image src={event.poster.url} alt={event.title} />
         </Box>
 
-        <Stack alignItems="center" spacing={4}>
+        <Stack alignItems="center" shouldWrapChildren spacing={4}>
           <Heading letterSpacing="tight" size="lg">
             {event.title}
           </Heading>
@@ -141,12 +151,18 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
               {formatDate(event.startingDate)}
             </Box>
           </Box>
-          <Link href={event.url} isExternal>
-            <Button as="span" variantColor="green">
-              {isLastEventFinished(event) ? "View " : "Register on "}
-              event page
-            </Button>
-          </Link>
+
+          <Flex flexDir={{ default: "column", md: "row" }}>
+            <Register />
+            {event.albumUrl && (
+              <>
+                <Box size={4} />
+                <Link href={event.albumUrl} isExternal>
+                  <Button as="span">View photo album</Button>
+                </Link>
+              </>
+            )}
+          </Flex>
         </Stack>
 
         <Box w="100%">
@@ -163,7 +179,7 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
         <Heading letterSpacing="tight" size="md">
           Sessions
         </Heading>
-        <Stack spacing={8}>
+        <Stack spacing={16}>
           {event.sessionsCollection.items.map((s, i) => (
             <Flex
               alignItems="center"
@@ -175,7 +191,9 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
                 size="xl"
                 src={s.speaker.avatar.url}
               />
+
               <Box size={4} />
+
               <Box textAlign={{ md: "left" }}>
                 <Heading size="md">{s.title}</Heading>
                 <Heading size="sm">{s.speaker.name}</Heading>
@@ -184,10 +202,33 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
                   {s.speaker.showEmployer && ` at ${s.speaker.employer}`}
                 </Box>
                 <Box>{formatDatetime(s.startDatetime)}</Box>
+
+                {(s.speaker.url || s.deckUrl) && (
+                  <>
+                    <Divider />
+                    <Stack
+                      isInline
+                      justifyContent={{ default: "center", md: "initial" }}
+                      spacing={4}
+                    >
+                      {s.speaker.url && (
+                        <Link href={s.speaker.url} i isExternal>
+                          View profile
+                        </Link>
+                      )}
+                      {s.deckUrl && (
+                        <Link href={s.deckUrl} i isExternal>
+                          View deck
+                        </Link>
+                      )}
+                    </Stack>
+                  </>
+                )}
               </Box>
             </Flex>
           ))}
         </Stack>
+
         {event.notes && (
           <>
             <Heading letterSpacing="tight" size="sm">
@@ -196,12 +237,8 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
             <Box>{event.notes}</Box>
           </>
         )}
-        <Link href={event.url} isExternal>
-          <Button as="span" variantColor="green">
-            {isLastEventFinished(event) ? "View " : "Register on "}
-            event page
-          </Button>
-        </Link>
+
+        <Register />
       </Stack>
     </Box>
   ) : null;

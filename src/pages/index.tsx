@@ -200,23 +200,26 @@ const HomePage: React.FC<HomePageProps> = ({
         >
           <Link href={event.url} isExternal>
             <Button as="span" variantColor="green" w="100%">
-              {isLastEventFinished(event) ? "View " : "Register on "}
-              event page
+              Register event {isLastEventFinished(event) && "(finished)"}
             </Button>
           </Link>
+
           <Box size={2} />
+
           <Link
             href="/events/[slug]"
             linkAs={`/events/${event.slug}`}
             isNextLink
           >
             <Button as="span" variantColor="teal" w="100%">
-              More information
+              View details
             </Button>
           </Link>
         </Flex>
 
-        <Socials />
+        <Box mx={{ default: "auto", md: "initial" }}>
+          <Socials />
+        </Box>
       </Stack>
     </Box>
 
