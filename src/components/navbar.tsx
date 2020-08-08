@@ -15,6 +15,7 @@ import {
 
 import { FaBars } from "react-icons/fa";
 import Link from "@/components/link";
+import Socials from "@/components/socials";
 import routes from "@/routes";
 import siteConfig from "~/site-config";
 import { useRouter } from "next/router";
@@ -30,7 +31,7 @@ const Navbar: React.FC = () => {
 
   return (
     <Box backgroundColor="green.700">
-      <Flex as="nav" color="white" maxW="6xl" mx="auto">
+      <Flex as="nav" color="white" maxW="6xl" mx="auto" px={4}>
         <Box flexGrow={1} py={padding}>
           {!isHome && (
             <Link fontWeight="bold" href="/" isNextLink p={padding}>
@@ -68,12 +69,16 @@ const Navbar: React.FC = () => {
         <DrawerContent backgroundColor="green.700" color="white">
           <DrawerHeader />
           <DrawerBody>
-            <Stack spacing={padding / 2}>
+            <Stack h="100%" spacing={padding / 2}>
               {routes.map(([text, href], i) => (
                 <Link href={href} isNextLink key={i} p={padding / 2}>
                   {text}
                 </Link>
               ))}
+              <Box flexGrow={1} />
+              <Box mx="auto" p={padding / 2}>
+                <Socials />
+              </Box>
             </Stack>
           </DrawerBody>
           <DrawerFooter />
