@@ -36,16 +36,12 @@ const Link: React.FC<LinkProps> = ({
   if (isNextLink) {
     return (
       <NextLink href={href} as={linkAs || href} passHref {...nextProps}>
-        <ChakraLink {...mergedProps}>{children}</ChakraLink>
+        <ChakraLink {...mergedProps} />
       </NextLink>
     );
   }
 
-  return (
-    <ChakraLink href={href} {...mergedProps}>
-      {children}
-    </ChakraLink>
-  );
+  return <ChakraLink href={href} {...mergedProps} />;
 };
 
 export default Link;
