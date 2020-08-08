@@ -21,6 +21,7 @@ const buildSitemap = async ({ siteConfig }) => {
   const routes = [
     "/",
     "/coc",
+    "/contact",
     "/events",
     ...data.eventCollection.items.map(({ slug }) => `/events/${slug}`),
   ];
