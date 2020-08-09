@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps<EventsPageProps> = async () => {
     props: {
       events: data.eventCollection.items,
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 };
 

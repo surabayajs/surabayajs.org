@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       logoImage: data.logo.url,
       sponsors,
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 };
 

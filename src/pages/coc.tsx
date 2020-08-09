@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps<COCPageProps> = async () => {
     props: {
       md: await fetch(url).then((res) => res.text()),
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 };
 

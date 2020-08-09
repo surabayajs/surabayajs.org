@@ -92,7 +92,7 @@ export const getStaticProps: GetStaticProps<EventPageProps> = async ({
       event,
       ogUrl: event?.poster.ogUrl ?? null,
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 };
 
