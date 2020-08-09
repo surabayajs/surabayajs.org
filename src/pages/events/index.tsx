@@ -95,7 +95,8 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
           <Link b i href={siteConfig.socials["Twitter"]} isExternal>
             Twitter
           </Link>
-          .
+          . Public API is available at{" "}
+          <Link b i href="/api/events" isExternal />.
         </Text>
 
         <Flex

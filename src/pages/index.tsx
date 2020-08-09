@@ -138,7 +138,7 @@ const HomePage: React.FC<HomePageProps> = ({
             w="full"
           />
 
-          <Heading fontWeight="regular" lineHeight="short" size="lg">
+          <Heading fontWeight="regular" lineHeight="short" maxW="4xl" size="md">
             {siteConfig.description}
           </Heading>
         </Stack>

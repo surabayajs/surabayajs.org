@@ -12,7 +12,7 @@ const ContactPage: React.FC = () => (
 
     <Stack maxW="6xl" mx="auto" p={8} spacing={4}>
       <Heading letterSpacing="tight">Get in touch with us</Heading>
-      <Text fontSize="lg">
+      <Text maxW="2xl">
         Have any questions related to our community? Want to speak at our
         meetups? Or maybe collaborate with us? Drop a mail at{" "}
         <Link b href={`mailto:${siteConfig.email}`} i>
@@ -42,6 +42,9 @@ const ContactPage: React.FC = () => (
           </ListItem>
         ))}
       </List>
+      <Text maxW="2xl">
+        Links are also available at <Link b href="/api/socials" i isExternal />.
+      </Text>
     </Stack>
   </Box>
 );
