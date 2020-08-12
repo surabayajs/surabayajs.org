@@ -17,5 +17,16 @@
     "autoAlias": true,
     "enabled": true
   },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "access-control-allow-origin",
+          "value": "*"
+        }
+      ]
+    }
+  ],
   "public": true
 }
