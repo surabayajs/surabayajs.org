@@ -179,7 +179,7 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
         <Heading letterSpacing="tight" size="md">
           Sessions
         </Heading>
-        <Stack spacing={16}>
+        <Stack maxW="2xl" spacing={16}>
           {event.sessionsCollection.items.map((s, i) => (
             <Flex
               alignItems="center"
@@ -192,7 +192,7 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
                 src={s.speaker.avatar.url}
               />
 
-              <Box size={4} />
+              <Box size={8} />
 
               <Box textAlign={{ md: "left" }}>
                 <Heading size="md">{s.title}</Heading>
