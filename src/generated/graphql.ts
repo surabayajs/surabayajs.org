@@ -32,14 +32,14 @@ export type Query = {
   __typename?: "Query";
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
-  session?: Maybe<Session>;
-  sessionCollection?: Maybe<SessionCollection>;
-  event?: Maybe<Event>;
-  eventCollection?: Maybe<EventCollection>;
-  speaker?: Maybe<Speaker>;
-  speakerCollection?: Maybe<SpeakerCollection>;
   sponsor?: Maybe<Sponsor>;
   sponsorCollection?: Maybe<SponsorCollection>;
+  event?: Maybe<Event>;
+  eventCollection?: Maybe<EventCollection>;
+  session?: Maybe<Session>;
+  sessionCollection?: Maybe<SessionCollection>;
+  speaker?: Maybe<Speaker>;
+  speakerCollection?: Maybe<SpeakerCollection>;
 };
 
 export type QueryAssetArgs = {
@@ -57,19 +57,19 @@ export type QueryAssetCollectionArgs = {
   order?: Maybe<Array<Maybe<AssetOrder>>>;
 };
 
-export type QuerySessionArgs = {
+export type QuerySponsorArgs = {
   id: Scalars["String"];
   preview?: Maybe<Scalars["Boolean"]>;
   locale?: Maybe<Scalars["String"]>;
 };
 
-export type QuerySessionCollectionArgs = {
+export type QuerySponsorCollectionArgs = {
   skip?: Maybe<Scalars["Int"]>;
   limit?: Maybe<Scalars["Int"]>;
   preview?: Maybe<Scalars["Boolean"]>;
   locale?: Maybe<Scalars["String"]>;
-  where?: Maybe<SessionFilter>;
-  order?: Maybe<Array<Maybe<SessionOrder>>>;
+  where?: Maybe<SponsorFilter>;
+  order?: Maybe<Array<Maybe<SponsorOrder>>>;
 };
 
 export type QueryEventArgs = {
@@ -87,6 +87,21 @@ export type QueryEventCollectionArgs = {
   order?: Maybe<Array<Maybe<EventOrder>>>;
 };
 
+export type QuerySessionArgs = {
+  id: Scalars["String"];
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type QuerySessionCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+  where?: Maybe<SessionFilter>;
+  order?: Maybe<Array<Maybe<SessionOrder>>>;
+};
+
 export type QuerySpeakerArgs = {
   id: Scalars["String"];
   preview?: Maybe<Scalars["Boolean"]>;
@@ -100,21 +115,6 @@ export type QuerySpeakerCollectionArgs = {
   locale?: Maybe<Scalars["String"]>;
   where?: Maybe<SpeakerFilter>;
   order?: Maybe<Array<Maybe<SpeakerOrder>>>;
-};
-
-export type QuerySponsorArgs = {
-  id: Scalars["String"];
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
-};
-
-export type QuerySponsorCollectionArgs = {
-  skip?: Maybe<Scalars["Int"]>;
-  limit?: Maybe<Scalars["Int"]>;
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
-  where?: Maybe<SponsorFilter>;
-  order?: Maybe<Array<Maybe<SponsorOrder>>>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
@@ -244,12 +244,19 @@ export enum ImageFormat {
 export type AssetLinkingCollections = {
   __typename?: "AssetLinkingCollections";
   entryCollection?: Maybe<EntryCollection>;
+  sponsorCollection?: Maybe<SponsorCollection>;
   eventCollection?: Maybe<EventCollection>;
   speakerCollection?: Maybe<SpeakerCollection>;
-  sponsorCollection?: Maybe<SponsorCollection>;
 };
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type AssetLinkingCollectionsSponsorCollectionArgs = {
   skip?: Maybe<Scalars["Int"]>;
   limit?: Maybe<Scalars["Int"]>;
   preview?: Maybe<Scalars["Boolean"]>;
@@ -270,13 +277,6 @@ export type AssetLinkingCollectionsSpeakerCollectionArgs = {
   locale?: Maybe<Scalars["String"]>;
 };
 
-export type AssetLinkingCollectionsSponsorCollectionArgs = {
-  skip?: Maybe<Scalars["Int"]>;
-  limit?: Maybe<Scalars["Int"]>;
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
-};
-
 export type EntryCollection = {
   __typename?: "EntryCollection";
   total: Scalars["Int"];
@@ -287,6 +287,45 @@ export type EntryCollection = {
 
 export type Entry = {
   sys: Sys;
+};
+
+export type SponsorCollection = {
+  __typename?: "SponsorCollection";
+  total: Scalars["Int"];
+  skip: Scalars["Int"];
+  limit: Scalars["Int"];
+  items: Array<Maybe<Sponsor>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type Sponsor = Entry & {
+  __typename?: "Sponsor";
+  sys: Sys;
+  linkedFrom?: Maybe<SponsorLinkingCollections>;
+  name?: Maybe<Scalars["String"]>;
+  category?: Maybe<Scalars["String"]>;
+  url?: Maybe<Scalars["String"]>;
+  logo?: Maybe<Asset>;
+  activeSponsor?: Maybe<Scalars["Boolean"]>;
+  exclusive?: Maybe<Scalars["Boolean"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorLogoArgs = {
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type SponsorLinkingCollections = {
+  __typename?: "SponsorLinkingCollections";
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+export type SponsorLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
 };
 
 export type EventCollection = {
@@ -451,44 +490,6 @@ export type SpeakerCollection = {
   items: Array<Maybe<Speaker>>;
 };
 
-export type SponsorCollection = {
-  __typename?: "SponsorCollection";
-  total: Scalars["Int"];
-  skip: Scalars["Int"];
-  limit: Scalars["Int"];
-  items: Array<Maybe<Sponsor>>;
-};
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type Sponsor = Entry & {
-  __typename?: "Sponsor";
-  sys: Sys;
-  linkedFrom?: Maybe<SponsorLinkingCollections>;
-  name?: Maybe<Scalars["String"]>;
-  category?: Maybe<Scalars["String"]>;
-  url?: Maybe<Scalars["String"]>;
-  logo?: Maybe<Asset>;
-  activeSponsor?: Maybe<Scalars["Boolean"]>;
-};
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type SponsorLogoArgs = {
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
-};
-
-export type SponsorLinkingCollections = {
-  __typename?: "SponsorLinkingCollections";
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-export type SponsorLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars["Int"]>;
-  limit?: Maybe<Scalars["Int"]>;
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
-};
-
 export type AssetFilter = {
   sys?: Maybe<SysFilter>;
   title_exists?: Maybe<Scalars["Boolean"]>;
@@ -619,46 +620,7 @@ export type AssetCollection = {
   items: Array<Maybe<Asset>>;
 };
 
-export type SessionFilter = {
-  speaker?: Maybe<CfSpeakerNestedFilter>;
-  sys?: Maybe<SysFilter>;
-  title_exists?: Maybe<Scalars["Boolean"]>;
-  title?: Maybe<Scalars["String"]>;
-  title_not?: Maybe<Scalars["String"]>;
-  title_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  title_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  title_contains?: Maybe<Scalars["String"]>;
-  title_not_contains?: Maybe<Scalars["String"]>;
-  startDatetime_exists?: Maybe<Scalars["Boolean"]>;
-  startDatetime?: Maybe<Scalars["DateTime"]>;
-  startDatetime_not?: Maybe<Scalars["DateTime"]>;
-  startDatetime_in?: Maybe<Array<Maybe<Scalars["DateTime"]>>>;
-  startDatetime_not_in?: Maybe<Array<Maybe<Scalars["DateTime"]>>>;
-  startDatetime_gt?: Maybe<Scalars["DateTime"]>;
-  startDatetime_gte?: Maybe<Scalars["DateTime"]>;
-  startDatetime_lt?: Maybe<Scalars["DateTime"]>;
-  startDatetime_lte?: Maybe<Scalars["DateTime"]>;
-  endDatetime_exists?: Maybe<Scalars["Boolean"]>;
-  endDatetime?: Maybe<Scalars["DateTime"]>;
-  endDatetime_not?: Maybe<Scalars["DateTime"]>;
-  endDatetime_in?: Maybe<Array<Maybe<Scalars["DateTime"]>>>;
-  endDatetime_not_in?: Maybe<Array<Maybe<Scalars["DateTime"]>>>;
-  endDatetime_gt?: Maybe<Scalars["DateTime"]>;
-  endDatetime_gte?: Maybe<Scalars["DateTime"]>;
-  endDatetime_lt?: Maybe<Scalars["DateTime"]>;
-  endDatetime_lte?: Maybe<Scalars["DateTime"]>;
-  deckUrl_exists?: Maybe<Scalars["Boolean"]>;
-  deckUrl?: Maybe<Scalars["String"]>;
-  deckUrl_not?: Maybe<Scalars["String"]>;
-  deckUrl_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  deckUrl_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  deckUrl_contains?: Maybe<Scalars["String"]>;
-  deckUrl_not_contains?: Maybe<Scalars["String"]>;
-  OR?: Maybe<Array<Maybe<SessionFilter>>>;
-  AND?: Maybe<Array<Maybe<SessionFilter>>>;
-};
-
-export type CfSpeakerNestedFilter = {
+export type SponsorFilter = {
   sys?: Maybe<SysFilter>;
   name_exists?: Maybe<Scalars["Boolean"]>;
   name?: Maybe<Scalars["String"]>;
@@ -667,23 +629,13 @@ export type CfSpeakerNestedFilter = {
   name_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
   name_contains?: Maybe<Scalars["String"]>;
   name_not_contains?: Maybe<Scalars["String"]>;
-  jobTitle_exists?: Maybe<Scalars["Boolean"]>;
-  jobTitle?: Maybe<Scalars["String"]>;
-  jobTitle_not?: Maybe<Scalars["String"]>;
-  jobTitle_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  jobTitle_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  jobTitle_contains?: Maybe<Scalars["String"]>;
-  jobTitle_not_contains?: Maybe<Scalars["String"]>;
-  employer_exists?: Maybe<Scalars["Boolean"]>;
-  employer?: Maybe<Scalars["String"]>;
-  employer_not?: Maybe<Scalars["String"]>;
-  employer_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  employer_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  employer_contains?: Maybe<Scalars["String"]>;
-  employer_not_contains?: Maybe<Scalars["String"]>;
-  showEmployer_exists?: Maybe<Scalars["Boolean"]>;
-  showEmployer?: Maybe<Scalars["Boolean"]>;
-  showEmployer_not?: Maybe<Scalars["Boolean"]>;
+  category_exists?: Maybe<Scalars["Boolean"]>;
+  category?: Maybe<Scalars["String"]>;
+  category_not?: Maybe<Scalars["String"]>;
+  category_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  category_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  category_contains?: Maybe<Scalars["String"]>;
+  category_not_contains?: Maybe<Scalars["String"]>;
   url_exists?: Maybe<Scalars["Boolean"]>;
   url?: Maybe<Scalars["String"]>;
   url_not?: Maybe<Scalars["String"]>;
@@ -691,19 +643,27 @@ export type CfSpeakerNestedFilter = {
   url_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
   url_contains?: Maybe<Scalars["String"]>;
   url_not_contains?: Maybe<Scalars["String"]>;
-  OR?: Maybe<Array<Maybe<CfSpeakerNestedFilter>>>;
-  AND?: Maybe<Array<Maybe<CfSpeakerNestedFilter>>>;
+  activeSponsor_exists?: Maybe<Scalars["Boolean"]>;
+  activeSponsor?: Maybe<Scalars["Boolean"]>;
+  activeSponsor_not?: Maybe<Scalars["Boolean"]>;
+  exclusive_exists?: Maybe<Scalars["Boolean"]>;
+  exclusive?: Maybe<Scalars["Boolean"]>;
+  exclusive_not?: Maybe<Scalars["Boolean"]>;
+  OR?: Maybe<Array<Maybe<SponsorFilter>>>;
+  AND?: Maybe<Array<Maybe<SponsorFilter>>>;
 };
 
-export enum SessionOrder {
-  TitleAsc = "title_ASC",
-  TitleDesc = "title_DESC",
-  StartDatetimeAsc = "startDatetime_ASC",
-  StartDatetimeDesc = "startDatetime_DESC",
-  EndDatetimeAsc = "endDatetime_ASC",
-  EndDatetimeDesc = "endDatetime_DESC",
-  DeckUrlAsc = "deckUrl_ASC",
-  DeckUrlDesc = "deckUrl_DESC",
+export enum SponsorOrder {
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC",
+  CategoryAsc = "category_ASC",
+  CategoryDesc = "category_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+  ActiveSponsorAsc = "activeSponsor_ASC",
+  ActiveSponsorDesc = "activeSponsor_DESC",
+  ExclusiveAsc = "exclusive_ASC",
+  ExclusiveDesc = "exclusive_DESC",
   SysIdAsc = "sys_id_ASC",
   SysIdDesc = "sys_id_DESC",
   SysPublishedAtAsc = "sys_publishedAt_ASC",
@@ -829,6 +789,101 @@ export enum EventOrder {
   SysPublishedVersionDesc = "sys_publishedVersion_DESC",
 }
 
+export type SessionFilter = {
+  speaker?: Maybe<CfSpeakerNestedFilter>;
+  sys?: Maybe<SysFilter>;
+  title_exists?: Maybe<Scalars["Boolean"]>;
+  title?: Maybe<Scalars["String"]>;
+  title_not?: Maybe<Scalars["String"]>;
+  title_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  title_contains?: Maybe<Scalars["String"]>;
+  title_not_contains?: Maybe<Scalars["String"]>;
+  startDatetime_exists?: Maybe<Scalars["Boolean"]>;
+  startDatetime?: Maybe<Scalars["DateTime"]>;
+  startDatetime_not?: Maybe<Scalars["DateTime"]>;
+  startDatetime_in?: Maybe<Array<Maybe<Scalars["DateTime"]>>>;
+  startDatetime_not_in?: Maybe<Array<Maybe<Scalars["DateTime"]>>>;
+  startDatetime_gt?: Maybe<Scalars["DateTime"]>;
+  startDatetime_gte?: Maybe<Scalars["DateTime"]>;
+  startDatetime_lt?: Maybe<Scalars["DateTime"]>;
+  startDatetime_lte?: Maybe<Scalars["DateTime"]>;
+  endDatetime_exists?: Maybe<Scalars["Boolean"]>;
+  endDatetime?: Maybe<Scalars["DateTime"]>;
+  endDatetime_not?: Maybe<Scalars["DateTime"]>;
+  endDatetime_in?: Maybe<Array<Maybe<Scalars["DateTime"]>>>;
+  endDatetime_not_in?: Maybe<Array<Maybe<Scalars["DateTime"]>>>;
+  endDatetime_gt?: Maybe<Scalars["DateTime"]>;
+  endDatetime_gte?: Maybe<Scalars["DateTime"]>;
+  endDatetime_lt?: Maybe<Scalars["DateTime"]>;
+  endDatetime_lte?: Maybe<Scalars["DateTime"]>;
+  deckUrl_exists?: Maybe<Scalars["Boolean"]>;
+  deckUrl?: Maybe<Scalars["String"]>;
+  deckUrl_not?: Maybe<Scalars["String"]>;
+  deckUrl_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  deckUrl_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  deckUrl_contains?: Maybe<Scalars["String"]>;
+  deckUrl_not_contains?: Maybe<Scalars["String"]>;
+  OR?: Maybe<Array<Maybe<SessionFilter>>>;
+  AND?: Maybe<Array<Maybe<SessionFilter>>>;
+};
+
+export type CfSpeakerNestedFilter = {
+  sys?: Maybe<SysFilter>;
+  name_exists?: Maybe<Scalars["Boolean"]>;
+  name?: Maybe<Scalars["String"]>;
+  name_not?: Maybe<Scalars["String"]>;
+  name_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  name_contains?: Maybe<Scalars["String"]>;
+  name_not_contains?: Maybe<Scalars["String"]>;
+  jobTitle_exists?: Maybe<Scalars["Boolean"]>;
+  jobTitle?: Maybe<Scalars["String"]>;
+  jobTitle_not?: Maybe<Scalars["String"]>;
+  jobTitle_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  jobTitle_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  jobTitle_contains?: Maybe<Scalars["String"]>;
+  jobTitle_not_contains?: Maybe<Scalars["String"]>;
+  employer_exists?: Maybe<Scalars["Boolean"]>;
+  employer?: Maybe<Scalars["String"]>;
+  employer_not?: Maybe<Scalars["String"]>;
+  employer_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  employer_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  employer_contains?: Maybe<Scalars["String"]>;
+  employer_not_contains?: Maybe<Scalars["String"]>;
+  showEmployer_exists?: Maybe<Scalars["Boolean"]>;
+  showEmployer?: Maybe<Scalars["Boolean"]>;
+  showEmployer_not?: Maybe<Scalars["Boolean"]>;
+  url_exists?: Maybe<Scalars["Boolean"]>;
+  url?: Maybe<Scalars["String"]>;
+  url_not?: Maybe<Scalars["String"]>;
+  url_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  url_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  url_contains?: Maybe<Scalars["String"]>;
+  url_not_contains?: Maybe<Scalars["String"]>;
+  OR?: Maybe<Array<Maybe<CfSpeakerNestedFilter>>>;
+  AND?: Maybe<Array<Maybe<CfSpeakerNestedFilter>>>;
+};
+
+export enum SessionOrder {
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+  StartDatetimeAsc = "startDatetime_ASC",
+  StartDatetimeDesc = "startDatetime_DESC",
+  EndDatetimeAsc = "endDatetime_ASC",
+  EndDatetimeDesc = "endDatetime_DESC",
+  DeckUrlAsc = "deckUrl_ASC",
+  DeckUrlDesc = "deckUrl_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
 export type SpeakerFilter = {
   sys?: Maybe<SysFilter>;
   name_exists?: Maybe<Scalars["Boolean"]>;
@@ -877,55 +932,6 @@ export enum SpeakerOrder {
   ShowEmployerDesc = "showEmployer_DESC",
   UrlAsc = "url_ASC",
   UrlDesc = "url_DESC",
-  SysIdAsc = "sys_id_ASC",
-  SysIdDesc = "sys_id_DESC",
-  SysPublishedAtAsc = "sys_publishedAt_ASC",
-  SysPublishedAtDesc = "sys_publishedAt_DESC",
-  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
-  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
-  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
-  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
-}
-
-export type SponsorFilter = {
-  sys?: Maybe<SysFilter>;
-  name_exists?: Maybe<Scalars["Boolean"]>;
-  name?: Maybe<Scalars["String"]>;
-  name_not?: Maybe<Scalars["String"]>;
-  name_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  name_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  name_contains?: Maybe<Scalars["String"]>;
-  name_not_contains?: Maybe<Scalars["String"]>;
-  category_exists?: Maybe<Scalars["Boolean"]>;
-  category?: Maybe<Scalars["String"]>;
-  category_not?: Maybe<Scalars["String"]>;
-  category_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  category_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  category_contains?: Maybe<Scalars["String"]>;
-  category_not_contains?: Maybe<Scalars["String"]>;
-  url_exists?: Maybe<Scalars["Boolean"]>;
-  url?: Maybe<Scalars["String"]>;
-  url_not?: Maybe<Scalars["String"]>;
-  url_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  url_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  url_contains?: Maybe<Scalars["String"]>;
-  url_not_contains?: Maybe<Scalars["String"]>;
-  activeSponsor_exists?: Maybe<Scalars["Boolean"]>;
-  activeSponsor?: Maybe<Scalars["Boolean"]>;
-  activeSponsor_not?: Maybe<Scalars["Boolean"]>;
-  OR?: Maybe<Array<Maybe<SponsorFilter>>>;
-  AND?: Maybe<Array<Maybe<SponsorFilter>>>;
-};
-
-export enum SponsorOrder {
-  NameAsc = "name_ASC",
-  NameDesc = "name_DESC",
-  CategoryAsc = "category_ASC",
-  CategoryDesc = "category_DESC",
-  UrlAsc = "url_ASC",
-  UrlDesc = "url_DESC",
-  ActiveSponsorAsc = "activeSponsor_ASC",
-  ActiveSponsorDesc = "activeSponsor_DESC",
   SysIdAsc = "sys_id_ASC",
   SysIdDesc = "sys_id_DESC",
   SysPublishedAtAsc = "sys_publishedAt_ASC",
