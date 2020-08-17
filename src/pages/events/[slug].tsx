@@ -17,7 +17,6 @@ import { Event } from "@/types";
 import Link from "@/components/link";
 import { NextSeo } from "next-seo";
 import { client } from "@/cms";
-import { useRouter } from "next/router";
 
 interface EventPageProps {
   event: Event;
@@ -38,7 +37,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 
   return {
     paths: items.map(({ slug }) => ({ params: { slug } })),
-    fallback: true,
+    fallback: false,
   };
 };
 
@@ -97,12 +96,6 @@ export const getStaticProps: GetStaticProps<EventPageProps> = async ({
 };
 
 const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
-  const router = useRouter();
-
-  React.useEffect(() => {
-    if (!event) router.replace("/404");
-  }, []);
-
   const Register = () => (
     <Link href={event.url} isExternal>
       <Button as="span" variantColor="green">
@@ -111,7 +104,7 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
     </Link>
   );
 
-  return event ? (
+  return (
     <Box>
       <NextSeo
         title={event.title}
@@ -241,7 +234,7 @@ const EventPage: React.FC<EventPageProps> = ({ event, ogUrl }) => {
         <Register />
       </Stack>
     </Box>
-  ) : null;
+  );
 };
 
 export default EventPage;
