@@ -1,14 +1,12 @@
 {
   "env": {
     "CONTENTFUL_API_KEY": "@contentful-api-key",
-    "CONTENTFUL_MGMT_KEY": "@contentful-mgmt-key",
     "CONTENTFUL_SPACE_ID": "@contentful-space-id",
     "REBRANDLY_API_KEY": "@rebrandly-api-key"
   },
   "build": {
     "env": {
       "CONTENTFUL_API_KEY": "@contentful-api-key",
-      "CONTENTFUL_MGMT_KEY": "@contentful-mgmt-key",
       "CONTENTFUL_SPACE_ID": "@contentful-space-id",
       "REBRANDLY_API_KEY": "@rebrandly-api-key"
     }
