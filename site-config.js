@@ -9,7 +9,7 @@ module.exports = {
     "DEV Community": "https://dev.to/surabayajs",
     Discord: "https://discord.gg/kx3qp5S",
     GitHub: "https://github.com/surabayajs",
-    Telegram: "https://t.me/surabaya",
+    Telegram: "https://t.me/surabayajs",
     Twitch: "https://twitch.tv/surabayajs",
     Twitter: "https://twitter.com/surabaya_js",
   },
