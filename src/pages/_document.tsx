@@ -1,13 +1,8 @@
 import * as React from "react";
 
-import NextDocument, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from "next/document";
+import NextDocument, { Head, Html, Main, NextScript } from "next/document";
 
+import type { DocumentContext } from "next/document";
 import siteConfig from "~/site-config";
 
 export default class Document extends NextDocument {

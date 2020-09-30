@@ -11,7 +11,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-import { IconType } from "react-icons/lib";
+import type { IconType } from "react-icons/lib";
 import Link from "@/components/link";
 import siteConfig from "~/site-config";
 

@@ -12,10 +12,10 @@ import {
   Image,
   Stack,
 } from "@chakra-ui/core";
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import { formatDate, formatDatetime, isLastEventFinished } from "@/utils";
 
-import { Event } from "@/types";
+import type { Event } from "@/types";
 import Link from "@/components/link";
 import { NextSeo } from "next-seo";
 import { contentful } from "@/cms";

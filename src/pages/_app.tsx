@@ -5,7 +5,7 @@ import * as React from "react";
 import { Box, Flex } from "@chakra-ui/core";
 import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
 
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import { AppProvider } from "@/store/app";
 import Footer from "@/components/footer";
 import Head from "next/head";

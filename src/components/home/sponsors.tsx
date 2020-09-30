@@ -3,7 +3,7 @@ import * as React from "react";
 import { Box, Flex, Heading, Image, Stack } from "@chakra-ui/core";
 
 import Link from "@/components/link";
-import { Sponsor } from "@/types";
+import type { Sponsor } from "@/types";
 
 interface SponsorsProps {
   sponsors: Record<string, Sponsor[]>;

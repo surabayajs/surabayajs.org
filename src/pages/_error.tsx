@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Code, Heading, Stack } from "@chakra-ui/core";
 
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import { STATUS_CODES } from "http";
 

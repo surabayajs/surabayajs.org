@@ -1,3 +1,4 @@
+import type { NextApiHandler } from "next";
 import { contentful } from "@/cms";
 
 const handler: NextApiHandler = async (_, res) => {

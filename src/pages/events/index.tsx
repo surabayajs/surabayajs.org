@@ -16,8 +16,8 @@ import {
 } from "@chakra-ui/core";
 import { formatDate, isLastEventFinished } from "@/utils";
 
-import { Event } from "@/types";
-import { GetStaticProps } from "next";
+import type { Event } from "@/types";
+import type { GetStaticProps } from "next";
 import Link from "@/components/link";
 import { NextSeo } from "next-seo";
 import { contentful } from "@/cms";

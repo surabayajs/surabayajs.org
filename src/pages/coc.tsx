@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Box, Divider, Stack } from "@chakra-ui/core";
 
-import { GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 import Link from "@/components/link";
 import Markdown from "react-markdown";
 import { NextSeo } from "next-seo";
