@@ -32,6 +32,7 @@
     "favicons": "^6.2.0",
     "graphql": "^15.3.0",
     "graphql-request": "^3.1.0",
+    "lodash": "^4.17.20",
     "next": "canary",
     "next-seo": "^4.10.0",
     "nprogress": "^0.2.0",
@@ -44,7 +45,9 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.10",
     "@graphql-codegen/typescript": "^1.17.10",
+    "@types/lodash": "^4.14.161",
     "@types/node": "^14.11.2",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "4.0.1",
