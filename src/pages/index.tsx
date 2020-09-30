@@ -13,15 +13,15 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/core";
-import { Event, Sponsor } from "@/types";
+import type { Event, Sponsor } from "@/types";
 import { formatDate, isLastEventFinished } from "@/utils";
 
-import DiscordEmbed from "@/components/home/discord-embed";
+import DiscordEmbed from "@/components/discord-embed";
 import { GetStaticProps } from "next";
 import Link from "@/components/link";
 import { NextSeo } from "next-seo";
 import Socials from "@/components/socials";
-import Sponsors from "@/components/home/sponsors";
+import Sponsors from "@/components/sponsors";
 import { contentful } from "@/cms";
 import siteConfig from "~/site-config";
 
