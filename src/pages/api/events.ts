@@ -19,8 +19,6 @@ const handler: NextApiHandler = async (_, res) => {
     }
   `);
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Cache-Control", "public, max-age=86400");
   res.json(data.eventCollection.items);
 };
 
