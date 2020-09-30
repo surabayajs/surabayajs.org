@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import * as React from "react";
 
 import {
@@ -79,7 +81,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
     }
   `);
 
-  let sponsors: Record<string, Sponsor[]> = {
+  const sponsors: Record<string, Sponsor[]> = {
     Sponsor: [],
     "Media Partner": [],
     "Community Partner": [],
@@ -238,9 +240,9 @@ const HomePage: React.FC<HomePageProps> = ({
           Hangout with us, digitally.
         </Heading>
         <Text>
-          Hanging out isn't always meeting in real life on events. With the era
-          of internet and digital communities, everyone can hang out anywhere
-          and anytime.
+          Hanging out isn&apos;t always meeting in real life on events. With the
+          era of internet and digital communities, everyone can hang out
+          anywhere and anytime.
         </Text>
         <Text>Join our official Discord and Telegram community!</Text>
         <Flex
@@ -248,13 +250,13 @@ const HomePage: React.FC<HomePageProps> = ({
           flexWrap="wrap"
           mx={{ default: "auto", md: "initial" }}
         >
-          <Link href={siteConfig.socials["Discord"]} isExternal>
+          <Link href={siteConfig.socials.Discord} isExternal>
             <Button as="span" variantColor="blue" w="100%">
               Join Discord server
             </Button>
           </Link>
           <Box size={2} />
-          <Link href={siteConfig.socials["Telegram"]} isExternal>
+          <Link href={siteConfig.socials.Telegram} isExternal>
             <Button as="span" variantColor="cyan" w="100%">
               Join Telegram group
             </Button>

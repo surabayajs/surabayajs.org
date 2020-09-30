@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import * as React from "react";
 
 import { Box, Stack } from "@chakra-ui/core";
@@ -15,11 +17,11 @@ import siteConfig from "~/site-config";
 
 const Socials: React.FC = () => {
   const externals: [IconType, string][] = [
-    [FaDiscord, siteConfig.socials["Discord"]],
-    [FaGithub, siteConfig.socials["GitHub"]],
-    [FaTelegramPlane, siteConfig.socials["Telegram"]],
-    [FaTwitch, siteConfig.socials["Twitch"]],
-    [FaTwitter, siteConfig.socials["Twitter"]],
+    [FaDiscord, siteConfig.socials.Discord],
+    [FaGithub, siteConfig.socials.GitHub],
+    [FaTelegramPlane, siteConfig.socials.Telegram],
+    [FaTwitch, siteConfig.socials.Twitch],
+    [FaTwitter, siteConfig.socials.Twitter],
   ];
 
   return (

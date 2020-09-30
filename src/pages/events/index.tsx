@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import * as React from "react";
 
 import {
@@ -84,15 +86,15 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
 
         <Text textAlign="center">
           View current and past events. Get the latest updates on{" "}
-          <Link b i href={siteConfig.socials["Discord"]} isExternal>
+          <Link b i href={siteConfig.socials.Discord} isExternal>
             Discord
           </Link>
           ,{" "}
-          <Link b i href={siteConfig.socials["Telegram"]} isExternal>
+          <Link b i href={siteConfig.socials.Telegram} isExternal>
             Telegram
           </Link>
           , and{" "}
-          <Link b i href={siteConfig.socials["Twitter"]} isExternal>
+          <Link b i href={siteConfig.socials.Twitter} isExternal>
             Twitter
           </Link>
           . Public API is available at{" "}
@@ -146,8 +148,8 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
                 <List styleType="disc">
                   {event.sessionsCollection.items
                     .slice(0, 5)
-                    .map(({ speaker: s }, i) => (
-                      <React.Fragment key={i}>
+                    .map(({ speaker: s }, j) => (
+                      <React.Fragment key={j}>
                         <ListItem>
                           {s.name}
                           {s.showEmployer && ` (${s.employer})`}

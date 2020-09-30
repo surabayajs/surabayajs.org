@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 import * as React from "react";
 
 import {
@@ -34,26 +36,30 @@ const slugifyChildren = (children: React.ReactNode) => {
 };
 
 export const renderer: RendererRecord = {
-  blockquote: (props) => (
-    <Box
-      borderLeftColor="gray.500"
-      borderLeftWidth={2}
-      color="gray.500"
-      pl={4}
-      py={2}
-      {...props}
-    />
-  ),
+  blockquote: function MdBlockquote(props) {
+    return (
+      <Box
+        borderLeftColor="gray.500"
+        borderLeftWidth={2}
+        color="gray.500"
+        pl={4}
+        py={2}
+        {...props}
+      />
+    );
+  },
 
-  code: ({ language, value }) => (
-    <Box overflow="auto" pb={4}>
-      <Code p={2} w="full">
-        <pre>{value}</pre>
-      </Code>
-    </Box>
-  ),
+  code: function MdCode({ value }) {
+    return (
+      <Box overflow="auto" pb={4}>
+        <Code p={2} w="full">
+          <pre>{value}</pre>
+        </Code>
+      </Box>
+    );
+  },
 
-  heading: ({ level, children, ...props }) => {
+  heading: function MdHeading({ level, children, ...props }) {
     const slug = slugifyChildren(children);
 
     const sizes = ["2xl", "xl", "lg", "md", "sm", "xs"];
@@ -71,61 +77,88 @@ export const renderer: RendererRecord = {
     );
   },
 
-  html: (props) => {
+  html: function MdHtml(props) {
+    const { value } = props;
+
     const htmlProps: BoxProps = {
-      dangerouslySetInnerHTML: { __html: props.value },
+      dangerouslySetInnerHTML: { __html: value },
       pb: 8,
 
-      ...(/<\/iframe>/.test(props.value) ? { mx: "auto" } : {}),
+      ...(/<\/iframe>/.test(value) ? { mx: "auto" } : {}),
     };
 
     return <Box {...htmlProps} />;
   },
 
-  image: (props) => {
+  image: function MdImage(props) {
+    const { alt } = props;
     return (
-      <React.Fragment>
+      <>
         <Box pb={4}>
           <Image borderRadius={4} mx="auto" maxW="2xl" w="100%" {...props} />
         </Box>
         <Box fontSize="sm" textAlign="center">
-          {props.alt}
+          {alt}
         </Box>
-      </React.Fragment>
+      </>
     );
   },
 
-  inlineCode: (props) => <Code display="inline" p={1} {...props} />,
+  inlineCode: function MdInlineCode({ inline: _, ...props }) {
+    return <Code display="inline" p={1} {...props} />;
+  },
 
-  link: (props) => <Link b i {...props} />,
+  link: function MdLink(props) {
+    return <Link b i {...props} />;
+  },
 
-  list: (props) => <List styleType="disc" {...props} />,
+  list: function MdList(props) {
+    return <List styleType="disc" {...props} />;
+  },
 
-  listItem: (props) => <ListItem pl={4} {...props} />,
+  listItem: function MdListitem(props) {
+    return <ListItem pl={4} {...props} />;
+  },
 
-  paragraph: (props) => <Box as="p" display="inline" {...props} />,
+  paragraph: function MdParagraph(props) {
+    return <Box as="p" display="inline" {...props} />;
+  },
 
-  root: (props) => (
-    <Stack lineHeight="tall" spacing={4} wordBreak="break-word" {...props} />
-  ),
+  root: function MdWrapper(props) {
+    return (
+      <Stack lineHeight="tall" spacing={4} wordBreak="break-word" {...props} />
+    );
+  },
 
-  table: (props) => (
-    <Box overflow="auto">
-      <Box as="table" {...props} />
-    </Box>
-  ),
+  table: function MdTable(props) {
+    return (
+      <Box overflow="auto">
+        <Box as="table" {...props} />
+      </Box>
+    );
+  },
 
-  tableHead: (props) => <Box as="thead" fontWeight="bold" {...props} />,
+  tableHead: function MdTableHead(props) {
+    return <Box as="thead" fontWeight="bold" {...props} />;
+  },
 
-  tableBody: (props) => <Box as="tbody" {...props} />,
+  tableBody: function MdTableBody(props) {
+    return <Box as="tbody" {...props} />;
+  },
 
-  tableRow: (props) => <Box as="tr" {...props} />,
+  tableRow: function MdTableRow(props) {
+    return <Box as="tr" {...props} />;
+  },
 
-  tableCell: (props) => <Box as="td" borderWidth={1} p={2} {...props} />,
+  tableCell: function MdTableCell(props) {
+    return <Box as="td" borderWidth={1} p={2} {...props} />;
+  },
 
-  thematicBreak: () => (
-    <Box maxW="xs" mx="auto" pb={8} px={8} w="full">
-      <Divider />
-    </Box>
-  ),
+  thematicBreak: function MdThematicBreak() {
+    return (
+      <Box maxW="xs" mx="auto" pb={8} px={8} w="full">
+        <Divider />
+      </Box>
+    );
+  },
 };

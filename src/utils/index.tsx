@@ -1,6 +1,5 @@
 import { Event } from "@/types";
 import fnsFormat from "date-fns/format";
-import subHours from "date-fns/subHours";
 
 export const isDev = process.env.NODE_ENV === "development";
 

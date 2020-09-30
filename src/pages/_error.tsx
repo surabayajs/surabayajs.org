@@ -11,22 +11,26 @@ type ErrorPageProps = {
   title: string;
 };
 
-const ErrorPage: NextPage<ErrorPageProps> = ({ children, ...props }) => (
-  <Stack maxW="6xl" mx="auto" p={8}>
-    <NextSeo title={`${props.statusCode}`} />
+const ErrorPage: NextPage<ErrorPageProps> = (props) => {
+  const { statusCode, title } = props;
 
-    <Heading as="h1">
-      {props.statusCode} {props.title}
-    </Heading>
+  return (
+    <Stack maxW="6xl" mx="auto" p={8}>
+      <NextSeo title={`${statusCode}`} />
 
-    <Code>
-      <pre>{JSON.stringify(props, null, 2)}</pre>
-    </Code>
-  </Stack>
-);
+      <Heading as="h1">
+        {statusCode} {title}
+      </Heading>
+
+      <Code>
+        <pre>{JSON.stringify(props, null, 2)}</pre>
+      </Code>
+    </Stack>
+  );
+};
 
 ErrorPage.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+  const statusCode = res?.statusCode ?? err?.statusCode ?? 404;
 
   return {
     statusCode,

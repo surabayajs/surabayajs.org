@@ -1,9 +1,12 @@
+/* eslint-disable import/prefer-default-export */
+
 import * as React from "react";
 
 import { CSSReset, ColorModeProvider, ThemeProvider } from "@chakra-ui/core";
 
 import theme from "@/theme";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface AppProviderProps {
   //
 }

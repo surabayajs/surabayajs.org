@@ -26,10 +26,11 @@ const Link: React.FC<LinkProps> = ({
   children,
   ...props
 }) => {
+  const { b, i } = props;
   const mergedProps: ChakraLinkProps = {
     ...props,
-    ...(props.b ? { fontWeight: "semibold" } : {}),
-    ...(props.i ? { color: "green.700" } : {}),
+    ...(b ? { fontWeight: "semibold" } : {}),
+    ...(i ? { color: "green.700" } : {}),
     children: children || href.replace(/^https?:(\/\/)?/g, ""),
   };
 

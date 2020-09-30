@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import * as React from "react";
 
 import { Box, Heading, List, ListItem, Stack, Text } from "@chakra-ui/core";
@@ -19,11 +21,11 @@ const ContactPage: React.FC = () => (
           {siteConfig.email}
         </Link>
         , or reach us at various digital spaces like{" "}
-        <Link b href={siteConfig.socials["Discord"]} i isExternal>
+        <Link b href={siteConfig.socials.Discord} i isExternal>
           Discord
         </Link>{" "}
         and{" "}
-        <Link b href={siteConfig.socials["Telegram"]} i isExternal>
+        <Link b href={siteConfig.socials.Telegram} i isExternal>
           Telegram
         </Link>
         .
