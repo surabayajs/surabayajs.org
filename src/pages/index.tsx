@@ -22,7 +22,7 @@ import Link from "@/components/link";
 import { NextSeo } from "next-seo";
 import Socials from "@/components/socials";
 import Sponsors from "@/components/home/sponsors";
-import { client } from "@/cms";
+import { contentful } from "@/cms";
 import siteConfig from "~/site-config";
 
 interface HomePageProps {
@@ -33,7 +33,7 @@ interface HomePageProps {
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const data = await client.request(/* GraphQL */ `
+  const data = await contentful().request(/* GraphQL */ `
     {
       eventCollection(limit: 1, order: startingDate_DESC) {
         items {

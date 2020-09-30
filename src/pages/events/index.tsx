@@ -20,7 +20,7 @@ import { Event } from "@/types";
 import { GetStaticProps } from "next";
 import Link from "@/components/link";
 import { NextSeo } from "next-seo";
-import { client } from "@/cms";
+import { contentful } from "@/cms";
 import siteConfig from "~/site-config";
 
 interface EventsPageProps {
@@ -28,7 +28,7 @@ interface EventsPageProps {
 }
 
 export const getStaticProps: GetStaticProps<EventsPageProps> = async () => {
-  const data = await client.request(/* GraphQL */ `
+  const data = await contentful().request(/* GraphQL */ `
     {
       eventCollection(order: startingDate_DESC) {
         items {

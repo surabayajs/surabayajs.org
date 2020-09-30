@@ -1,8 +1,7 @@
-import { NextApiHandler } from "next";
-import { client } from "@/cms";
+import { contentful } from "@/cms";
 
 const handler: NextApiHandler = async (_, res) => {
-  const data = await client.request(/* GraphQL */ `
+  const data = await contentful().request(/* GraphQL */ `
     {
       eventCollection(order: startingDate_DESC) {
         items {
