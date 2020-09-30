@@ -1,3 +1,4 @@
+import merge from "lodash/merge";
 import { theme } from "@chakra-ui/core";
 
 const sans = [
@@ -14,15 +15,11 @@ const sans = [
   "sans-serif",
 ];
 
-export default {
-  ...theme,
-
+export default merge(theme, {
   fonts: {
-    ...theme.fonts,
     heading: `${sans}`,
     body: `${sans}`,
   },
-
   fontSizes: {
     xs: "14px",
     sm: "16px",
@@ -35,4 +32,4 @@ export default {
     "5xl": "64px",
     "6xl": "72px",
   },
-};
+});
