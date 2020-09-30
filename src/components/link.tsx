@@ -1,32 +1,25 @@
 import * as React from "react";
 
-import {
-  Link as ChakraLink,
-  LinkProps as ChakraLinkProps,
-} from "@chakra-ui/core";
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
+import { Link as ChakraLink } from "@chakra-ui/core";
+import type { LinkProps as ChakraLinkProps } from "@chakra-ui/core";
+import NextLink from "next/link";
+import type { LinkProps as NextLinkProps } from "next/link";
 
-import { UrlObject } from "url";
-
-type BaseLinkComponentProps = ChakraLinkProps;
-
-interface LinkProps extends BaseLinkComponentProps {
+interface LinkProps extends ChakraLinkProps {
   b?: boolean;
   i?: boolean;
   isNextLink?: boolean;
-  linkAs?: string | UrlObject;
   nextProps?: Omit<NextLinkProps, "as">;
 }
 
 const Link: React.FC<LinkProps> = ({
-  href,
   isNextLink,
-  linkAs,
   nextProps,
   children,
   ...props
 }) => {
-  const { b, i } = props;
+  const { b, i, href } = props;
+
   const mergedProps: ChakraLinkProps = {
     ...props,
     ...(b ? { fontWeight: "semibold" } : {}),
@@ -34,15 +27,17 @@ const Link: React.FC<LinkProps> = ({
     children: children || href.replace(/^https?:(\/\/)?/g, ""),
   };
 
+  const content = <ChakraLink href={href} {...mergedProps} />;
+
   if (isNextLink) {
     return (
-      <NextLink href={href} as={linkAs || href} passHref {...nextProps}>
-        <ChakraLink {...mergedProps} />
+      <NextLink href={href} {...nextProps}>
+        {content}
       </NextLink>
     );
   }
 
-  return <ChakraLink href={href} {...mergedProps} />;
+  return content;
 };
 
 export default Link;

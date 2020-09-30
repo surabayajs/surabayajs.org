@@ -187,11 +187,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
                     </Button>
                   </Link>
                   <Box size={2} />
-                  <Link
-                    href="/events/[slug]"
-                    isNextLink
-                    linkAs={`/events/${event.slug}`}
-                  >
+                  <Link href={`/events/${event.slug}`} isNextLink>
                     <Button as="span" variantColor="teal">
                       View details
                     </Button>

@@ -208,11 +208,7 @@ const HomePage: React.FC<HomePageProps> = ({
 
           <Box size={2} />
 
-          <Link
-            href="/events/[slug]"
-            linkAs={`/events/${event.slug}`}
-            isNextLink
-          >
+          <Link href={`/events/${event.slug}`} isNextLink>
             <Button as="span" variantColor="teal" w="100%">
               View details
             </Button>
