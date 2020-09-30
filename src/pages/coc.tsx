@@ -22,20 +22,22 @@ export const getStaticProps: GetStaticProps<COCPageProps> = async () => {
   };
 };
 
-const COCPage: React.FC<COCPageProps> = ({ md }) => (
-  <Box>
-    <NextSeo title="Code of Conduct" />
+const COCPage: React.FC<COCPageProps> = ({ md }) => {
+  return (
+    <Box>
+      <NextSeo title="Code of Conduct" />
 
-    <Stack maxW="6xl" mx="auto" p={8} shouldWrapChildren spacing={4}>
-      <Markdown source={md} escapeHtml={false} renderers={renderer} />
+      <Stack maxW="6xl" mx="auto" p={8} shouldWrapChildren spacing={4}>
+        <Markdown source={md} escapeHtml={false} renderers={renderer} />
 
-      <Divider />
+        <Divider />
 
-      <Link href="https://link.surabayajs.org/cocgh" i isExternal>
-        Edit on GitHub
-      </Link>
-    </Stack>
-  </Box>
-);
+        <Link href="https://link.surabayajs.org/cocgh" i isExternal>
+          Edit on GitHub
+        </Link>
+      </Stack>
+    </Box>
+  );
+};
 
 export default COCPage;

@@ -111,162 +111,176 @@ const HomePage: React.FC<HomePageProps> = ({
   heroImage,
   logoImage,
   sponsors,
-}) => (
-  <Box>
-    <NextSeo title={siteConfig.title} titleTemplate="%s" />
+}) => {
+  return (
+    <Box>
+      <NextSeo title={siteConfig.title} titleTemplate="%s" />
 
-    <Image src={heroImage} display="none" />
+      <Image src={heroImage} display="none" />
 
-    <Box
-      backgroundImage={`url("${heroImage}")`}
-      backgroundPosition="center"
-      backgroundSize="cover"
-    >
-      <Stack
+      <Box
+        backgroundImage={`url("${heroImage}")`}
+        backgroundPosition="center"
+        backgroundSize="cover"
+      >
+        <Stack
+          maxW="6xl"
+          mx="auto"
+          px={8}
+          py={{ default: 8, md: 24 }}
+          spacing={8}
+          textAlign={{ default: "center", md: "initial" }}
+        >
+          <Stack color="white">
+            <Image
+              src={logoImage}
+              alt={siteConfig.title}
+              maxW="md"
+              mx={{ default: "auto", md: "initial" }}
+              pb={4}
+              w="full"
+            />
+
+            <Heading
+              fontWeight="regular"
+              lineHeight="short"
+              maxW="4xl"
+              size="md"
+            >
+              {siteConfig.description}
+            </Heading>
+          </Stack>
+
+          <Stack color="white">
+            <Flex
+              alignItems="center"
+              flexDir={{ default: "column", md: "row" }}
+            >
+              <AvatarGroup max={3} size="lg">
+                {event.sessionsCollection.items.map(({ speaker }, i) => (
+                  <Avatar
+                    key={i}
+                    name={speaker.name}
+                    src={speaker.avatar.url}
+                  />
+                ))}
+              </AvatarGroup>
+
+              <Box size={4} />
+
+              <Stack>
+                <Heading letterSpacing="tight" size="lg">
+                  {event.title}
+                </Heading>
+
+                <Box>
+                  Presented by{" "}
+                  {event.sessionsCollection.items
+                    .slice(0, 3)
+                    .map(({ speaker: s }, i) => (
+                      <React.Fragment key={i}>
+                        {i > 0 && ", "}
+                        <Box as="span" fontWeight="semibold">
+                          {s.name}
+                        </Box>
+                        {s.showEmployer && ` (${s.employer})`}
+                      </React.Fragment>
+                    ))}
+                  {event.sessionsCollection.items.length > 3 && (
+                    <>, and {event.sessionsCollection.items.length - 3} more</>
+                  )}
+                </Box>
+
+                <Box>
+                  {event.onlineEvent
+                    ? `Online ${event.category} via`
+                    : `Offline ${event.category} at`}{" "}
+                  <Box as="span" fontWeight="semibold">
+                    {event.location}
+                  </Box>
+                  , {event.quota} seats, starting on{" "}
+                  <Box as="span" fontWeight="semibold">
+                    {formatDate(event.startingDate)}
+                  </Box>
+                </Box>
+              </Stack>
+            </Flex>
+          </Stack>
+
+          <Flex
+            flexDir={{ default: "column", md: "row" }}
+            flexWrap="wrap"
+            mx={{ default: "auto", md: "initial" }}
+            pb={8}
+          >
+            <Link href={event.url} isExternal>
+              <Button as="span" variantColor="green" w="100%">
+                Register event {isLastEventFinished(event) && "(finished)"}
+              </Button>
+            </Link>
+
+            <Box size={2} />
+
+            <Link href={`/events/${event.slug}`} isNextLink>
+              <Button as="span" variantColor="teal" w="100%">
+                View details
+              </Button>
+            </Link>
+          </Flex>
+
+          <Box mx={{ default: "auto", md: "initial" }}>
+            <Socials />
+          </Box>
+        </Stack>
+      </Box>
+
+      <Flex
+        alignItems="center"
+        flexDir={{ default: "column", md: "row" }}
+        justifyContent="space-between"
         maxW="6xl"
         mx="auto"
         px={8}
         py={{ default: 8, md: 24 }}
-        spacing={8}
         textAlign={{ default: "center", md: "initial" }}
       >
-        <Stack color="white">
-          <Image
-            src={logoImage}
-            alt={siteConfig.title}
-            maxW="md"
-            mx={{ default: "auto", md: "initial" }}
-            pb={4}
-            w="full"
-          />
-
-          <Heading fontWeight="regular" lineHeight="short" maxW="4xl" size="md">
-            {siteConfig.description}
+        <Stack fontSize="md" maxW="xl" spacing={4}>
+          <Heading letterSpacing="tight" lineHeight="none">
+            Hangout with us, digitally.
           </Heading>
-        </Stack>
-
-        <Stack color="white">
-          <Flex alignItems="center" flexDir={{ default: "column", md: "row" }}>
-            <AvatarGroup max={3} size="lg">
-              {event.sessionsCollection.items.map(({ speaker }, i) => (
-                <Avatar key={i} name={speaker.name} src={speaker.avatar.url} />
-              ))}
-            </AvatarGroup>
-
-            <Box size={4} />
-
-            <Stack>
-              <Heading letterSpacing="tight" size="lg">
-                {event.title}
-              </Heading>
-
-              <Box>
-                Presented by{" "}
-                {event.sessionsCollection.items
-                  .slice(0, 3)
-                  .map(({ speaker: s }, i) => (
-                    <React.Fragment key={i}>
-                      {i > 0 && ", "}
-                      <Box as="span" fontWeight="semibold">
-                        {s.name}
-                      </Box>
-                      {s.showEmployer && ` (${s.employer})`}
-                    </React.Fragment>
-                  ))}
-                {event.sessionsCollection.items.length > 3 && (
-                  <>, and {event.sessionsCollection.items.length - 3} more</>
-                )}
-              </Box>
-
-              <Box>
-                {event.onlineEvent
-                  ? `Online ${event.category} via`
-                  : `Offline ${event.category} at`}{" "}
-                <Box as="span" fontWeight="semibold">
-                  {event.location}
-                </Box>
-                , {event.quota} seats, starting on{" "}
-                <Box as="span" fontWeight="semibold">
-                  {formatDate(event.startingDate)}
-                </Box>
-              </Box>
-            </Stack>
+          <Text>
+            Hanging out isn&apos; t always meeting in real life on events.With
+            era of internet and digital communities, everyone can hang out
+            anywhere and anytime.
+          </Text>
+          <Text>Join our official Discord and Telegram community!</Text>
+          <Flex
+            flexDir={{ default: "column", md: "row" }}
+            flexWrap="wrap"
+            mx={{ default: "auto", md: "initial" }}
+          >
+            <Link href={siteConfig.socials.Discord} isExternal>
+              <Button as="span" variantColor="blue" w="100%">
+                Join Discord server
+              </Button>
+            </Link>
+            <Box size={2} />
+            <Link href={siteConfig.socials.Telegram} isExternal>
+              <Button as="span" variantColor="cyan" w="100%">
+                Join Telegram group
+              </Button>
+            </Link>
           </Flex>
         </Stack>
 
-        <Flex
-          flexDir={{ default: "column", md: "row" }}
-          flexWrap="wrap"
-          mx={{ default: "auto", md: "initial" }}
-          pb={8}
-        >
-          <Link href={event.url} isExternal>
-            <Button as="span" variantColor="green" w="100%">
-              Register event {isLastEventFinished(event) && "(finished)"}
-            </Button>
-          </Link>
+        <Box size={8} />
 
-          <Box size={2} />
+        <DiscordEmbed />
+      </Flex>
 
-          <Link href={`/events/${event.slug}`} isNextLink>
-            <Button as="span" variantColor="teal" w="100%">
-              View details
-            </Button>
-          </Link>
-        </Flex>
-
-        <Box mx={{ default: "auto", md: "initial" }}>
-          <Socials />
-        </Box>
-      </Stack>
+      <Sponsors sponsors={sponsors} />
     </Box>
-
-    <Flex
-      alignItems="center"
-      flexDir={{ default: "column", md: "row" }}
-      justifyContent="space-between"
-      maxW="6xl"
-      mx="auto"
-      px={8}
-      py={{ default: 8, md: 24 }}
-      textAlign={{ default: "center", md: "initial" }}
-    >
-      <Stack fontSize="md" maxW="xl" spacing={4}>
-        <Heading letterSpacing="tight" lineHeight="none">
-          Hangout with us, digitally.
-        </Heading>
-        <Text>
-          Hanging out isn&apos;t always meeting in real life on events. With the
-          era of internet and digital communities, everyone can hang out
-          anywhere and anytime.
-        </Text>
-        <Text>Join our official Discord and Telegram community!</Text>
-        <Flex
-          flexDir={{ default: "column", md: "row" }}
-          flexWrap="wrap"
-          mx={{ default: "auto", md: "initial" }}
-        >
-          <Link href={siteConfig.socials.Discord} isExternal>
-            <Button as="span" variantColor="blue" w="100%">
-              Join Discord server
-            </Button>
-          </Link>
-          <Box size={2} />
-          <Link href={siteConfig.socials.Telegram} isExternal>
-            <Button as="span" variantColor="cyan" w="100%">
-              Join Telegram group
-            </Button>
-          </Link>
-        </Flex>
-      </Stack>
-
-      <Box size={8} />
-
-      <DiscordEmbed />
-    </Flex>
-
-    <Sponsors sponsors={sponsors} />
-  </Box>
-);
+  );
+};
 
 export default HomePage;
