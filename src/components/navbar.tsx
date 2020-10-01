@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import * as React from "react";
 
 import {
@@ -17,12 +19,12 @@ import { FaBars } from "react-icons/fa";
 import Link from "@/components/link";
 import Socials from "@/components/socials";
 import routes from "@/routes";
-import siteConfig from "~/site-config";
 import { useRouter } from "next/router";
+import siteConfig from "~/site-config";
 
 const Navbar: React.FC = () => {
   const { pathname } = useRouter();
-  const isHome = pathname == "/";
+  const isHome = pathname === "/";
 
   const { isOpen, onClose, onToggle } = useDisclosure();
   const btnRef = React.useRef();

@@ -6,72 +6,69 @@
   "author": "Griko Nibras <griko@surabayajs.org>",
   "scripts": {
     "now-build": "yarn build:assets && yarn build:web",
-    "build": "env-cmd yarn build:assets && env-cmd yarn build:web",
+    "build": "env-cmd yarn now-build",
     "build:assets": "node scripts/build.js",
     "build:web": "next build",
     "clean": "rimraf .next \"public/!(social.jpg)\"",
-    "develop": "next dev",
-    "format": "yarn format:index && yarn format:scripts && yarn format:src",
+    "codegen": "env-cmd yarn graphql-codegen --config codegen.js",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "develop": "next",
+    "dev": "next",
+    "format": "concurrently \"yarn:format:*\"",
     "format:index": "prettier --write \"*.{js,json,md}\"",
     "format:scripts": "prettier --write \"scripts/**/*.js\"",
     "format:src": "prettier --write \"src/**/*.{js,ts,tsx}\"",
-    "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate",
-    "codegen": "env-cmd yarn graphql-codegen --config codegen.js"
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "type-check": "tsc --noEmit",
+    "validate": "yarn lint && yarn type-check"
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
-    "@emotion/core": "^10.0.34",
+    "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
-    "date-fns": "^2.15.0",
+    "date-fns": "^2.16.1",
     "emotion-theming": "^10.0.27",
     "favicons": "^6.2.0",
     "graphql": "^15.3.0",
-    "graphql-request": "^3.0.0",
-    "next": "^9.5.2",
-    "next-seo": "^4.7.3",
+    "graphql-request": "^3.1.0",
+    "lodash": "^4.17.20",
+    "next": "canary",
+    "next-seo": "^4.10.0",
     "nprogress": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-icons": "^3.10.0",
+    "react-icons": "^3.11.0",
     "react-markdown": "^4.3.1",
-    "sitemap": "^6.2.0"
+    "sitemap": "^6.3.2"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.17.8",
-    "@graphql-codegen/typescript": "^1.17.8",
-    "@types/marked": "^1.1.0",
-    "@types/node": "^14.0.27",
-    "@types/react": "^16.9.46",
+    "@graphql-codegen/cli": "^1.17.10",
+    "@graphql-codegen/typescript": "^1.17.10",
+    "@types/lodash": "^4.14.161",
+    "@types/node": "^14.11.2",
+    "@types/nprogress": "^0.2.0",
+    "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
-    "all-contributors-cli": "^6.17.0",
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
+    "all-contributors-cli": "^6.17.4",
+    "concurrently": "^5.3.0",
     "env-cmd": "^10.1.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
-    "typescript": "^3.9.7"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn contributors:generate && lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,json,md}": [
-      "prettier --write"
-    ],
-    "scripts/**/*.js": [
-      "prettier --write"
-    ],
-    "src/**/*.{js,ts,tsx}": [
-      "prettier --write"
-    ]
-  },
-  "prettier": {
-    "semi": true,
-    "singleQuote": false,
-    "trailingComma": "all"
+    "typescript": "^4.0.3"
   },
   "license": "MIT"
 }

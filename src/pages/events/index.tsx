@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import * as React from "react";
 
 import {
@@ -14,11 +16,11 @@ import {
 } from "@chakra-ui/core";
 import { formatDate, isLastEventFinished } from "@/utils";
 
-import { Event } from "@/types";
-import { GetStaticProps } from "next";
+import type { Event } from "@/types";
+import type { GetStaticProps } from "next";
 import Link from "@/components/link";
 import { NextSeo } from "next-seo";
-import { client } from "@/cms";
+import { contentful } from "@/cms";
 import siteConfig from "~/site-config";
 
 interface EventsPageProps {
@@ -26,7 +28,7 @@ interface EventsPageProps {
 }
 
 export const getStaticProps: GetStaticProps<EventsPageProps> = async () => {
-  const data = await client.request(/* GraphQL */ `
+  const data = await contentful().request(/* GraphQL */ `
     {
       eventCollection(order: startingDate_DESC) {
         items {
@@ -84,15 +86,15 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
 
         <Text textAlign="center">
           View current and past events. Get the latest updates on{" "}
-          <Link b i href={siteConfig.socials["Discord"]} isExternal>
+          <Link b i href={siteConfig.socials.Discord} isExternal>
             Discord
           </Link>
           ,{" "}
-          <Link b i href={siteConfig.socials["Telegram"]} isExternal>
+          <Link b i href={siteConfig.socials.Telegram} isExternal>
             Telegram
           </Link>
           , and{" "}
-          <Link b i href={siteConfig.socials["Twitter"]} isExternal>
+          <Link b i href={siteConfig.socials.Twitter} isExternal>
             Twitter
           </Link>
           . Public API is available at{" "}
@@ -146,8 +148,8 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
                 <List styleType="disc">
                   {event.sessionsCollection.items
                     .slice(0, 5)
-                    .map(({ speaker: s }, i) => (
-                      <React.Fragment key={i}>
+                    .map(({ speaker: s }, j) => (
+                      <React.Fragment key={j}>
                         <ListItem>
                           {s.name}
                           {s.showEmployer && ` (${s.employer})`}
@@ -185,11 +187,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
                     </Button>
                   </Link>
                   <Box size={2} />
-                  <Link
-                    href="/events/[slug]"
-                    isNextLink
-                    linkAs={`/events/${event.slug}`}
-                  >
+                  <Link href={`/events/${event.slug}`} isNextLink>
                     <Button as="span" variantColor="teal">
                       View details
                     </Button>

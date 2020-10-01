@@ -1,8 +1,8 @@
-import { NextApiHandler } from "next";
-import { client } from "@/cms";
+import type { NextApiHandler } from "next";
+import { contentful } from "@/cms";
 
 const handler: NextApiHandler = async (_, res) => {
-  const data = await client.request(/* GraphQL */ `
+  const data = await contentful().request(/* GraphQL */ `
     {
       eventCollection(order: startingDate_DESC) {
         items {
@@ -19,8 +19,6 @@ const handler: NextApiHandler = async (_, res) => {
     }
   `);
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Cache-Control", "public, max-age=86400");
   res.json(data.eventCollection.items);
 };
 

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import * as React from "react";
 
 import {
@@ -10,13 +12,13 @@ import {
   Image,
   Stack,
 } from "@chakra-ui/core";
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import { formatDate, formatDatetime, isLastEventFinished } from "@/utils";
 
-import { Event } from "@/types";
+import type { Event } from "@/types";
 import Link from "@/components/link";
 import { NextSeo } from "next-seo";
-import { client } from "@/cms";
+import { contentful } from "@/cms";
 
 interface EventPageProps {
   event: Event;
@@ -24,7 +26,7 @@ interface EventPageProps {
 }
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  const data = await client.request(/* GraphQL */ `
+  const data = await contentful().request(/* GraphQL */ `
     {
       eventCollection(order: startingDate_DESC) {
         items {
@@ -44,7 +46,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 export const getStaticProps: GetStaticProps<EventPageProps> = async ({
   params,
 }) => {
-  const data = await client.request(/* GraphQL */ `
+  const data = await contentful().request(/* GraphQL */ `
     {
       eventCollection(limit: 1, where: { slug: "${params.slug}" }) {
         items {
