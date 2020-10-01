@@ -12,6 +12,7 @@ const DiscordEmbed: React.FC = () => {
       "allow-scripts",
     ].join(" "),
     src: "https://discordapp.com/widget?id=658768237789446165&theme=light",
+    title: "Discord Widget",
   };
 
   return (

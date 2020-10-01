@@ -25,8 +25,8 @@ const Sponsors: React.FC<SponsorsProps> = ({ sponsors }) => {
           <Heading size="md">{category}</Heading>
           <Flex flexWrap="wrap" justifyContent="center">
             {sp.map((s) => (
-              <Link href={s.url} isExternal key={s.name} p={4}>
-                <Image src={s.logo.url} />
+              <Link href={s.url} isExternal key={s.name} p={4} alt={s.name}>
+                <Image src={s.logo.url} alt={s.name} />
                 <Box fontSize="xs" pt={4}>
                   {s.name}
                 </Box>
