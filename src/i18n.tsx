@@ -60,7 +60,7 @@ export default {
     ),
     id: (
       <>
-        Berikut merupakan kegiatan kami sebelumnya. API public dapat diakses
+        Berikut merupakan kegiatan kami sebelumnya. API publik dapat diakses
         pada <code>/api/events</code>.
       </>
     ),
