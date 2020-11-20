@@ -33,6 +33,7 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
         bgColor="white"
         borderRadius="md"
         color="black"
+        h="full"
         _hover={{
           boxShadow: "xl",
           transform: "rotate(1deg) scale(1.05) translateY(-12px) ",
@@ -57,7 +58,7 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
           src={event.poster.url}
           w="full"
         />
-        <Stack p={4} spacing={4}>
+        <Stack h="full" mt={-36} p={4} pt={36} spacing={4}>
           <Heading as="h3" size="md">
             {event.title}
           </Heading>
@@ -74,7 +75,9 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
             {event.location}, {format(new Date(event.startingDate), "PPpp")}
           </Text>
           <Divider />
-          <Text fontSize="sm">{event.description}</Text>
+          <Text flexGrow={1} fontSize="sm">
+            {event.description}
+          </Text>
           {withNotes && event.notes && (
             <Text color="gray.500" fontSize="xs" textAlign="right">
               {event.notes}

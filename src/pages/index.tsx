@@ -174,7 +174,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
               <Text>{i18n["home-revents-subtitle"][locale]}</Text>
             </Stack>
           </HStack>
-          <Wrap align="center" justify="center" spacing={4}>
+          <Wrap align="stretch" justify="center" spacing={4}>
             {recentEvents.map((event) => (
               <WrapItem key={event.slug}>
                 <EventCard
