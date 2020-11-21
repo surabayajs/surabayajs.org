@@ -38,7 +38,7 @@ export default {
     ),
     id: (
       <>
-        Lihat meetup dan workshop selebihnya pada laman kegiatan. API public
+        Lihat meetup dan workshop selebihnya pada laman kegiatan. API publik
         dapat diakses pada <code>/api/events</code>.
       </>
     ),
