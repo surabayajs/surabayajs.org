@@ -1,85 +1,103 @@
-/* eslint-disable react/no-array-index-key */
-
 import * as React from "react";
 
 import {
-  Avatar,
-  AvatarGroup,
   Box,
   Button,
-  Flex,
+  ButtonGroup,
+  Container,
   Heading,
-  Image,
+  Icon,
+  LightMode,
   Stack,
   Text,
-} from "@chakra-ui/core";
-import type { Event, Sponsor } from "@/types";
-import { formatDate, isLastEventFinished } from "@/utils";
+  VStack,
+  Wrap,
+  WrapItem,
+  useBreakpointValue,
+  useColorModeValue,
+  useToken,
+} from "@chakra-ui/react";
+import type { EventCollection, Sponsor } from "@/types";
+import { FaArrowRight, FaDiscord, FaTwitch, FaTwitter } from "react-icons/fa";
+import type { GetStaticProps, NextPage } from "next";
 
-import DiscordEmbed from "@/components/discord-embed";
-import { GetStaticProps } from "next";
-import Link from "@/components/link";
-import { NextSeo } from "next-seo";
-import Socials from "@/components/socials";
-import Sponsors from "@/components/sponsors";
+import { EventCard } from "@/components/event-card";
+import { HorizontalLogo } from "@/components/logo";
+import type { IconType } from "react-icons/lib";
+import NextLink from "next/link";
+import { SponsorCard } from "@/components/sponsor-card";
 import { contentful } from "@/cms";
-import siteConfig from "~/site-config";
+import i18n from "@/i18n";
+import siteConfig from "site-config";
+
+const HOME_SOCIAL_BUTTONS: [string, string, IconType, string][] = [
+  ["Discord", siteConfig.socials.Discord, FaDiscord, "blue"],
+  ["Twitch", siteConfig.socials.Twitch, FaTwitch, "purple"],
+  ["Twitter", siteConfig.socials.Twitter, FaTwitter, "twitter"],
+];
 
 interface HomePageProps {
-  event: Event;
-  heroImage: string;
-  logoImage: string;
+  locale: string;
+  recentEvents: EventCollection["items"];
   sponsors: Record<string, Sponsor[]>;
 }
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const data = await contentful().request(/* GraphQL */ `
-    {
-      eventCollection(limit: 1, order: startingDate_DESC) {
-        items {
-          title
-          slug
-          description
-          category
-          startingDate
-          sessionsCollection(limit: 20) {
-            items {
-              endDatetime
-              speaker {
-                avatar {
-                  url(transform: { width: 140, height: 140 })
+export const getStaticProps: GetStaticProps<HomePageProps> = async (args) => {
+  const { locale } = args;
+
+  const data = await contentful().request(
+    /* GraphQL */ `
+      query HomePageQuery($locale: String!) {
+        eventCollection(limit: 5, locale: $locale, order: startingDate_DESC) {
+          items {
+            poster {
+              url
+            }
+            title
+            slug
+            description
+            category
+            startingDate
+            sessionsCollection {
+              items {
+                sys {
+                  id
                 }
-                name
-                employer
-                showEmployer
+                speaker {
+                  avatar {
+                    url
+                  }
+                  name
+                }
               }
             }
-          }
-          onlineEvent
-          location
-          url
-          quota
-        }
-      }
-      sponsorCollection(order: name_ASC) {
-        items {
-          name
-          category
-          url
-          activeSponsor
-          logo {
-            url(transform: { width: 140, height: 140 })
+            onlineEvent
+            location
+            url
+            quota
+            notes
           }
         }
+        sponsorCollection(order: name_ASC) {
+          items {
+            name
+            category
+            url
+            activeSponsor
+            logo {
+              url
+            }
+            sys {
+              id
+            }
+          }
+        }
       }
-      hero: asset(id: "73xA9AzNoQnntkE3E3XQf6") {
-        url
-      }
-      logo: asset(id: "67IUjR8eXwpHLJ66GvWoyC") {
-        url
-      }
-    }
-  `);
+    `,
+    {
+      locale: i18n["i18n-code"][locale],
+    },
+  );
 
   const sponsors: Record<string, Sponsor[]> = {
     Sponsor: [],
@@ -97,189 +115,129 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
 
   return {
     props: {
-      event: data.eventCollection.items[0],
-      heroImage: data.hero.url,
-      logoImage: data.logo.url,
+      locale,
+      recentEvents: data.eventCollection.items,
       sponsors,
     },
-    revalidate: 3600,
   };
 };
 
-const HomePage: React.FC<HomePageProps> = ({
-  event,
-  heroImage,
-  logoImage,
-  sponsors,
-}) => {
+const HomePage: NextPage<HomePageProps> = (props) => {
+  const { locale, recentEvents, sponsors } = props;
+
+  const buttonSize = useBreakpointValue(["sm", "md", "lg"]);
+
+  const [lightColor, darkColor] = useToken("colors", [
+    "gator.200",
+    "gator.800",
+  ]);
+
+  const bgColor = useColorModeValue(lightColor, darkColor);
+
   return (
-    <Box>
-      <NextSeo title={siteConfig.title} titleTemplate="%s" />
+    <>
+      <Container as="section" maxW="6xl" pt={[4, 8]} px={[4, 8]}>
+        <Stack spacing={[4, 8]}>
+          <HorizontalLogo maxW={["3xs", "2xs", "xs", "sm"]} w="full" />
 
-      <Image src={heroImage} display="none" />
+          <Text variant="home-title">{i18n["home-title"][locale]}</Text>
+          <Text variant="home-subtitle">{i18n["home-subtitle"][locale]}</Text>
 
-      <Box
-        backgroundImage={`url("${heroImage}")`}
-        backgroundPosition="center"
-        backgroundSize="cover"
-      >
-        <Stack
-          maxW="6xl"
-          mx="auto"
-          px={8}
-          py={{ default: 8, md: 24 }}
-          spacing={8}
-          textAlign={{ default: "center", md: "initial" }}
-        >
-          <Stack color="white">
-            <Image
-              src={logoImage}
-              alt={siteConfig.title}
-              maxW="md"
-              mx={{ default: "auto", md: "initial" }}
-              pb={4}
-              w="full"
-            />
-
-            <Heading
-              fontWeight="regular"
-              lineHeight="short"
-              maxW="4xl"
-              size="md"
-            >
-              {siteConfig.description}
-            </Heading>
-          </Stack>
-
-          <Stack color="white">
-            <Flex
-              alignItems="center"
-              flexDir={{ default: "column", md: "row" }}
-            >
-              <AvatarGroup max={3} size="lg">
-                {event.sessionsCollection.items.map(({ speaker }, i) => (
-                  <Avatar
-                    key={i}
-                    name={speaker.name}
-                    src={speaker.avatar.url}
-                  />
-                ))}
-              </AvatarGroup>
-
-              <Box size={4} />
-
-              <Stack>
-                <Heading letterSpacing="tight" size="lg">
-                  {event.title}
-                </Heading>
-
-                <Box>
-                  Presented by{" "}
-                  {event.sessionsCollection.items
-                    .slice(0, 3)
-                    .map(({ speaker: s }, i) => (
-                      <React.Fragment key={i}>
-                        {i > 0 && ", "}
-                        <Box as="span" fontWeight="semibold">
-                          {s.name}
-                        </Box>
-                        {s.showEmployer && ` (${s.employer})`}
-                      </React.Fragment>
-                    ))}
-                  {event.sessionsCollection.items.length > 3 && (
-                    <>, and {event.sessionsCollection.items.length - 3} more</>
-                  )}
-                </Box>
-
-                <Box>
-                  {event.onlineEvent
-                    ? `Online ${event.category} via`
-                    : `Offline ${event.category} at`}{" "}
-                  <Box as="span" fontWeight="semibold">
-                    {event.location}
-                  </Box>
-                  , {event.quota} seats, starting on{" "}
-                  <Box as="span" fontWeight="semibold">
-                    {formatDate(event.startingDate)}
-                  </Box>
-                </Box>
-              </Stack>
-            </Flex>
-          </Stack>
-
-          <Flex
-            flexDir={{ default: "column", md: "row" }}
-            flexWrap="wrap"
-            mx={{ default: "auto", md: "initial" }}
-            pb={8}
-          >
-            <Link href={event.url} isExternal>
-              <Button as="span" variantColor="green" w="100%">
-                Register event {isLastEventFinished(event) && "(finished)"}
-              </Button>
-            </Link>
-
-            <Box size={2} />
-
-            <Link href={`/events/${event.slug}`} isNextLink>
-              <Button as="span" variantColor="teal" w="100%">
-                View details
-              </Button>
-            </Link>
-          </Flex>
-
-          <Box mx={{ default: "auto", md: "initial" }}>
-            <Socials />
-          </Box>
+          <LightMode>
+            <ButtonGroup spacing={4}>
+              {HOME_SOCIAL_BUTTONS.map(([name, href, AsIcon, colorScheme]) => (
+                <Button
+                  as="a"
+                  colorScheme={colorScheme}
+                  _hover={{
+                    boxShadow: "xl",
+                    transform: "rotate(2deg) scale(1.1) translateY(-4px)",
+                  }}
+                  href={href}
+                  key={name}
+                  leftIcon={<Icon as={AsIcon} boxSize={[4, 5, 6]} />}
+                  size={buttonSize}
+                  target="_blank"
+                  transition="all 250ms"
+                >
+                  {name}
+                </Button>
+              ))}
+            </ButtonGroup>
+          </LightMode>
         </Stack>
+      </Container>
+
+      <Box as="svg" pos="relative" viewBox="0 0 1440 240" zIndex={-1}>
+        <path
+          d="M0,192L48,170.7C96,149,192,107,288,90.7C384,75,480,85,576,106.7C672,128,768,160,864,176C960,192,1056,192,1152,170.7C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          fill={bgColor}
+          fillOpacity={1}
+        />
       </Box>
 
-      <Flex
-        alignItems="center"
-        flexDir={{ default: "column", md: "row" }}
-        justifyContent="space-between"
-        maxW="6xl"
-        mx="auto"
-        px={8}
-        py={{ default: 8, md: 24 }}
-        textAlign={{ default: "center", md: "initial" }}
-      >
-        <Stack fontSize="md" maxW="xl" spacing={4}>
-          <Heading letterSpacing="tight" lineHeight="none">
-            Hangout with us, digitally.
-          </Heading>
-          <Text>
-            Hanging out isn&apos; t always meeting in real life on events.With
-            era of internet and digital communities, everyone can hang out
-            anywhere and anytime.
-          </Text>
-          <Text>Join our official Discord and Telegram community!</Text>
-          <Flex
-            flexDir={{ default: "column", md: "row" }}
-            flexWrap="wrap"
-            mx={{ default: "auto", md: "initial" }}
-          >
-            <Link href={siteConfig.socials.Discord} isExternal>
-              <Button as="span" variantColor="blue" w="100%">
-                Join Discord server
+      <Box as="section" bgColor={bgColor}>
+        <Container as={VStack} maxW="6xl" px={[4, 8]} spacing={[8, 12]}>
+          <VStack spacing={[2, 4]} textAlign="center">
+            <Heading as="h2">{i18n["home-revents-title"][locale]}</Heading>
+            <Text>{i18n["home-revents-subtitle"][locale]}</Text>
+          </VStack>
+          <Wrap align="stretch" justify="center" spacing={4}>
+            {recentEvents.map((event) => (
+              <WrapItem key={event.slug}>
+                <EventCard
+                  as="a"
+                  event={event}
+                  // @ts-expect-error there is href
+                  href={event.url}
+                  key={event.slug}
+                  target="_blank"
+                  withUrl
+                />
+              </WrapItem>
+            ))}
+          </Wrap>
+          <Box>
+            <NextLink href="/events" passHref>
+              <Button as="a" rightIcon={<Icon as={FaArrowRight} />}>
+                {i18n["home-revents-more"][locale]}
               </Button>
-            </Link>
-            <Box size={2} />
-            <Link href={siteConfig.socials.Telegram} isExternal>
-              <Button as="span" variantColor="cyan" w="100%">
-                Join Telegram group
-              </Button>
-            </Link>
-          </Flex>
-        </Stack>
+            </NextLink>
+          </Box>
+        </Container>
+      </Box>
 
-        <Box size={8} />
+      <Box as="svg" pos="relative" viewBox="0 120 1440 200" zIndex={-1}>
+        <path
+          d="M0,256L48,256C96,256,192,256,288,261.3C384,267,480,277,576,272C672,267,768,245,864,213.3C960,181,1056,139,1152,138.7C1248,139,1344,181,1392,202.7L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+          fill={bgColor}
+          fillOpacity={1}
+        />
+      </Box>
 
-        <DiscordEmbed />
-      </Flex>
-
-      <Sponsors sponsors={sponsors} />
-    </Box>
+      <Container as="section" maxW="6xl" p={[4, 8]}>
+        <VStack spacing={[4, 8]}>
+          <VStack spacing={[2, 4]} textAlign="center">
+            <Heading as="h2">{i18n["home-saps-title"][locale]}</Heading>
+            <Text>{i18n["home-saps-subtitle"][locale]}</Text>
+          </VStack>
+          {Object.entries(sponsors).map(([category, list]) => (
+            <React.Fragment key={category}>
+              <Heading as="h3" size="md">
+                {category}
+              </Heading>
+              <Wrap justify="center" spacing={[4, 8]}>
+                {list.map((sponsor) => (
+                  <WrapItem key={sponsor.sys.id}>
+                    <SponsorCard sponsor={sponsor} />
+                  </WrapItem>
+                ))}
+              </Wrap>
+            </React.Fragment>
+          ))}
+        </VStack>
+      </Container>
+    </>
   );
 };
 

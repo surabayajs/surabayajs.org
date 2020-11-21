@@ -6,6 +6,16 @@
 
 Landing page for SurabayaJS, made using Next.js, Chakra UI, and Contentful 🐊
 
-[![surabayajs.org](./preview.png)](https://surabayajs.org)
+<br />
+
+![preview](./preview.png)
+
+![preview-dark](./preview-dark.png)
+
+<br />
+
+Powered by
+
+[![vercel](./src/components/logo/vercel-logo.svg)](https://vercel.com/?utm_source=surabayajs&utm_campaign=oss)
 
 </div>

@@ -32,10 +32,16 @@ export type Query = {
   __typename?: "Query";
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
-  sponsor?: Maybe<Sponsor>;
-  sponsorCollection?: Maybe<SponsorCollection>;
   event?: Maybe<Event>;
   eventCollection?: Maybe<EventCollection>;
+  resources?: Maybe<Resources>;
+  resourcesCollection?: Maybe<ResourcesCollection>;
+  externalResource?: Maybe<ExternalResource>;
+  externalResourceCollection?: Maybe<ExternalResourceCollection>;
+  post?: Maybe<Post>;
+  postCollection?: Maybe<PostCollection>;
+  sponsor?: Maybe<Sponsor>;
+  sponsorCollection?: Maybe<SponsorCollection>;
   session?: Maybe<Session>;
   sessionCollection?: Maybe<SessionCollection>;
   speaker?: Maybe<Speaker>;
@@ -57,21 +63,6 @@ export type QueryAssetCollectionArgs = {
   order?: Maybe<Array<Maybe<AssetOrder>>>;
 };
 
-export type QuerySponsorArgs = {
-  id: Scalars["String"];
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
-};
-
-export type QuerySponsorCollectionArgs = {
-  skip?: Maybe<Scalars["Int"]>;
-  limit?: Maybe<Scalars["Int"]>;
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
-  where?: Maybe<SponsorFilter>;
-  order?: Maybe<Array<Maybe<SponsorOrder>>>;
-};
-
 export type QueryEventArgs = {
   id: Scalars["String"];
   preview?: Maybe<Scalars["Boolean"]>;
@@ -85,6 +76,66 @@ export type QueryEventCollectionArgs = {
   locale?: Maybe<Scalars["String"]>;
   where?: Maybe<EventFilter>;
   order?: Maybe<Array<Maybe<EventOrder>>>;
+};
+
+export type QueryResourcesArgs = {
+  id: Scalars["String"];
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type QueryResourcesCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+  where?: Maybe<ResourcesFilter>;
+  order?: Maybe<Array<Maybe<ResourcesOrder>>>;
+};
+
+export type QueryExternalResourceArgs = {
+  id: Scalars["String"];
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type QueryExternalResourceCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+  where?: Maybe<ExternalResourceFilter>;
+  order?: Maybe<Array<Maybe<ExternalResourceOrder>>>;
+};
+
+export type QueryPostArgs = {
+  id: Scalars["String"];
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type QueryPostCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+  where?: Maybe<PostFilter>;
+  order?: Maybe<Array<Maybe<PostOrder>>>;
+};
+
+export type QuerySponsorArgs = {
+  id: Scalars["String"];
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type QuerySponsorCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+  where?: Maybe<SponsorFilter>;
+  order?: Maybe<Array<Maybe<SponsorOrder>>>;
 };
 
 export type QuerySessionArgs = {
@@ -135,6 +186,11 @@ export type Asset = {
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetUrlArgs = {
   transform?: Maybe<ImageTransformOptions>;
+};
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars["String"]>>>;
 };
 
 export type Sys = {
@@ -244,8 +300,9 @@ export enum ImageFormat {
 export type AssetLinkingCollections = {
   __typename?: "AssetLinkingCollections";
   entryCollection?: Maybe<EntryCollection>;
-  sponsorCollection?: Maybe<SponsorCollection>;
   eventCollection?: Maybe<EventCollection>;
+  externalResourceCollection?: Maybe<ExternalResourceCollection>;
+  sponsorCollection?: Maybe<SponsorCollection>;
   speakerCollection?: Maybe<SpeakerCollection>;
 };
 
@@ -256,14 +313,21 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
   locale?: Maybe<Scalars["String"]>;
 };
 
-export type AssetLinkingCollectionsSponsorCollectionArgs = {
+export type AssetLinkingCollectionsEventCollectionArgs = {
   skip?: Maybe<Scalars["Int"]>;
   limit?: Maybe<Scalars["Int"]>;
   preview?: Maybe<Scalars["Boolean"]>;
   locale?: Maybe<Scalars["String"]>;
 };
 
-export type AssetLinkingCollectionsEventCollectionArgs = {
+export type AssetLinkingCollectionsExternalResourceCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type AssetLinkingCollectionsSponsorCollectionArgs = {
   skip?: Maybe<Scalars["Int"]>;
   limit?: Maybe<Scalars["Int"]>;
   preview?: Maybe<Scalars["Boolean"]>;
@@ -287,45 +351,6 @@ export type EntryCollection = {
 
 export type Entry = {
   sys: Sys;
-};
-
-export type SponsorCollection = {
-  __typename?: "SponsorCollection";
-  total: Scalars["Int"];
-  skip: Scalars["Int"];
-  limit: Scalars["Int"];
-  items: Array<Maybe<Sponsor>>;
-};
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type Sponsor = Entry & {
-  __typename?: "Sponsor";
-  sys: Sys;
-  linkedFrom?: Maybe<SponsorLinkingCollections>;
-  name?: Maybe<Scalars["String"]>;
-  category?: Maybe<Scalars["String"]>;
-  url?: Maybe<Scalars["String"]>;
-  logo?: Maybe<Asset>;
-  activeSponsor?: Maybe<Scalars["Boolean"]>;
-  exclusive?: Maybe<Scalars["Boolean"]>;
-};
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type SponsorLogoArgs = {
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
-};
-
-export type SponsorLinkingCollections = {
-  __typename?: "SponsorLinkingCollections";
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-export type SponsorLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars["Int"]>;
-  limit?: Maybe<Scalars["Int"]>;
-  preview?: Maybe<Scalars["Boolean"]>;
-  locale?: Maybe<Scalars["String"]>;
 };
 
 export type EventCollection = {
@@ -355,6 +380,12 @@ export type Event = Entry & {
   albumUrl?: Maybe<Scalars["String"]>;
   quota?: Maybe<Scalars["Int"]>;
   notes?: Maybe<Scalars["String"]>;
+  videoUrl?: Maybe<Array<Maybe<Scalars["String"]>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars["String"]>>>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
@@ -364,10 +395,75 @@ export type EventPosterArgs = {
 };
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventTitleArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventSlugArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventDescriptionArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventCategoryArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventStartingDateArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
 export type EventSessionsCollectionArgs = {
   skip?: Maybe<Scalars["Int"]>;
   limit?: Maybe<Scalars["Int"]>;
   preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventOnlineEventArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventLocationArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventCoordinatesArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventUrlArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventAlbumUrlArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventQuotaArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventNotesArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventVideoUrlArgs = {
   locale?: Maybe<Scalars["String"]>;
 };
 
@@ -404,8 +500,33 @@ export type Session = Entry & {
 };
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars["String"]>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionTitleArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
 export type SessionSpeakerArgs = {
   preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionStartDatetimeArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionEndDatetimeArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionDeckUrlArgs = {
   locale?: Maybe<Scalars["String"]>;
 };
 
@@ -443,8 +564,38 @@ export type Speaker = Entry & {
 };
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars["String"]>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
 export type SpeakerAvatarArgs = {
   preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerNameArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerJobTitleArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerEmployerArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerShowEmployerArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerUrlArgs = {
   locale?: Maybe<Scalars["String"]>;
 };
 
@@ -480,6 +631,132 @@ export type Location = {
   __typename?: "Location";
   lat?: Maybe<Scalars["Float"]>;
   lon?: Maybe<Scalars["Float"]>;
+};
+
+export type ExternalResourceCollection = {
+  __typename?: "ExternalResourceCollection";
+  total: Scalars["Int"];
+  skip: Scalars["Int"];
+  limit: Scalars["Int"];
+  items: Array<Maybe<ExternalResource>>;
+};
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResource = Entry & {
+  __typename?: "ExternalResource";
+  sys: Sys;
+  linkedFrom?: Maybe<ExternalResourceLinkingCollections>;
+  title?: Maybe<Scalars["String"]>;
+  image?: Maybe<Asset>;
+  description?: Maybe<Scalars["String"]>;
+  url?: Maybe<Scalars["String"]>;
+};
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResourceLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars["String"]>>>;
+};
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResourceTitleArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResourceImageArgs = {
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResourceDescriptionArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResourceUrlArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type ExternalResourceLinkingCollections = {
+  __typename?: "ExternalResourceLinkingCollections";
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+export type ExternalResourceLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type SponsorCollection = {
+  __typename?: "SponsorCollection";
+  total: Scalars["Int"];
+  skip: Scalars["Int"];
+  limit: Scalars["Int"];
+  items: Array<Maybe<Sponsor>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type Sponsor = Entry & {
+  __typename?: "Sponsor";
+  sys: Sys;
+  linkedFrom?: Maybe<SponsorLinkingCollections>;
+  name?: Maybe<Scalars["String"]>;
+  category?: Maybe<Scalars["String"]>;
+  url?: Maybe<Scalars["String"]>;
+  logo?: Maybe<Asset>;
+  activeSponsor?: Maybe<Scalars["Boolean"]>;
+  exclusive?: Maybe<Scalars["Boolean"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars["String"]>>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorNameArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorCategoryArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorUrlArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorLogoArgs = {
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorActiveSponsorArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorExclusiveArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type SponsorLinkingCollections = {
+  __typename?: "SponsorLinkingCollections";
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+export type SponsorLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
 };
 
 export type SpeakerCollection = {
@@ -620,62 +897,9 @@ export type AssetCollection = {
   items: Array<Maybe<Asset>>;
 };
 
-export type SponsorFilter = {
-  sys?: Maybe<SysFilter>;
-  name_exists?: Maybe<Scalars["Boolean"]>;
-  name?: Maybe<Scalars["String"]>;
-  name_not?: Maybe<Scalars["String"]>;
-  name_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  name_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  name_contains?: Maybe<Scalars["String"]>;
-  name_not_contains?: Maybe<Scalars["String"]>;
-  category_exists?: Maybe<Scalars["Boolean"]>;
-  category?: Maybe<Scalars["String"]>;
-  category_not?: Maybe<Scalars["String"]>;
-  category_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  category_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  category_contains?: Maybe<Scalars["String"]>;
-  category_not_contains?: Maybe<Scalars["String"]>;
-  url_exists?: Maybe<Scalars["Boolean"]>;
-  url?: Maybe<Scalars["String"]>;
-  url_not?: Maybe<Scalars["String"]>;
-  url_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  url_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  url_contains?: Maybe<Scalars["String"]>;
-  url_not_contains?: Maybe<Scalars["String"]>;
-  activeSponsor_exists?: Maybe<Scalars["Boolean"]>;
-  activeSponsor?: Maybe<Scalars["Boolean"]>;
-  activeSponsor_not?: Maybe<Scalars["Boolean"]>;
-  exclusive_exists?: Maybe<Scalars["Boolean"]>;
-  exclusive?: Maybe<Scalars["Boolean"]>;
-  exclusive_not?: Maybe<Scalars["Boolean"]>;
-  OR?: Maybe<Array<Maybe<SponsorFilter>>>;
-  AND?: Maybe<Array<Maybe<SponsorFilter>>>;
-};
-
-export enum SponsorOrder {
-  NameAsc = "name_ASC",
-  NameDesc = "name_DESC",
-  CategoryAsc = "category_ASC",
-  CategoryDesc = "category_DESC",
-  UrlAsc = "url_ASC",
-  UrlDesc = "url_DESC",
-  ActiveSponsorAsc = "activeSponsor_ASC",
-  ActiveSponsorDesc = "activeSponsor_DESC",
-  ExclusiveAsc = "exclusive_ASC",
-  ExclusiveDesc = "exclusive_DESC",
-  SysIdAsc = "sys_id_ASC",
-  SysIdDesc = "sys_id_DESC",
-  SysPublishedAtAsc = "sys_publishedAt_ASC",
-  SysPublishedAtDesc = "sys_publishedAt_DESC",
-  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
-  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
-  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
-  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
-}
-
 export type EventFilter = {
   sys?: Maybe<SysFilter>;
+  poster_exists?: Maybe<Scalars["Boolean"]>;
   title_exists?: Maybe<Scalars["Boolean"]>;
   title?: Maybe<Scalars["String"]>;
   title_not?: Maybe<Scalars["String"]>;
@@ -713,6 +937,7 @@ export type EventFilter = {
   startingDate_gte?: Maybe<Scalars["DateTime"]>;
   startingDate_lt?: Maybe<Scalars["DateTime"]>;
   startingDate_lte?: Maybe<Scalars["DateTime"]>;
+  sessionsCollection_exists?: Maybe<Scalars["Boolean"]>;
   onlineEvent_exists?: Maybe<Scalars["Boolean"]>;
   onlineEvent?: Maybe<Scalars["Boolean"]>;
   onlineEvent_not?: Maybe<Scalars["Boolean"]>;
@@ -756,6 +981,10 @@ export type EventFilter = {
   notes_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
   notes_contains?: Maybe<Scalars["String"]>;
   notes_not_contains?: Maybe<Scalars["String"]>;
+  videoUrl_exists?: Maybe<Scalars["Boolean"]>;
+  videoUrl_contains_all?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  videoUrl_contains_some?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  videoUrl_contains_none?: Maybe<Array<Maybe<Scalars["String"]>>>;
   OR?: Maybe<Array<Maybe<EventFilter>>>;
   AND?: Maybe<Array<Maybe<EventFilter>>>;
 };
@@ -789,6 +1018,322 @@ export enum EventOrder {
   SysPublishedVersionDesc = "sys_publishedVersion_DESC",
 }
 
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type Resources = Entry & {
+  __typename?: "Resources";
+  sys: Sys;
+  linkedFrom?: Maybe<ResourcesLinkingCollections>;
+  title?: Maybe<Scalars["String"]>;
+  description?: Maybe<Scalars["String"]>;
+  buttonText?: Maybe<Scalars["String"]>;
+  url?: Maybe<Scalars["String"]>;
+};
+
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type ResourcesLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars["String"]>>>;
+};
+
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type ResourcesTitleArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type ResourcesDescriptionArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type ResourcesButtonTextArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type ResourcesUrlArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type ResourcesLinkingCollections = {
+  __typename?: "ResourcesLinkingCollections";
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+export type ResourcesLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type ResourcesFilter = {
+  sys?: Maybe<SysFilter>;
+  title_exists?: Maybe<Scalars["Boolean"]>;
+  title?: Maybe<Scalars["String"]>;
+  title_not?: Maybe<Scalars["String"]>;
+  title_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  title_contains?: Maybe<Scalars["String"]>;
+  title_not_contains?: Maybe<Scalars["String"]>;
+  description_exists?: Maybe<Scalars["Boolean"]>;
+  description?: Maybe<Scalars["String"]>;
+  description_not?: Maybe<Scalars["String"]>;
+  description_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  description_contains?: Maybe<Scalars["String"]>;
+  description_not_contains?: Maybe<Scalars["String"]>;
+  buttonText_exists?: Maybe<Scalars["Boolean"]>;
+  buttonText?: Maybe<Scalars["String"]>;
+  buttonText_not?: Maybe<Scalars["String"]>;
+  buttonText_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  buttonText_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  buttonText_contains?: Maybe<Scalars["String"]>;
+  buttonText_not_contains?: Maybe<Scalars["String"]>;
+  url_exists?: Maybe<Scalars["Boolean"]>;
+  url?: Maybe<Scalars["String"]>;
+  url_not?: Maybe<Scalars["String"]>;
+  url_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  url_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  url_contains?: Maybe<Scalars["String"]>;
+  url_not_contains?: Maybe<Scalars["String"]>;
+  OR?: Maybe<Array<Maybe<ResourcesFilter>>>;
+  AND?: Maybe<Array<Maybe<ResourcesFilter>>>;
+};
+
+export enum ResourcesOrder {
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+  DescriptionAsc = "description_ASC",
+  DescriptionDesc = "description_DESC",
+  ButtonTextAsc = "buttonText_ASC",
+  ButtonTextDesc = "buttonText_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
+export type ResourcesCollection = {
+  __typename?: "ResourcesCollection";
+  total: Scalars["Int"];
+  skip: Scalars["Int"];
+  limit: Scalars["Int"];
+  items: Array<Maybe<Resources>>;
+};
+
+export type ExternalResourceFilter = {
+  sys?: Maybe<SysFilter>;
+  title_exists?: Maybe<Scalars["Boolean"]>;
+  title?: Maybe<Scalars["String"]>;
+  title_not?: Maybe<Scalars["String"]>;
+  title_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  title_contains?: Maybe<Scalars["String"]>;
+  title_not_contains?: Maybe<Scalars["String"]>;
+  image_exists?: Maybe<Scalars["Boolean"]>;
+  description_exists?: Maybe<Scalars["Boolean"]>;
+  description?: Maybe<Scalars["String"]>;
+  description_not?: Maybe<Scalars["String"]>;
+  description_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  description_contains?: Maybe<Scalars["String"]>;
+  description_not_contains?: Maybe<Scalars["String"]>;
+  url_exists?: Maybe<Scalars["Boolean"]>;
+  url?: Maybe<Scalars["String"]>;
+  url_not?: Maybe<Scalars["String"]>;
+  url_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  url_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  url_contains?: Maybe<Scalars["String"]>;
+  url_not_contains?: Maybe<Scalars["String"]>;
+  OR?: Maybe<Array<Maybe<ExternalResourceFilter>>>;
+  AND?: Maybe<Array<Maybe<ExternalResourceFilter>>>;
+};
+
+export enum ExternalResourceOrder {
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+  DescriptionAsc = "description_ASC",
+  DescriptionDesc = "description_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type Post = Entry & {
+  __typename?: "Post";
+  sys: Sys;
+  linkedFrom?: Maybe<PostLinkingCollections>;
+  slug?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  subtitle?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]>;
+};
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars["String"]>>>;
+};
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostSlugArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostTitleArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostSubtitleArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostContentArgs = {
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type PostLinkingCollections = {
+  __typename?: "PostLinkingCollections";
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+export type PostLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  preview?: Maybe<Scalars["Boolean"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type PostFilter = {
+  sys?: Maybe<SysFilter>;
+  slug_exists?: Maybe<Scalars["Boolean"]>;
+  slug?: Maybe<Scalars["String"]>;
+  slug_not?: Maybe<Scalars["String"]>;
+  slug_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  slug_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  slug_contains?: Maybe<Scalars["String"]>;
+  slug_not_contains?: Maybe<Scalars["String"]>;
+  title_exists?: Maybe<Scalars["Boolean"]>;
+  title?: Maybe<Scalars["String"]>;
+  title_not?: Maybe<Scalars["String"]>;
+  title_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  title_contains?: Maybe<Scalars["String"]>;
+  title_not_contains?: Maybe<Scalars["String"]>;
+  subtitle_exists?: Maybe<Scalars["Boolean"]>;
+  subtitle?: Maybe<Scalars["String"]>;
+  subtitle_not?: Maybe<Scalars["String"]>;
+  subtitle_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  subtitle_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  subtitle_contains?: Maybe<Scalars["String"]>;
+  subtitle_not_contains?: Maybe<Scalars["String"]>;
+  content_exists?: Maybe<Scalars["Boolean"]>;
+  content?: Maybe<Scalars["String"]>;
+  content_not?: Maybe<Scalars["String"]>;
+  content_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  content_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  content_contains?: Maybe<Scalars["String"]>;
+  content_not_contains?: Maybe<Scalars["String"]>;
+  OR?: Maybe<Array<Maybe<PostFilter>>>;
+  AND?: Maybe<Array<Maybe<PostFilter>>>;
+};
+
+export enum PostOrder {
+  SlugAsc = "slug_ASC",
+  SlugDesc = "slug_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+  SubtitleAsc = "subtitle_ASC",
+  SubtitleDesc = "subtitle_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
+export type PostCollection = {
+  __typename?: "PostCollection";
+  total: Scalars["Int"];
+  skip: Scalars["Int"];
+  limit: Scalars["Int"];
+  items: Array<Maybe<Post>>;
+};
+
+export type SponsorFilter = {
+  sys?: Maybe<SysFilter>;
+  name_exists?: Maybe<Scalars["Boolean"]>;
+  name?: Maybe<Scalars["String"]>;
+  name_not?: Maybe<Scalars["String"]>;
+  name_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  name_contains?: Maybe<Scalars["String"]>;
+  name_not_contains?: Maybe<Scalars["String"]>;
+  category_exists?: Maybe<Scalars["Boolean"]>;
+  category?: Maybe<Scalars["String"]>;
+  category_not?: Maybe<Scalars["String"]>;
+  category_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  category_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  category_contains?: Maybe<Scalars["String"]>;
+  category_not_contains?: Maybe<Scalars["String"]>;
+  url_exists?: Maybe<Scalars["Boolean"]>;
+  url?: Maybe<Scalars["String"]>;
+  url_not?: Maybe<Scalars["String"]>;
+  url_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  url_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  url_contains?: Maybe<Scalars["String"]>;
+  url_not_contains?: Maybe<Scalars["String"]>;
+  logo_exists?: Maybe<Scalars["Boolean"]>;
+  activeSponsor_exists?: Maybe<Scalars["Boolean"]>;
+  activeSponsor?: Maybe<Scalars["Boolean"]>;
+  activeSponsor_not?: Maybe<Scalars["Boolean"]>;
+  exclusive_exists?: Maybe<Scalars["Boolean"]>;
+  exclusive?: Maybe<Scalars["Boolean"]>;
+  exclusive_not?: Maybe<Scalars["Boolean"]>;
+  OR?: Maybe<Array<Maybe<SponsorFilter>>>;
+  AND?: Maybe<Array<Maybe<SponsorFilter>>>;
+};
+
+export enum SponsorOrder {
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC",
+  CategoryAsc = "category_ASC",
+  CategoryDesc = "category_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+  ActiveSponsorAsc = "activeSponsor_ASC",
+  ActiveSponsorDesc = "activeSponsor_DESC",
+  ExclusiveAsc = "exclusive_ASC",
+  ExclusiveDesc = "exclusive_DESC",
+  SysIdAsc = "sys_id_ASC",
+  SysIdDesc = "sys_id_DESC",
+  SysPublishedAtAsc = "sys_publishedAt_ASC",
+  SysPublishedAtDesc = "sys_publishedAt_DESC",
+  SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+  SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+  SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+  SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
 export type SessionFilter = {
   speaker?: Maybe<CfSpeakerNestedFilter>;
   sys?: Maybe<SysFilter>;
@@ -799,6 +1344,7 @@ export type SessionFilter = {
   title_not_in?: Maybe<Array<Maybe<Scalars["String"]>>>;
   title_contains?: Maybe<Scalars["String"]>;
   title_not_contains?: Maybe<Scalars["String"]>;
+  speaker_exists?: Maybe<Scalars["Boolean"]>;
   startDatetime_exists?: Maybe<Scalars["Boolean"]>;
   startDatetime?: Maybe<Scalars["DateTime"]>;
   startDatetime_not?: Maybe<Scalars["DateTime"]>;
@@ -830,6 +1376,7 @@ export type SessionFilter = {
 
 export type CfSpeakerNestedFilter = {
   sys?: Maybe<SysFilter>;
+  avatar_exists?: Maybe<Scalars["Boolean"]>;
   name_exists?: Maybe<Scalars["Boolean"]>;
   name?: Maybe<Scalars["String"]>;
   name_not?: Maybe<Scalars["String"]>;
@@ -886,6 +1433,7 @@ export enum SessionOrder {
 
 export type SpeakerFilter = {
   sys?: Maybe<SysFilter>;
+  avatar_exists?: Maybe<Scalars["Boolean"]>;
   name_exists?: Maybe<Scalars["Boolean"]>;
   name?: Maybe<Scalars["String"]>;
   name_not?: Maybe<Scalars["String"]>;

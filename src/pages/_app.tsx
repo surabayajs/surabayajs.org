@@ -2,29 +2,81 @@ import "@/stylesheets/html.css";
 
 import * as React from "react";
 
-import { Box, Flex } from "@chakra-ui/core";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  Box,
+  ChakraProvider,
+  Icon,
+  IconButton,
+  Stack,
+  useColorMode,
+} from "@chakra-ui/react";
 import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
 
-import type { AppProps } from "next/app";
-import { AppProvider } from "@/store/app";
-import Footer from "@/components/footer";
+import type { BoxProps } from "@chakra-ui/react";
+import { FaBars } from "react-icons/fa";
+import { Footer } from "@/components/footer";
 import Head from "next/head";
 import NProgress from "nprogress";
-import Navbar from "@/components/navbar";
+import { Navbar } from "@/components/navbar";
+import type { AppProps as NextAppProps } from "next/app";
 import Router from "next/router";
-import siteConfig from "~/site-config";
+import { Sidebar } from "@/components/sidebar";
+import siteConfig from "site-config";
+import theme from "@/theme";
+import { useShortcut } from "litkey";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
-export default function CustomAppPage({
-  Component,
-  pageProps,
-  router,
-}: AppProps) {
+type AppProps = NextAppProps;
+
+const MotionBox = motion.custom<BoxProps>(Box);
+
+function Inner(props: AppProps) {
+  const { Component, pageProps, router } = props;
+
+  const { toggleColorMode } = useColorMode();
+
+  useShortcut("shift+d", () => {
+    toggleColorMode();
+  });
+
   return (
-    <AppProvider>
+    <>
+      <Stack justify="space-between" minH="100vh">
+        <Navbar />
+        <AnimatePresence exitBeforeEnter>
+          <MotionBox
+            as="main"
+            animate="enter"
+            exit="exit"
+            flexGrow={1}
+            initial="initial"
+            key={router.route}
+            variants={{
+              initial: { opacity: 0, y: -80 },
+              enter: { opacity: 1, y: 0 },
+              exit: { opacity: 0, y: 80 },
+            }}
+          >
+            <Component {...pageProps} />
+          </MotionBox>
+        </AnimatePresence>
+        <Footer />
+      </Stack>
+
+      <Sidebar />
+    </>
+  );
+}
+
+function App(props: AppProps) {
+  const { router } = props;
+
+  return (
+    <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -41,7 +93,10 @@ export default function CustomAppPage({
           site_name: siteConfig.title,
           images: [
             {
-              url: `${siteConfig.url}/social.jpg`,
+              url: `${siteConfig.url}/social.png`,
+              width: 1024,
+              height: 512,
+              alt: siteConfig.title,
             },
           ],
         }}
@@ -53,19 +108,17 @@ export default function CustomAppPage({
       />
 
       <SocialProfileJsonLd
-        type="organization"
+        type="person"
         name={siteConfig.title}
         url={siteConfig.url}
         sameAs={Object.values(siteConfig.socials)}
       />
 
-      <Flex flexDir="column" minH="100vh" justifyContent="space-between">
-        <Navbar />
-        <Box as="main" flexGrow={1}>
-          <Component {...pageProps} />
-        </Box>
-        <Footer />
-      </Flex>
-    </AppProvider>
+      <ChakraProvider resetCSS theme={theme}>
+        <Inner {...props} />
+      </ChakraProvider>
+    </>
   );
 }
+
+export default App;

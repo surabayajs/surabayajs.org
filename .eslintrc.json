@@ -18,15 +18,11 @@
   "root": true,
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "@typescript-eslint/no-shadow": ["off"],
     "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "args": "all",
-        "argsIgnorePattern": "^_"
-      }
+      "warn",
+      { "args": "all", "argsIgnorePattern": "^_" }
     ],
-    "@typescript-eslint/no-var-requires": ["off"],
-    "global-require": ["off"],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -39,7 +35,9 @@
       }
     ],
     "import/no-extraneous-dependencies": ["off"],
-    "no-unused-vars": "off",
+    "import/prefer-default-export": ["off"],
+    "no-shadow": ["off"],
+    "no-unused-vars": ["warn", { "args": "all", "argsIgnorePattern": "^_" }],
     "react/jsx-filename-extension": [
       "error",
       {

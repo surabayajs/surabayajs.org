@@ -6,12 +6,14 @@ module.exports = {
   twitterUsername: "@surabaya_js",
   email: "hello@surabayajs.org",
   socials: {
-    "DEV Community": "https://dev.to/surabayajs",
     Discord: "https://discord.gg/kx3qp5S",
     GitHub: "https://github.com/surabayajs",
-    Telegram: "https://t.me/surabayajs",
     Twitch: "https://twitch.tv/surabayajs",
     Twitter: "https://twitter.com/surabaya_js",
+  },
+  coc: {
+    en: "https://public.3.basecamp.com/p/pxPjz4PTh6ozEda3cZ6Xr8qe",
+    id: "https://public.3.basecamp.com/p/LcKBA6frrEd1vc7EGHeCAXKk",
   },
   themeColor: "#96D2AF",
 };
