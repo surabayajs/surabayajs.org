@@ -33,7 +33,7 @@ export const NavbarDesktop: React.FC = () => {
   return (
     <Container
       as={Stack}
-      d={{ base: "none", lg: "flex" }}
+      d={{ base: "none", md: "flex" }}
       maxW="6xl"
       py={4}
       spacing={4}
