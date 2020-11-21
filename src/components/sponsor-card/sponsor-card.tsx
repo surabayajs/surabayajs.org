@@ -30,7 +30,13 @@ export const SponsorCard: React.FC<SponsorCardProps> = ({
       transition="all 250ms"
       {...props}
     >
-      <Image boxSize="full" maxH="128px" maxW="128px" src={sponsor.logo.url} />
+      <Image
+        borderRadius="md"
+        boxSize="full"
+        maxH="128px"
+        maxW="128px"
+        src={sponsor.logo.url}
+      />
       <Text fontSize="sm" fontWeight="bold" letterSpacing="tight">
         {sponsor.name}
       </Text>
