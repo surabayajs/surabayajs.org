@@ -29,6 +29,7 @@
     "framer-motion": "^2.9.4",
     "graphql": "^15.4.0",
     "graphql-request": "^3.3.0",
+    "litkey": "^0.1.2",
     "next": "^10.0.2",
     "next-seo": "^4.17.0",
     "nprogress": "^0.2.0",

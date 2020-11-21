@@ -3,18 +3,28 @@ import "@/stylesheets/html.css";
 import * as React from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Box, ChakraProvider, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  ChakraProvider,
+  Icon,
+  IconButton,
+  Stack,
+  useColorMode,
+} from "@chakra-ui/react";
 import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
 
 import type { BoxProps } from "@chakra-ui/react";
+import { FaBars } from "react-icons/fa";
 import { Footer } from "@/components/footer";
 import Head from "next/head";
 import NProgress from "nprogress";
 import { Navbar } from "@/components/navbar";
 import type { AppProps as NextAppProps } from "next/app";
 import Router from "next/router";
+import { Sidebar } from "@/components/sidebar";
 import siteConfig from "site-config";
 import theme from "@/theme";
+import { useShortcut } from "litkey";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -24,8 +34,46 @@ type AppProps = NextAppProps;
 
 const MotionBox = motion.custom<BoxProps>(Box);
 
-function App(props: AppProps) {
+function Inner(props: AppProps) {
   const { Component, pageProps, router } = props;
+
+  const { toggleColorMode } = useColorMode();
+
+  useShortcut("shift+d", () => {
+    toggleColorMode();
+  });
+
+  return (
+    <>
+      <Stack justify="space-between" minH="100vh">
+        <Navbar />
+        <AnimatePresence exitBeforeEnter>
+          <MotionBox
+            as="main"
+            animate="enter"
+            exit="exit"
+            flexGrow={1}
+            initial="initial"
+            key={router.route}
+            variants={{
+              initial: { opacity: 0, y: -80 },
+              enter: { opacity: 1, y: 0 },
+              exit: { opacity: 0, y: 80 },
+            }}
+          >
+            <Component {...pageProps} />
+          </MotionBox>
+        </AnimatePresence>
+        <Footer />
+      </Stack>
+
+      <Sidebar />
+    </>
+  );
+}
+
+function App(props: AppProps) {
+  const { router } = props;
 
   return (
     <>
@@ -67,27 +115,7 @@ function App(props: AppProps) {
       />
 
       <ChakraProvider resetCSS theme={theme}>
-        <Stack justify="space-between" minH="100vh">
-          <Navbar />
-          <AnimatePresence exitBeforeEnter>
-            <MotionBox
-              as="main"
-              animate="enter"
-              exit="exit"
-              flexGrow={1}
-              initial="initial"
-              key={router.route}
-              variants={{
-                initial: { opacity: 0, y: -80 },
-                enter: { opacity: 1, y: 0 },
-                exit: { opacity: 0, y: 80 },
-              }}
-            >
-              <Component {...pageProps} />
-            </MotionBox>
-          </AnimatePresence>
-          <Footer />
-        </Stack>
+        <Inner {...props} />
       </ChakraProvider>
     </>
   );
