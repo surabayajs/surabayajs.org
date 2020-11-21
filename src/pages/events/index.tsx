@@ -87,7 +87,7 @@ const EventsPage: NextPage<EventsPageProps> = ({ events, locale }) => {
     <>
       <NextSeo title={i18n["events-title"][locale]} />
       <Container as="section" maxW="6xl" p={[4, 8]}>
-        <VStack spacing={4}>
+        <VStack spacing={4} textAlign="center">
           <Heading>{i18n["events-title"][locale]}</Heading>
           <Text pb={4}>{i18n["events-subtitle"][locale]}</Text>
         </VStack>

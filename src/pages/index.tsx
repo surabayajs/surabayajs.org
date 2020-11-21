@@ -149,11 +149,16 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                 <Button
                   as="a"
                   colorScheme={colorScheme}
+                  _hover={{
+                    boxShadow: "xl",
+                    transform: "rotate(2deg) scale(1.1) translateY(-4px)",
+                  }}
                   href={href}
                   key={name}
                   leftIcon={<Icon as={AsIcon} boxSize={[4, 5, 6]} />}
                   size={buttonSize}
                   target="_blank"
+                  transition="all 250ms"
                 >
                   {name}
                 </Button>
@@ -173,7 +178,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
       <Box as="section" bgColor={bgColor}>
         <Container as={VStack} maxW="6xl" px={[4, 8]} spacing={[8, 12]}>
-          <VStack spacing={[2, 4]}>
+          <VStack spacing={[2, 4]} textAlign="center">
             <Heading as="h2">{i18n["home-revents-title"][locale]}</Heading>
             <Text>{i18n["home-revents-subtitle"][locale]}</Text>
           </VStack>
@@ -210,9 +215,9 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         />
       </Box>
 
-      <Container as="section" maxW="4xl" pt={[4, 8]} px={[4, 8]}>
-        <VStack spacing={[8, 16]}>
-          <VStack spacing={[2, 4]}>
+      <Container as="section" maxW="6xl" p={[4, 8]}>
+        <VStack spacing={[4, 8]}>
+          <VStack spacing={[2, 4]} textAlign="center">
             <Heading as="h2">{i18n["home-saps-title"][locale]}</Heading>
             <Text>{i18n["home-saps-subtitle"][locale]}</Text>
           </VStack>
