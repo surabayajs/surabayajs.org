@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Image, Text, VStack } from "@chakra-ui/react";
+import { Image, Text, VStack, useColorMode } from "@chakra-ui/react";
 
 import type { Sponsor } from "@/types";
 import type { StackProps } from "@chakra-ui/react";
@@ -13,20 +13,24 @@ export const SponsorCard: React.FC<SponsorCardProps> = ({
   sponsor,
   ...props
 }) => {
+  const { colorMode } = useColorMode();
+
   return (
     <VStack
       as="a"
       borderRadius="lg"
       boxShadow="sm"
       _hover={{
+        bgColor: colorMode === "light" ? "blackAlpha.50" : "whiteAlpha.50",
         boxShadow: "xl",
-        transform: "rotate(1deg) scale(1.05) translateY(-8px) ",
+        transform: "rotate(1deg) scale(1.05) translateY(-8px)",
       }}
       href={sponsor.url}
       justify="center"
-      p={4}
+      p={8}
       spacing={4}
       target="_blank"
+      textAlign="center"
       transition="all 250ms"
       {...props}
     >
