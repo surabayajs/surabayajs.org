@@ -53,7 +53,7 @@ export const NavbarDesktop: React.FC = () => {
           </Button>
         </EmailTooltip>
 
-        <Tooltip hasArrow label={`Toggle ${colorMode} mode 🌓`}>
+        <Tooltip hasArrow label={`Toggle ${colorMode} mode (shift+d) 🌓`}>
           <IconButton
             aria-label={`Toggle ${colorMode} mode 🌓`}
             icon={<Icon as={colorMode === "dark" ? FaSun : FaMoon} />}
