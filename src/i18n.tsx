@@ -47,6 +47,15 @@ export default {
     en: "View more events",
     id: "Lihat kegiatan lainnya",
   },
+  "home-saps-title": {
+    en: "Our Sponsors and Partners",
+    id: "Sponsor dan Partner Kami",
+  },
+  "home-saps-subtitle": {
+    en: "We are thankful for the support from our friends below.",
+    id:
+      "Kami berterima kasih atas dukungan dari teman-teman kami di bawah ini.",
+  },
   "events-title": {
     en: "Meetups and Workshops",
     id: "Meetup dan Workshop",

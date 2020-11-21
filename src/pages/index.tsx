@@ -5,10 +5,8 @@ import {
   Button,
   ButtonGroup,
   Container,
-  HStack,
   Heading,
   Icon,
-  IconButton,
   LightMode,
   Stack,
   Text,
@@ -19,20 +17,15 @@ import {
   useColorModeValue,
   useToken,
 } from "@chakra-ui/react";
-import {
-  FaArrowRight,
-  FaCalendarAlt,
-  FaDiscord,
-  FaTwitch,
-  FaTwitter,
-} from "react-icons/fa";
+import type { EventCollection, Sponsor } from "@/types";
+import { FaArrowRight, FaDiscord, FaTwitch, FaTwitter } from "react-icons/fa";
 import type { GetStaticProps, NextPage } from "next";
 
 import { EventCard } from "@/components/event-card";
-import type { EventCollection } from "@/types";
 import { HorizontalLogo } from "@/components/logo";
 import type { IconType } from "react-icons/lib";
 import NextLink from "next/link";
+import { SponsorCard } from "@/components/sponsor-card";
 import { contentful } from "@/cms";
 import i18n from "@/i18n";
 import siteConfig from "site-config";
@@ -46,6 +39,7 @@ const HOME_SOCIAL_BUTTONS: [string, string, IconType, string][] = [
 interface HomePageProps {
   locale: string;
   recentEvents: EventCollection["items"];
+  sponsors: Record<string, Sponsor[]>;
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async (args) => {
@@ -84,6 +78,20 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (args) => {
             notes
           }
         }
+        sponsorCollection(order: name_ASC) {
+          items {
+            name
+            category
+            url
+            activeSponsor
+            logo {
+              url
+            }
+            sys {
+              id
+            }
+          }
+        }
       }
     `,
     {
@@ -91,16 +99,31 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (args) => {
     },
   );
 
+  const sponsors: Record<string, Sponsor[]> = {
+    Sponsor: [],
+    "Media Partner": [],
+    "Community Partner": [],
+  };
+
+  (data.sponsorCollection.items as Sponsor[]).forEach((sponsor) => {
+    if (sponsors[sponsor.category]) {
+      sponsors[sponsor.category].push(sponsor);
+    } else {
+      sponsors[sponsor.category] = [sponsor];
+    }
+  });
+
   return {
     props: {
       locale,
       recentEvents: data.eventCollection.items,
+      sponsors,
     },
   };
 };
 
 const HomePage: NextPage<HomePageProps> = (props) => {
-  const { locale, recentEvents } = props;
+  const { locale, recentEvents, sponsors } = props;
 
   const buttonSize = useBreakpointValue(["sm", "md", "lg"]);
 
@@ -150,30 +173,10 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
       <Box as="section" bgColor={bgColor}>
         <Container as={VStack} maxW="6xl" px={[4, 8]} spacing={[8, 12]}>
-          <HStack align="center" justify="center" spacing={[4, 8]}>
-            <Box>
-              <NextLink href="/events" passHref>
-                <IconButton
-                  as="a"
-                  aria-label={i18n["home-revents-title"][locale]}
-                  borderRadius="full"
-                  boxShadow="md"
-                  boxSize={[10, 20]}
-                  icon={
-                    <Icon
-                      as={FaCalendarAlt}
-                      boxSize={[4, 8]}
-                      transform="rotate(-8deg)"
-                    />
-                  }
-                />
-              </NextLink>
-            </Box>
-            <Stack spacing={[2, 4]}>
-              <Heading as="h2">{i18n["home-revents-title"][locale]}</Heading>
-              <Text>{i18n["home-revents-subtitle"][locale]}</Text>
-            </Stack>
-          </HStack>
+          <VStack spacing={[2, 4]}>
+            <Heading as="h2">{i18n["home-revents-title"][locale]}</Heading>
+            <Text>{i18n["home-revents-subtitle"][locale]}</Text>
+          </VStack>
           <Wrap align="stretch" justify="center" spacing={4}>
             {recentEvents.map((event) => (
               <WrapItem key={event.slug}>
@@ -206,6 +209,29 @@ const HomePage: NextPage<HomePageProps> = (props) => {
           fillOpacity={1}
         />
       </Box>
+
+      <Container as="section" maxW="4xl" pt={[4, 8]} px={[4, 8]}>
+        <VStack spacing={[8, 16]}>
+          <VStack spacing={[2, 4]}>
+            <Heading as="h2">{i18n["home-saps-title"][locale]}</Heading>
+            <Text>{i18n["home-saps-subtitle"][locale]}</Text>
+          </VStack>
+          {Object.entries(sponsors).map(([category, list]) => (
+            <React.Fragment key={category}>
+              <Heading as="h3" size="md">
+                {category}
+              </Heading>
+              <Wrap justify="center" spacing={[4, 8]}>
+                {list.map((sponsor) => (
+                  <WrapItem key={sponsor.sys.id}>
+                    <SponsorCard sponsor={sponsor} />
+                  </WrapItem>
+                ))}
+              </Wrap>
+            </React.Fragment>
+          ))}
+        </VStack>
+      </Container>
     </>
   );
 };
