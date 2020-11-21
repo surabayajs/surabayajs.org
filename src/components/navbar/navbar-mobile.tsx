@@ -11,7 +11,6 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Portal,
   Spacer,
   Stack,
   useColorMode,
@@ -31,7 +30,7 @@ export const NavbarMobile: React.FC = () => {
   return (
     <Container as={Stack} maxW="6xl" py={4} spacing={4}>
       <HStack>
-        <Menu isLazy>
+        <Menu>
           <MenuButton
             as={Button}
             leftIcon={<Icon as={FaBars} />}
@@ -39,23 +38,21 @@ export const NavbarMobile: React.FC = () => {
           >
             {routes(locale)[asPath].name}
           </MenuButton>
-          <Portal>
-            <MenuList>
-              {Object.entries(routes(locale)).map(
-                ([href, { name, ext = false }]) => (
-                  <MenuItem
-                    fontWeight="bold"
-                    key={name}
-                    onClick={() =>
-                      ext ? window.open(href, "_blank") : router.push(href)
-                    }
-                  >
-                    {name}
-                  </MenuItem>
-                ),
-              )}
-            </MenuList>
-          </Portal>
+          <MenuList>
+            {Object.entries(routes(locale)).map(
+              ([href, { name, ext = false }]) => (
+                <MenuItem
+                  fontWeight="bold"
+                  key={name}
+                  onClick={() =>
+                    ext ? window.open(href, "_blank") : router.push(href)
+                  }
+                >
+                  {name}
+                </MenuItem>
+              ),
+            )}
+          </MenuList>
         </Menu>
 
         <Spacer />
