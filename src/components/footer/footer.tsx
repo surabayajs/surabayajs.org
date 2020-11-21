@@ -109,7 +109,7 @@ export const Footer: React.FC = () => {
           >
             <Stack>
               <Text variant="sitemap-title">Navigate</Text>
-              {routes(locale).map(({ name, href }) => (
+              {Object.entries(routes(locale)).map(([href, { name }]) => (
                 <NextLink href={href} key={name} passHref>
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <Link variant="sitemap-link">{name}</Link>

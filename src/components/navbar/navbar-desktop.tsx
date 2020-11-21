@@ -33,7 +33,7 @@ export const NavbarDesktop: React.FC = () => {
   return (
     <Container as={Stack} maxW="6xl" py={4} spacing={4}>
       <HStack>
-        {routes(locale).map(({ name, href, ext = false }) => (
+        {Object.entries(routes(locale)).map(([href, { name, ext = false }]) => (
           <NextLink href={href} key={name} passHref>
             <Button
               as="a"
