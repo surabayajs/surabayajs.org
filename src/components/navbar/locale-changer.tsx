@@ -7,7 +7,6 @@ import {
   MenuGroup,
   MenuItem,
   MenuList,
-  Portal,
 } from "@chakra-ui/react";
 
 import i18n from "@/i18n";
