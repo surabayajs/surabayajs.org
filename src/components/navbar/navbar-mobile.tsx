@@ -36,7 +36,7 @@ export const NavbarMobile: React.FC = () => {
             leftIcon={<Icon as={FaBars} />}
             variant="ghost"
           >
-            {routes(locale)[asPath]?.name}
+            {routes(locale)[asPath].name}
           </MenuButton>
           <MenuList>
             {Object.entries(routes(locale)).map(

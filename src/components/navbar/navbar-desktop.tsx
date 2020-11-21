@@ -31,7 +31,13 @@ export const NavbarDesktop: React.FC = () => {
   const { locale } = router;
 
   return (
-    <Container as={Stack} maxW="6xl" py={4} spacing={4}>
+    <Container
+      as={Stack}
+      d={{ base: "none", lg: "flex" }}
+      maxW="6xl"
+      py={4}
+      spacing={4}
+    >
       <HStack>
         {Object.entries(routes(locale)).map(([href, { name, ext = false }]) => (
           <NextLink href={href} key={name} passHref>
