@@ -15,11 +15,11 @@ import {
   Link,
   Stack,
   useBreakpointValue,
-  useColorMode,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 
+import { ColorModeButton } from "@/components/color-mode-button";
+import { FaBars } from "react-icons/fa";
 import { LocaleButton } from "@/components/locale-button";
 import NextLink from "next/link";
 import routes from "@/routes";
@@ -29,7 +29,6 @@ import { useRouter } from "next/router";
 
 export const Drawer: React.FC = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
-  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const copyEmail = useEmail();
 
@@ -51,6 +50,7 @@ export const Drawer: React.FC = () => {
               justify="center"
               p={8}
               spacing={4}
+              textAlign="center"
             >
               {Object.entries(routes(locale)).map(
                 ([href, { name, ext = false }]) => (
@@ -70,17 +70,12 @@ export const Drawer: React.FC = () => {
               )}
             </DrawerBody>
 
-            <DrawerFooter as={HStack} justifyContent="flex-start" spacing={4}>
+            <DrawerFooter as={HStack} justifyContent="center" spacing={4}>
               <Button onClick={copyEmail} variant="outline">
                 {siteConfig.email}
               </Button>
 
-              <IconButton
-                aria-label={`Toggle ${colorMode} mode 🌓`}
-                icon={<Icon as={colorMode === "dark" ? FaSun : FaMoon} />}
-                onClick={toggleColorMode}
-                variant="ghost"
-              />
+              <ColorModeButton />
 
               <LocaleButton />
             </DrawerFooter>
