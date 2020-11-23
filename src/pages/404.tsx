@@ -20,7 +20,7 @@ const NotFoundPage: NextPage = () => {
   const { locale } = useRouter();
 
   return (
-    <Container as="section" maxW="6xl" pt={[4, 8]} px={[4, 8]}>
+    <Container as="section" maxW="6xl" p={[4, 8]}>
       <VStack spacing={[2, 4]} textAlign="center">
         <Image
           alt="404"
