@@ -6,24 +6,21 @@ import {
   Divider,
   HStack,
   Icon,
-  IconButton,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Spacer,
   Stack,
-  useColorMode,
 } from "@chakra-ui/react";
-import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 
-import { LocaleChanger } from "@/components/navbar/locale-changer";
+import { ColorModeButton } from "@/components/color-mode-button";
+import { FaBars } from "react-icons/fa";
+import { LocaleButton } from "@/components/locale-button";
 import routes from "@/routes";
 import { useRouter } from "next/router";
 
 export const NavbarMobile: React.FC = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-
   const router = useRouter();
   const { locale, asPath } = router;
 
@@ -57,14 +54,9 @@ export const NavbarMobile: React.FC = () => {
 
         <Spacer />
 
-        <IconButton
-          aria-label={`Toggle ${colorMode} mode 🌓`}
-          icon={<Icon as={colorMode === "dark" ? FaSun : FaMoon} />}
-          onClick={toggleColorMode}
-          variant="ghost"
-        />
+        <ColorModeButton />
 
-        <LocaleChanger />
+        <LocaleButton />
       </HStack>
 
       <Divider />
