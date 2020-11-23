@@ -3,33 +3,33 @@
 import * as React from "react";
 
 import {
-  Box,
   Button,
-  Center,
-  Drawer,
+  Drawer as ChakraDrawer,
   DrawerBody,
   DrawerContent,
   DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
+  HStack,
   Icon,
   IconButton,
   Link,
-  VStack,
+  Stack,
   useBreakpointValue,
+  useColorMode,
   useDisclosure,
 } from "@chakra-ui/react";
+import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 
-import { FaBars } from "react-icons/fa";
-import { HorizontalLogo } from "@/components/logo";
+import { LocaleButton } from "@/components/locale-button";
 import NextLink from "next/link";
 import routes from "@/routes";
 import siteConfig from "site-config";
 import { useEmail } from "@/hooks/app";
 import { useRouter } from "next/router";
 
-export const Sidebar: React.FC = () => {
+export const Drawer: React.FC = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
+  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const copyEmail = useEmail();
 
@@ -41,16 +41,11 @@ export const Sidebar: React.FC = () => {
 
   return (
     <>
-      <Drawer isOpen={isOpen} onClose={onClose} placement="bottom">
+      <ChakraDrawer isOpen={isOpen} onClose={onClose} placement="bottom">
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerHeader as={Center}>
-              <Box p={4}>
-                <HorizontalLogo maxW="3xs" />
-              </Box>
-            </DrawerHeader>
             <DrawerBody
-              as={VStack}
+              as={Stack}
               fontSize="lg"
               fontWeight="bold"
               justify="center"
@@ -74,17 +69,27 @@ export const Sidebar: React.FC = () => {
                 ),
               )}
             </DrawerBody>
-            <DrawerFooter justifyContent="center">
+
+            <DrawerFooter as={HStack} justifyContent="flex-start" spacing={4}>
               <Button onClick={copyEmail} variant="outline">
                 {siteConfig.email}
               </Button>
+
+              <IconButton
+                aria-label={`Toggle ${colorMode} mode 🌓`}
+                icon={<Icon as={colorMode === "dark" ? FaSun : FaMoon} />}
+                onClick={toggleColorMode}
+                variant="ghost"
+              />
+
+              <LocaleButton />
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
-      </Drawer>
+      </ChakraDrawer>
 
       <IconButton
-        aria-label="Open sidebar"
+        aria-label="Open drawer"
         borderRadius="full"
         bottom={4}
         boxShadow="lg"

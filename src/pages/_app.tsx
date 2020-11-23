@@ -3,25 +3,17 @@ import "@/stylesheets/html.css";
 import * as React from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  Box,
-  ChakraProvider,
-  Icon,
-  IconButton,
-  Stack,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
 import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
 
 import type { BoxProps } from "@chakra-ui/react";
-import { FaBars } from "react-icons/fa";
+import { Drawer } from "@/components/drawer";
 import { Footer } from "@/components/footer";
 import Head from "next/head";
 import NProgress from "nprogress";
 import { Navbar } from "@/components/navbar";
 import type { AppProps as NextAppProps } from "next/app";
 import Router from "next/router";
-import { Sidebar } from "@/components/sidebar";
 import siteConfig from "site-config";
 import theme from "@/theme";
 import { useShortcut } from "litkey";
@@ -67,7 +59,7 @@ function Inner(props: AppProps) {
         <Footer />
       </Stack>
 
-      <Sidebar />
+      <Drawer />
     </>
   );
 }
