@@ -36,6 +36,16 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "soruce": "/basecamp",
+      "destination": "https://link.surabayajs.org/basecamp"
+    },
+    {
+      "soruce": "/discord",
+      "destination": "https://link.surabayajs.org/discord"
+    }
+  ],
   "rewrites": [
     {
       "soruce": "/r/:match*",
