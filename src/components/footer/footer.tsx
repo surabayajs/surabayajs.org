@@ -32,14 +32,14 @@ export const Footer: React.FC = () => {
   const { locale } = useRouter();
 
   return (
-    <Box fontSize="sm">
+    <Box fontSize={["xs", "sm"]}>
       <Box as="svg" mb={-1} viewBox="0 0 1440 320">
         <path
           d="M0 256l48-26.7C96 203 192 149 288 154.7c96 5.3 192 69.3 288 64C672 213 768 139 864 128s192 43 288 69.3c96 26.7 192 26.7 240 26.7h48v96H0z"
           fill={bgColor}
         />
       </Box>
-      <Box bgColor={bgColor} p={8}>
+      <Box bgColor={bgColor} p={[4, 8]}>
         <Container
           as={Flex}
           flexDir={{ base: "column-reverse", md: "row" }}

@@ -14,20 +14,21 @@ export const SponsorCard: React.FC<SponsorCardProps> = ({
   ...props
 }) => {
   const { colorMode } = useColorMode();
+  const isLight = colorMode === "light";
 
   return (
     <VStack
       as="a"
       borderRadius="lg"
-      boxShadow="sm"
+      boxShadow="base"
       _hover={{
-        bgColor: colorMode === "light" ? "blackAlpha.50" : "whiteAlpha.50",
-        boxShadow: "xl",
-        transform: "rotate(1deg) scale(1.05) translateY(-8px)",
+        bgColor: [null, isLight ? "blackAlpha.50" : "whiteAlpha.50"],
+        boxShadow: [null, "xl"],
+        transform: [null, "rotate(1deg) scale(1.05) translateY(-8px)"],
       }}
       href={sponsor.url}
       justify="center"
-      p={8}
+      p={[4, 8]}
       spacing={4}
       target="_blank"
       textAlign="center"
@@ -37,8 +38,8 @@ export const SponsorCard: React.FC<SponsorCardProps> = ({
       <Image
         borderRadius="md"
         boxSize="full"
-        maxH="128px"
-        maxW="128px"
+        maxH={["96px", "128px"]}
+        maxW={["96px", "128px"]}
         src={sponsor.logo.url}
       />
       <Text fontSize="sm" fontWeight="bold" letterSpacing="tight">

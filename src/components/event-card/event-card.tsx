@@ -32,11 +32,12 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
       <Box
         bgColor="white"
         borderRadius="md"
+        boxShadow="base"
         color="black"
         h="full"
         _hover={{
-          boxShadow: "xl",
-          transform: "rotate(1deg) scale(1.05) translateY(-12px) ",
+          boxShadow: ["base", "xl"],
+          transform: [null, "rotate(1deg) scale(1.05) translateY(-12px)"],
         }}
         transition="all 250ms"
         w={["full", "sm", "xs"]}
