@@ -35,5 +35,11 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "soruce": "/r/:match*",
+      "destination": "https://link.surabayajs.org/:match*"
+    }
   ]
 }
