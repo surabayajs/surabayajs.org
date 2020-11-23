@@ -7,12 +7,13 @@ import {
   MenuGroup,
   MenuItem,
   MenuList,
+  Tooltip,
 } from "@chakra-ui/react";
 
 import i18n from "@/i18n";
 import { useRouter } from "next/router";
 
-export const LocaleChanger: React.FC = () => {
+export const LocaleButton: React.FC = () => {
   const router = useRouter();
   const { locale, replace, route } = router;
 
@@ -22,9 +23,12 @@ export const LocaleChanger: React.FC = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button} variant="ghost">
-        <span role="img">{i18n.flag[locale]}</span>
-      </MenuButton>
+      <Tooltip hasArrow label="Select language ✨">
+        <MenuButton as={Button} variant="ghost">
+          <span role="img">{i18n.flag[locale]}</span>
+        </MenuButton>
+      </Tooltip>
+
       <MenuList>
         <MenuGroup title="Language/Bahasa">
           <MenuItem onClick={() => change("en")}>English</MenuItem>

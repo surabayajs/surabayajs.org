@@ -1,14 +1,12 @@
 {
   "env": {
     "CONTENTFUL_API_KEY": "@contentful-api-key",
-    "CONTENTFUL_SPACE_ID": "@contentful-space-id",
-    "REBRANDLY_API_KEY": "@rebrandly-api-key"
+    "CONTENTFUL_SPACE_ID": "@contentful-space-id"
   },
   "build": {
     "env": {
       "CONTENTFUL_API_KEY": "@contentful-api-key",
-      "CONTENTFUL_SPACE_ID": "@contentful-space-id",
-      "REBRANDLY_API_KEY": "@rebrandly-api-key"
+      "CONTENTFUL_SPACE_ID": "@contentful-space-id"
     }
   },
   "github": {
@@ -36,6 +34,22 @@
           "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/basecamp",
+      "destination": "https://link.surabayajs.org/basecamp"
+    },
+    {
+      "source": "/discord",
+      "destination": "https://link.surabayajs.org/discord"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/r/:match*",
+      "destination": "https://link.surabayajs.org/:match*"
     }
   ]
 }

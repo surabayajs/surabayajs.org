@@ -148,10 +148,14 @@ const HomePage: NextPage<HomePageProps> = (props) => {
               {HOME_SOCIAL_BUTTONS.map(([name, href, AsIcon, colorScheme]) => (
                 <Button
                   as="a"
+                  boxShadow="base"
                   colorScheme={colorScheme}
                   _hover={{
-                    boxShadow: "xl",
-                    transform: "rotate(2deg) scale(1.1) translateY(-4px)",
+                    boxShadow: ["base", "xl"],
+                    transform: [
+                      null,
+                      "rotate(2deg) scale(1.1) translateY(-4px)",
+                    ],
                   }}
                   href={href}
                   key={name}
@@ -199,7 +203,16 @@ const HomePage: NextPage<HomePageProps> = (props) => {
           </Wrap>
           <Box>
             <NextLink href="/events" passHref>
-              <Button as="a" rightIcon={<Icon as={FaArrowRight} />}>
+              <Button
+                as="a"
+                boxShadow="base"
+                colorScheme="green"
+                _hover={{
+                  boxShadow: ["base", "xl"],
+                  transform: [null, "rotate(2deg) scale(1.1)"],
+                }}
+                rightIcon={<Icon as={FaArrowRight} />}
+              >
                 {i18n["home-revents-more"][locale]}
               </Button>
             </NextLink>

@@ -74,4 +74,16 @@ export default {
       </>
     ),
   },
+  "404-title": {
+    en: "Four Oh Four!",
+    id: "Empat Nol Empat!",
+  },
+  "404-subtitle": {
+    en: "The page you requested does not exist or may have been moved.",
+    id: "Halaman yang Anda minta tidak ada atau mungkin telah dipindahkan.",
+  },
+  "404-button": {
+    en: "Back to home page",
+    id: "Kembali ke Beranda",
+  },
 };
