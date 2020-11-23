@@ -85,7 +85,7 @@ function App(props: AppProps) {
           site_name: siteConfig.title,
           images: [
             {
-              url: `${siteConfig.url}/social.png`,
+              url: `${siteConfig.url}/social.jpg`,
               width: 1024,
               height: 512,
               alt: siteConfig.title,
