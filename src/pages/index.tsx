@@ -206,6 +206,11 @@ const HomePage: NextPage<HomePageProps> = (props) => {
               <Button
                 as="a"
                 boxShadow="base"
+                colorScheme="green"
+                _hover={{
+                  boxShadow: ["base", "xl"],
+                  transform: [null, "rotate(2deg) scale(1.1)"],
+                }}
                 rightIcon={<Icon as={FaArrowRight} />}
               >
                 {i18n["home-revents-more"][locale]}
