@@ -38,17 +38,17 @@
   ],
   "redirects": [
     {
-      "soruce": "/basecamp",
+      "source": "/basecamp",
       "destination": "https://link.surabayajs.org/basecamp"
     },
     {
-      "soruce": "/discord",
+      "source": "/discord",
       "destination": "https://link.surabayajs.org/discord"
     }
   ],
   "rewrites": [
     {
-      "soruce": "/r/:match*",
+      "source": "/r/:match*",
       "destination": "https://link.surabayajs.org/:match*"
     }
   ]
