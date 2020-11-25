@@ -27,12 +27,13 @@ export const getStaticProps: GetStaticProps<TodoPageProps> = async ({
 
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
   const resp = await fetch(`https://jsonplaceholder.typicode.com/todos`);
-  const todos: Todo[] = await resp.json();
+  const todos = (await resp.json()) as Todo[];
+  const sliced = todos.slice(0, 10);
 
   return {
     paths: [
-      ...todos.map((todo) => ({ params: { id: `${todo.id}` }, locale: "en" })),
-      ...todos.map((todo) => ({ params: { id: `${todo.id}` }, locale: "id" })),
+      ...sliced.map((todo) => ({ params: { id: `${todo.id}` }, locale: "en" })),
+      ...sliced.map((todo) => ({ params: { id: `${todo.id}` }, locale: "id" })),
     ],
     fallback: false,
   };

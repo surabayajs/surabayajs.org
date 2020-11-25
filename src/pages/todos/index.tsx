@@ -23,11 +23,12 @@ interface TodosPageProps {
 
 export const getStaticProps: GetStaticProps<TodosPageProps> = async () => {
   const resp = await fetch("https://jsonplaceholder.typicode.com/todos");
-  const todos = await resp.json();
+  const todos = (await resp.json()) as Todo[];
+  const sliced = todos.slice(0, 10);
 
   return {
     props: {
-      todos,
+      todos: sliced,
     },
   };
 };
