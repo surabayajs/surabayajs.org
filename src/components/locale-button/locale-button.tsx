@@ -15,10 +15,10 @@ import { useRouter } from "next/router";
 
 export const LocaleButton: React.FC = () => {
   const router = useRouter();
-  const { locale, replace, route } = router;
+  const { asPath, locale, replace, route } = router;
 
   function change(locale: string) {
-    replace(route, route, { locale });
+    replace(route, asPath, { locale });
   }
 
   return (
