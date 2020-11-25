@@ -31,6 +31,18 @@ function Inner(props: AppProps) {
 
   const { toggleColorMode } = useColorMode();
 
+  useShortcut(["shift+h"], () => {
+    router.push("/");
+  });
+
+  useShortcut(["shift+e"], () => {
+    router.push("/events");
+  });
+
+  useShortcut("shift+t", () => {
+    router.push("/todos");
+  });
+
   useShortcut("shift+d", () => {
     toggleColorMode();
   });
