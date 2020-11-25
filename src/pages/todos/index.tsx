@@ -54,7 +54,7 @@ const TodosPage: NextPage<TodosPageProps> = (props) => {
         <List spacing={4}>
           {todos.map((todo) => (
             <ListItem key={todo.id}>
-              <NextLink href={`/todo/${todo.id}`} passHref>
+              <NextLink href={`/todos/${todo.id}`} passHref>
                 <Button
                   as="a"
                   leftIcon={
