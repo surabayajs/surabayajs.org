@@ -148,21 +148,12 @@ const HomePage: NextPage<HomePageProps> = (props) => {
               {HOME_SOCIAL_BUTTONS.map(([name, href, AsIcon, colorScheme]) => (
                 <Button
                   as="a"
-                  boxShadow="base"
                   colorScheme={colorScheme}
-                  _hover={{
-                    boxShadow: ["base", "xl"],
-                    transform: [
-                      null,
-                      "rotate(2deg) scale(1.1) translateY(-4px)",
-                    ],
-                  }}
                   href={href}
                   key={name}
                   leftIcon={<Icon as={AsIcon} boxSize={[4, 5, 6]} />}
                   size={buttonSize}
                   target="_blank"
-                  transition="all 250ms"
                 >
                   {name}
                 </Button>
@@ -189,15 +180,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
           <Wrap align="stretch" justify="center" spacing={4}>
             {recentEvents.map((event) => (
               <WrapItem key={event.slug}>
-                <EventCard
-                  as="a"
-                  event={event}
-                  // @ts-expect-error there is href
-                  href={event.url}
-                  key={event.slug}
-                  target="_blank"
-                  withUrl
-                />
+                <EventCard event={event} key={event.slug} />
               </WrapItem>
             ))}
           </Wrap>
@@ -205,12 +188,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
             <NextLink href="/events" passHref>
               <Button
                 as="a"
-                boxShadow="base"
                 colorScheme="green"
-                _hover={{
-                  boxShadow: ["base", "xl"],
-                  transform: [null, "rotate(2deg) scale(1.1)"],
-                }}
                 rightIcon={<Icon as={FaArrowRight} />}
               >
                 {i18n["home-revents-more"][locale]}

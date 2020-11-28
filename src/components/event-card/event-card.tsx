@@ -20,13 +20,11 @@ import format from "date-fns/format";
 
 interface EventCardProps extends BoxProps {
   event: Event;
-
   withNotes?: boolean;
-  withUrl?: boolean;
 }
 
 export const EventCard: React.FC<EventCardProps> = (props) => {
-  const { event, withNotes, withUrl, ...rest } = props;
+  const { event, withNotes, ...rest } = props;
 
   const [bgColorLight, bgColorDark] = useToken("colors", ["white", "gray.700"]);
   const bgColor = useColorModeValue(bgColorLight, bgColorDark);
@@ -37,11 +35,6 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
       borderRadius="md"
       boxShadow="base"
       h="full"
-      _hover={{
-        boxShadow: ["base", "xl"],
-        transform: [null, "rotate(1deg) scale(1.05) translateY(-12px)"],
-      }}
-      transition="all 250ms"
       w={["full", "sm", "xs"]}
       {...rest}
     >
@@ -94,20 +87,10 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
           </Text>
         )}
 
-        {withUrl && (
-          <>
-            <br />
-            <Button
-              as="a"
-              href={event.url}
-              isTruncated
-              size="sm"
-              target="_blank"
-            >
-              {event.url}
-            </Button>
-          </>
-        )}
+        <br />
+        <Button as="a" href={event.url} isTruncated size="sm" target="_blank">
+          {event.url}
+        </Button>
       </Stack>
     </Box>
   );
