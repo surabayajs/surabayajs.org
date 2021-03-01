@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Container,
-  Flex,
   HStack,
   Link,
   Stack,
@@ -41,7 +40,7 @@ export const Footer: React.FC = () => {
       </Box>
       <Box bgColor={bgColor} p={[4, 8]}>
         <Container
-          as={Flex}
+          d="flex"
           flexDir={{ base: "column-reverse", md: "row" }}
           justifyContent="space-between"
           maxW="6xl"
