@@ -2,12 +2,12 @@ const routes = {
   en: {
     "/": { name: "Home" },
     "/events": { name: "Events" },
-    "/coc": { name: "Code of Conduct", ext: true },
+    "/coc": { name: "Code of Conduct" },
   },
   id: {
     "/": { name: "Beranda" },
     "/events": { name: "Kegiatan" },
-    "/coc": { name: "Kode Etika", ext: true },
+    "/coc": { name: "Kode Etika" },
   },
 };
 

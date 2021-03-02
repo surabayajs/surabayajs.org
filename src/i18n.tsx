@@ -1,13 +1,18 @@
 import * as React from "react";
 
+import { COC, KodeEtika } from "@/coc/";
+
+// import COC from "@/coc/code-of-conduct";
+// import KodeEtika from "@/coc/kode-etika";
+
 export default {
   "i18n-code": {
     en: "en-US",
     id: "id-ID",
   },
-  "coc-redirecting": {
-    en: "Redirecting to code of conduct page...",
-    id: "Mengarahkan pada laman kode etika...",
+  "coc-page": {
+    en: COC,
+    id: KodeEtika,
   },
   flag: {
     en: "🇺🇸",

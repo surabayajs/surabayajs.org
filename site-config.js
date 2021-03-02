@@ -11,9 +11,5 @@ module.exports = {
     Twitch: "https://twitch.tv/surabayajs",
     Twitter: "https://twitter.com/surabaya_js",
   },
-  coc: {
-    en: "https://public.3.basecamp.com/p/pxPjz4PTh6ozEda3cZ6Xr8qe",
-    id: "https://public.3.basecamp.com/p/LcKBA6frrEd1vc7EGHeCAXKk",
-  },
   themeColor: "#96D2AF",
 };
