@@ -3287,6 +3287,11 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
+chakra-ui-markdown-renderer@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/chakra-ui-markdown-renderer/-/chakra-ui-markdown-renderer-1.1.0.tgz#48dab38309d677ebf28ba75453abb2efb3e41038"
+  integrity sha512-0iyxulaa6Y9lvAZdL2+8st51osD+UMuBcDWi3OHY7fS4uKE6TVp+9c6E2suV0nZeSGznkuza7bREeP0/6Fx8lA==
+
 chalk@2.4.2, chalk@^2.0.0, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
