@@ -1,6 +1,4 @@
 const COC = `
-# Code Of Conduct
-
 This is a Code of Conduct for the SurabayaJS community. This is [largely based on the Coding Train Code of Conduct](https://github.com/CodingTrain/Code-of-Conduct) and applies to all interactions here on Discord, GitHub, Twitch, and Twitter.
 
 - **Be mindful of your language** Any of the following behavior is unacceptable :
