@@ -87,4 +87,12 @@ export default {
     en: "Back to home page",
     id: "Kembali ke Beranda",
   },
+  "learn-title": {
+    en: "Learning Resources",
+    id: "Sumber Belajar",
+  },
+  "learn-subtitle": {
+    en: "Learning javascript from basic to advance.",
+    id: "Belajar javascript dari dasar hingga mahir.",
+  },
 };
