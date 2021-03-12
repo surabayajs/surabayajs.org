@@ -10,6 +10,10 @@ export default {
     en: "en-US",
     id: "id-ID",
   },
+  "coc-title": {
+    en: "Code of Conduct",
+    id: "Kode Etika",
+  },
   "coc-page": {
     en: COC,
     id: KodeEtika,
