@@ -5,15 +5,8 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import siteConfig from "@/config/site";
 import theme from "@/theme";
-import {
-  Box,
-  BoxProps,
-  ChakraProvider,
-  Stack,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
 
-import { AnimatePresence, motion } from "framer-motion";
 import { useShortcut } from "litkey";
 import { AppProps as NextAppProps } from "next/app";
 import Head from "next/head";
@@ -26,8 +19,6 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 type AppProps = NextAppProps;
-
-const MotionBox = motion<BoxProps>(Box);
 
 function Inner(props: AppProps) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -55,23 +46,9 @@ function Inner(props: AppProps) {
     <>
       <Stack justify="space-between" minH="100vh">
         <Navbar />
-        <AnimatePresence exitBeforeEnter>
-          <MotionBox
-            key={router.route}
-            animate="enter"
-            as="main"
-            exit="exit"
-            flexGrow={1}
-            initial="initial"
-            variants={{
-              initial: { opacity: 0, y: -80 },
-              enter: { opacity: 1, y: 0 },
-              exit: { opacity: 0, y: 80 },
-            }}
-          >
-            <Component {...pageProps} />
-          </MotionBox>
-        </AnimatePresence>
+        <Box as="main" flexGrow={1}>
+          <Component {...pageProps} />
+        </Box>
         <Footer />
       </Stack>
 
