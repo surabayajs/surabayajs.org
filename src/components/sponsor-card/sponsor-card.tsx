@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { SponsorMetadataFragment } from "@/types";
+import { SponsorMetadataFragment } from "@/generated/graphql";
 import { Image, StackProps, Text, VStack } from "@chakra-ui/react";
 
 interface SponsorCardProps extends StackProps {

@@ -1,4 +1,4 @@
-import { getSdk } from "@/types";
+import { getSdk } from "@/generated/graphql";
 
 import { GraphQLClient } from "graphql-request";
 

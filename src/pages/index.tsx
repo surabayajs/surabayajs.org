@@ -4,9 +4,9 @@ import { EventCard } from "@/components/event-card";
 import { HorizontalLogo } from "@/components/logo";
 import { SponsorCard } from "@/components/sponsor-card";
 import siteConfig from "@/config/site";
+import { Maybe, SponsorMetadataFragment } from "@/generated/graphql";
 import i18n from "@/i18n";
 import cms from "@/lib/cms";
-import { Maybe, SponsorMetadataFragment } from "@/types";
 import {
   Box,
   Button,

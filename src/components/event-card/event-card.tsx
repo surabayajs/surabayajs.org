@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { RecentEventMetadataFragment } from "@/types";
+import { RecentEventMetadataFragment } from "@/generated/graphql";
 import {
   Avatar,
   AvatarGroup,
