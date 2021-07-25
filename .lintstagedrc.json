@@ -1,5 +1,5 @@
 {
   "*.{js,json,md}": ["prettier --write"],
-  "src/**/*.css": ["prettier --write"],
-  "src/**/*.{js,jsx,ts,tsx}": ["eslint --cache --fix", "prettier --write"]
+  "src/**/**.{css,graphql}": ["prettier --write"],
+  "src/**/*.{js,jsx,ts,tsx}": ["eslint --fix"]
 }
