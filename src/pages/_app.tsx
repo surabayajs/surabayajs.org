@@ -1,22 +1,20 @@
-import "@/stylesheets/html.css";
-
 import * as React from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
-import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
-
-import type { BoxProps } from "@chakra-ui/react";
 import { Drawer } from "@/components/drawer";
 import { Footer } from "@/components/footer";
-import Head from "next/head";
-import NProgress from "nprogress";
 import { Navbar } from "@/components/navbar";
-import type { AppProps as NextAppProps } from "next/app";
-import Router from "next/router";
-import siteConfig from "site-config";
 import theme from "@/theme";
+import type { BoxProps } from "@chakra-ui/react";
+import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
+
+import { AnimatePresence, motion } from "framer-motion";
 import { useShortcut } from "litkey";
+import type { AppProps as NextAppProps } from "next/app";
+import Head from "next/head";
+import Router from "next/router";
+import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
+import NProgress from "nprogress";
+import siteConfig from "site-config";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -53,12 +51,12 @@ function Inner(props: AppProps) {
         <Navbar />
         <AnimatePresence exitBeforeEnter>
           <MotionBox
-            as="main"
+            key={router.route}
             animate="enter"
+            as="main"
             exit="exit"
             flexGrow={1}
             initial="initial"
-            key={router.route}
             variants={{
               initial: { opacity: 0, y: -80 },
               enter: { opacity: 1, y: 0 },
@@ -82,14 +80,12 @@ function App(props: AppProps) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
       </Head>
 
       <DefaultSeo
-        title="Welcome!"
-        titleTemplate={`%s · ${siteConfig.title}`}
-        description={siteConfig.description}
         canonical={siteConfig.url + (router.asPath || "")}
+        description={siteConfig.description}
         openGraph={{
           title: siteConfig.title,
           description: siteConfig.description,
@@ -104,6 +100,8 @@ function App(props: AppProps) {
             },
           ],
         }}
+        title="Welcome!"
+        titleTemplate={`%s · ${siteConfig.title}`}
         twitter={{
           cardType: "summary_large_image",
           handle: siteConfig.twitterUsername,
@@ -112,10 +110,10 @@ function App(props: AppProps) {
       />
 
       <SocialProfileJsonLd
-        type="person"
         name={siteConfig.title}
-        url={siteConfig.url}
         sameAs={Object.values(siteConfig.socials)}
+        type="person"
+        url={siteConfig.url}
       />
 
       <ChakraProvider resetCSS theme={theme}>

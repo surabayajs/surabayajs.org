@@ -1,28 +1,10 @@
-import { extendTheme } from "@chakra-ui/react";
+import {
+  extendTheme,
+  theme as defaultTheme,
+  ThemeOverride,
+} from "@chakra-ui/react";
 
-const sans = [
-  "Manrope",
-  "-apple-system",
-  "BlinkMacSystemFont",
-  "'Segoe UI'",
-  "Roboto",
-  "Oxygen",
-  "Ubuntu",
-  "Cantarell",
-  "'Open Sans'",
-  "'Helvetica Neue'",
-  "sans-serif",
-].join(",");
-
-const mono = [
-  "Cousine",
-  "Consolas",
-  "'Courier New'",
-  "Courier",
-  "monospace",
-].join(",");
-
-export default extendTheme({
+export default extendTheme(<ThemeOverride>{
   colors: {
     gator: {
       "50": "#f3f8f7",
@@ -37,6 +19,7 @@ export default extendTheme({
       "900": "#1e4631",
     },
   },
+
   components: {
     Link: {
       variants: {
@@ -72,15 +55,40 @@ export default extendTheme({
       },
     },
   },
+
   fonts: {
-    body: sans,
-    heading: sans,
-    mono,
+    body: `'Manrope',${defaultTheme.fonts.body}`,
+    heading: `'Manrope',${defaultTheme.fonts.heading}`,
+    mono: `'Cousine',${defaultTheme.fonts.mono}`,
   },
+
   styles: {
     global: {
+      html: {
+        scrollBehavior: "smooth",
+      },
+
       body: {
-        //
+        MozOsxFontSmoothing: "grayscale",
+        WebkitFontSmoothing: "antialiased",
+        textRendering: "optimizeLegibility",
+      },
+
+      "#nprogress": {
+        pointerEvents: "none",
+      },
+      "#nprogress .bar": {
+        bgGradient: "linear(to-r, whiteAlpha.400, green.200)",
+        h: "2px",
+        left: 0,
+        pos: "fixed",
+        top: 0,
+        w: "full",
+        zIndex: 2000,
+      },
+      ".nprogress-custom-parent": {
+        overflow: "hidden",
+        position: "absolute",
       },
     },
   },
