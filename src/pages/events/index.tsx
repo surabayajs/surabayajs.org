@@ -28,6 +28,7 @@ export async function getStaticProps(args: GetStaticPropsContext) {
       locale,
       events: data.eventCollection?.items,
     },
+    revalidate: 86400,
   };
 }
 
