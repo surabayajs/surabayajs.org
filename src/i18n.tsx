@@ -23,16 +23,12 @@ export default {
     id: "🇮🇩",
   },
   "home-title": {
-    en:
-      "User group based on Surabaya, Indonesia discussing everything JavaScript.",
-    id:
-      "Komunitas berbasis di Surabaya, Indonesia membahas segala tentang JavaScript.",
+    en: "User group based on Surabaya, Indonesia discussing everything JavaScript.",
+    id: "Komunitas berbasis di Surabaya, Indonesia membahas segala tentang JavaScript.",
   },
   "home-subtitle": {
-    en:
-      "Come and meet other developers interested in JavaScript and its ecosystem in Surabaya. Join our community and stay tuned for future events.",
-    id:
-      "Datang dan temui developer lain yang tertarik dengan JavaScript dan ekosistemnya di Surabaya. Bergabunglah dengan komunitas kami dan nantikan acara mendatang.",
+    en: "Come and meet other developers interested in JavaScript and its ecosystem in Surabaya. Join our community and stay tuned for future events.",
+    id: "Datang dan temui developer lain yang tertarik dengan JavaScript dan ekosistemnya di Surabaya. Bergabunglah dengan komunitas kami dan nantikan acara mendatang.",
   },
   "home-revents-title": {
     en: "Recent Events",
@@ -62,8 +58,7 @@ export default {
   },
   "home-saps-subtitle": {
     en: "We are thankful for the support from our friends below.",
-    id:
-      "Kami berterima kasih atas dukungan dari teman-teman kami di bawah ini.",
+    id: "Kami berterima kasih atas dukungan dari teman-teman kami di bawah ini.",
   },
   "events-title": {
     en: "Meetups and Workshops",

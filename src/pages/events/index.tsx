@@ -1,89 +1,51 @@
 import * as React from "react";
 
+import { EventCard } from "@/components/event-card";
+import i18n from "@/i18n";
+import cms from "@/lib/cms";
 import {
   Box,
   Container,
   Heading,
   Text,
-  VStack,
   useColorModeValue,
   useToken,
+  VStack,
 } from "@chakra-ui/react";
-import type { GetStaticProps, NextPage } from "next";
 
-import { EventCard } from "@/components/event-card";
-import type { EventCollection } from "@/types";
+import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
-import { contentful } from "@/cms";
-import i18n from "@/i18n";
 
-interface EventsPageProps {
-  locale: string;
-  events: EventCollection["items"];
-}
+export async function getStaticProps(args: GetStaticPropsContext) {
+  const locale = args.locale as string;
 
-export const getStaticProps: GetStaticProps<EventsPageProps> = async (args) => {
-  const { locale } = args;
-
-  const data = await contentful().request(
-    /* GraphQL */ `
-      query EventsPageQuery($locale: String!) {
-        eventCollection(limit: 50, locale: $locale, order: startingDate_DESC) {
-          items {
-            poster {
-              url
-            }
-            title
-            slug
-            description
-            category
-            startingDate
-            sessionsCollection(limit: 50) {
-              items {
-                sys {
-                  id
-                }
-                speaker {
-                  avatar {
-                    url
-                  }
-                  name
-                }
-              }
-            }
-            onlineEvent
-            location
-            url
-            quota
-            notes
-          }
-        }
-      }
-    `,
-    {
-      locale: i18n["i18n-code"][locale],
-    },
-  );
+  const data = await cms().eventsPageQuery({
+    locale: i18n["i18n-code"][locale] as string,
+  });
 
   return {
     props: {
       locale,
-      events: data.eventCollection.items,
+      events: data.eventCollection?.items,
     },
   };
-};
+}
 
-const EventsPage: NextPage<EventsPageProps> = ({ events, locale }) => {
+const EventsPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
+  props,
+) => {
+  const { events, locale } = props;
+
   const [lightColor, darkColor] = useToken("colors", [
     "gator.200",
     "gator.800",
-  ]);
+  ]) as [string, string];
 
   const bgColor = useColorModeValue(lightColor, darkColor);
 
   return (
     <>
-      <NextSeo title={i18n["events-title"][locale]} />
+      <NextSeo title={i18n["events-title"][locale] as string} />
       <Container as="section" maxW="6xl" p={[4, 8]}>
         <VStack spacing={4} textAlign="center">
           <Heading>{i18n["events-title"][locale]}</Heading>
@@ -93,9 +55,10 @@ const EventsPage: NextPage<EventsPageProps> = ({ events, locale }) => {
 
       <Container as="section" maxW="6xl" px={[4, 8]}>
         <VStack spacing={[2, 4]}>
-          {events.map((event) => (
-            <EventCard event={event} key={event.slug} withNotes />
-          ))}
+          {events?.map(
+            (event) =>
+              event && <EventCard key={event.slug} event={event} withNotes />,
+          )}
         </VStack>
       </Container>
 

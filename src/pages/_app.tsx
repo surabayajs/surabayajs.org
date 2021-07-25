@@ -3,18 +3,23 @@ import * as React from "react";
 import { Drawer } from "@/components/drawer";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import siteConfig from "@/config/site";
 import theme from "@/theme";
-import type { BoxProps } from "@chakra-ui/react";
-import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  BoxProps,
+  ChakraProvider,
+  Stack,
+  useColorMode,
+} from "@chakra-ui/react";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useShortcut } from "litkey";
-import type { AppProps as NextAppProps } from "next/app";
+import { AppProps as NextAppProps } from "next/app";
 import Head from "next/head";
 import Router from "next/router";
 import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
 import NProgress from "nprogress";
-import siteConfig from "site-config";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -22,23 +27,24 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 type AppProps = NextAppProps;
 
-const MotionBox = motion.custom<BoxProps>(Box);
+const MotionBox = motion<BoxProps>(Box);
 
 function Inner(props: AppProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { Component, pageProps, router } = props;
 
   const { toggleColorMode } = useColorMode();
 
   useShortcut(["shift+h"], () => {
-    router.push("/");
+    void router.push("/");
   });
 
   useShortcut(["shift+e"], () => {
-    router.push("/events");
+    void router.push("/events");
   });
 
   useShortcut("shift+t", () => {
-    router.push("/todos");
+    void router.push("/todos");
   });
 
   useShortcut("shift+d", () => {
