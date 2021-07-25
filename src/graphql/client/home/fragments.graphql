@@ -1,0 +1,29 @@
+fragment RecentEventMetadata on Event {
+  ...EventMetadata
+  sessionsCollection {
+    items {
+      sys {
+        id
+      }
+      speaker {
+        avatar {
+          url
+        }
+        name
+      }
+    }
+  }
+}
+
+fragment SponsorMetadata on Sponsor {
+  name
+  category
+  url
+  activeSponsor
+  logo {
+    url
+  }
+  sys {
+    id
+  }
+}

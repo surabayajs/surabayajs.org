@@ -1,0 +1,12 @@
+query homePageQuery($locale: String!) {
+  eventCollection(limit: 3, locale: $locale, order: startingDate_DESC) {
+    items {
+      ...RecentEventMetadata
+    }
+  }
+  sponsorCollection(order: name_ASC) {
+    items {
+      ...SponsorMetadata
+    }
+  }
+}
