@@ -3,7 +3,7 @@ const favicons = require("favicons");
 const fs = require("fs");
 const path = require("path");
 
-const siteConfig = require("../site-config");
+const siteConfig = require("../src/config/site");
 
 module.exports = async () => {
   return new Promise((resolve, reject) => {
