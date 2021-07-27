@@ -10,8 +10,8 @@ import cms from "@/lib/cms";
 import {
   Box,
   Button,
-  ButtonGroup,
   Container,
+  Grid,
   Heading,
   Icon,
   LightMode,
@@ -27,13 +27,20 @@ import {
 
 import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import NextLink from "next/link";
-import { FaArrowRight, FaDiscord, FaTwitch, FaTwitter } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaDiscord,
+  FaTwitch,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 import { IconType } from "react-icons/lib";
 
 const HOME_SOCIAL_BUTTONS: [string, string, IconType, string][] = [
   ["Discord", siteConfig.socials.Discord, FaDiscord, "blue"],
   ["Twitch", siteConfig.socials.Twitch, FaTwitch, "purple"],
   ["Twitter", siteConfig.socials.Twitter, FaTwitter, "twitter"],
+  ["Youtube", siteConfig.socials.Youtube, FaYoutube, "red"],
 ];
 
 export async function getStaticProps(args: GetStaticPropsContext) {
@@ -93,7 +100,11 @@ const HomePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
           <Text variant="home-subtitle">{i18n["home-subtitle"][locale]}</Text>
 
           <LightMode>
-            <ButtonGroup spacing={4}>
+            <Grid
+              gap={{ base: 3, lg: 6 }}
+              templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
+              width={{ base: "100%", lg: "60%" }}
+            >
               {HOME_SOCIAL_BUTTONS.map(([name, href, AsIcon, colorScheme]) => (
                 <Button
                   key={name}
@@ -107,7 +118,7 @@ const HomePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
                   {name}
                 </Button>
               ))}
-            </ButtonGroup>
+            </Grid>
           </LightMode>
         </Stack>
       </Container>
