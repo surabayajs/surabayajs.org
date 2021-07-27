@@ -9,6 +9,7 @@ const siteConfig = {
     GitHub: "https://github.com/surabayajs",
     Twitch: "https://twitch.tv/surabayajs",
     Twitter: "https://twitter.com/surabaya_js",
+    Youtube: "https://www.youtube.com/channel/UCHkB77QEg1w-1E9bmsGKDYg",
   },
   themeColor: "#96D2AF",
 };
