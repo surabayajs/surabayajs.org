@@ -23,7 +23,7 @@ export default {
     id: "🇮🇩",
   },
   "home-title": {
-    en: "User group based on Surabaya, Indonesia discussing everything JavaScript.",
+    en: "User group based in Surabaya, Indonesia discussing everything JavaScript.",
     id: "Komunitas berbasis di Surabaya, Indonesia membahas segala tentang JavaScript.",
   },
   "home-subtitle": {
