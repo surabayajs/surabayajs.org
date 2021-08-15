@@ -1,128 +1,84 @@
 import * as React from "react";
 
+import { EventCard } from "@/components/event-card";
+import { HorizontalLogo } from "@/components/logo";
+import { SponsorCard } from "@/components/sponsor-card";
+import siteConfig from "@/config/site";
+import { Maybe, SponsorMetadataFragment } from "@/generated/graphql";
+import i18n from "@/i18n";
+import cms from "@/lib/cms";
 import {
   Box,
   Button,
-  ButtonGroup,
   Container,
+  Grid,
   Heading,
   Icon,
   LightMode,
   Stack,
   Text,
-  VStack,
-  Wrap,
-  WrapItem,
   useBreakpointValue,
   useColorModeValue,
   useToken,
+  VStack,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
-import type { EventCollection, Sponsor } from "@/types";
-import { FaArrowRight, FaDiscord, FaTwitch, FaTwitter } from "react-icons/fa";
-import type { GetStaticProps, NextPage } from "next";
 
-import { EventCard } from "@/components/event-card";
-import { HorizontalLogo } from "@/components/logo";
-import type { IconType } from "react-icons/lib";
+import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import NextLink from "next/link";
-import { SponsorCard } from "@/components/sponsor-card";
-import { contentful } from "@/cms";
-import i18n from "@/i18n";
-import siteConfig from "site-config";
+import {
+  FaArrowRight,
+  FaDiscord,
+  FaTwitch,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
+import { IconType } from "react-icons/lib";
 
 const HOME_SOCIAL_BUTTONS: [string, string, IconType, string][] = [
   ["Discord", siteConfig.socials.Discord, FaDiscord, "blue"],
   ["Twitch", siteConfig.socials.Twitch, FaTwitch, "purple"],
   ["Twitter", siteConfig.socials.Twitter, FaTwitter, "twitter"],
+  ["Youtube", siteConfig.socials.Youtube, FaYoutube, "red"],
 ];
 
-interface HomePageProps {
-  locale: string;
-  recentEvents: EventCollection["items"];
-  sponsors: Record<string, Sponsor[]>;
-}
+export async function getStaticProps(args: GetStaticPropsContext) {
+  const locale = args.locale as string;
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async (args) => {
-  const { locale } = args;
+  const data = await cms().homePageQuery({
+    locale: i18n["i18n-code"][locale] as string,
+  });
 
-  const data = await contentful().request(
-    /* GraphQL */ `
-      query HomePageQuery($locale: String!) {
-        eventCollection(limit: 3, locale: $locale, order: startingDate_DESC) {
-          items {
-            poster {
-              url
-            }
-            title
-            slug
-            description
-            category
-            startingDate
-            sessionsCollection {
-              items {
-                sys {
-                  id
-                }
-                speaker {
-                  avatar {
-                    url
-                  }
-                  name
-                }
-              }
-            }
-            onlineEvent
-            location
-            url
-            quota
-            notes
-          }
-        }
-        sponsorCollection(order: name_ASC) {
-          items {
-            name
-            category
-            url
-            activeSponsor
-            logo {
-              url
-            }
-            sys {
-              id
-            }
-          }
-        }
-      }
-    `,
-    {
-      locale: i18n["i18n-code"][locale],
-    },
-  );
-
-  const sponsors: Record<string, Sponsor[]> = {
+  const sponsors: Record<string, Maybe<SponsorMetadataFragment>[]> = {
     Sponsor: [],
     "Media Partner": [],
     "Community Partner": [],
   };
 
-  (data.sponsorCollection.items as Sponsor[]).forEach((sponsor) => {
-    if (sponsors[sponsor.category]) {
-      sponsors[sponsor.category].push(sponsor);
+  data.sponsorCollection?.items.forEach((sponsor) => {
+    const category = sponsor?.category as string;
+
+    if (sponsors[category]) {
+      sponsors[category].push(sponsor);
     } else {
-      sponsors[sponsor.category] = [sponsor];
+      sponsors[category] = [sponsor];
     }
   });
 
   return {
     props: {
       locale,
-      recentEvents: data.eventCollection.items,
+      recentEvents: data.eventCollection?.items,
       sponsors,
     },
+    revalidate: 86400,
   };
-};
+}
 
-const HomePage: NextPage<HomePageProps> = (props) => {
+const HomePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
+  props,
+) => {
   const { locale, recentEvents, sponsors } = props;
 
   const buttonSize = useBreakpointValue(["sm", "md", "lg"]);
@@ -130,7 +86,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
   const [lightColor, darkColor] = useToken("colors", [
     "gator.200",
     "gator.800",
-  ]);
+  ]) as [string, string];
 
   const bgColor = useColorModeValue(lightColor, darkColor);
 
@@ -144,13 +100,17 @@ const HomePage: NextPage<HomePageProps> = (props) => {
           <Text variant="home-subtitle">{i18n["home-subtitle"][locale]}</Text>
 
           <LightMode>
-            <ButtonGroup spacing={4}>
+            <Grid
+              gap={{ base: 3, lg: 6 }}
+              templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
+              width={{ base: "100%", lg: "60%" }}
+            >
               {HOME_SOCIAL_BUTTONS.map(([name, href, AsIcon, colorScheme]) => (
                 <Button
+                  key={name}
                   as="a"
                   colorScheme={colorScheme}
                   href={href}
-                  key={name}
                   leftIcon={<Icon as={AsIcon} boxSize={[4, 5, 6]} />}
                   size={buttonSize}
                   target="_blank"
@@ -158,7 +118,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                   {name}
                 </Button>
               ))}
-            </ButtonGroup>
+            </Grid>
           </LightMode>
         </Stack>
       </Container>
@@ -178,9 +138,9 @@ const HomePage: NextPage<HomePageProps> = (props) => {
             <Text>{i18n["home-revents-subtitle"][locale]}</Text>
           </VStack>
           <VStack spacing={[2, 4]}>
-            {recentEvents.map((event) => (
-              <EventCard event={event} key={event.slug} />
-            ))}
+            {recentEvents?.map(
+              (event) => event && <EventCard key={event.slug} event={event} />,
+            )}
           </VStack>
           <Box>
             <NextLink href="/events" passHref>
@@ -216,11 +176,14 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                 {category}
               </Heading>
               <Wrap justify="center" spacing={[4, 8]}>
-                {list.map((sponsor) => (
-                  <WrapItem key={sponsor.sys.id}>
-                    <SponsorCard sponsor={sponsor} />
-                  </WrapItem>
-                ))}
+                {list.map(
+                  (sponsor) =>
+                    sponsor && (
+                      <WrapItem key={sponsor.sys.id}>
+                        <SponsorCard sponsor={sponsor} />
+                      </WrapItem>
+                    ),
+                )}
               </Wrap>
             </React.Fragment>
           ))}

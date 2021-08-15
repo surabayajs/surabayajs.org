@@ -1,5 +1,8 @@
 import * as React from "react";
 
+import { ColorModeButton } from "@/components/color-mode-button";
+import { LocaleButton } from "@/components/locale-button";
+import routes from "@/routes";
 import {
   Button,
   Container,
@@ -14,11 +17,8 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-import { ColorModeButton } from "@/components/color-mode-button";
-import { FaBars } from "react-icons/fa";
-import { LocaleButton } from "@/components/locale-button";
-import routes from "@/routes";
 import { useRouter } from "next/router";
+import { FaBars } from "react-icons/fa";
 
 export const NavbarMobile: React.FC = () => {
   const router = useRouter();
@@ -33,14 +33,14 @@ export const NavbarMobile: React.FC = () => {
             leftIcon={<Icon as={FaBars} />}
             variant="ghost"
           >
-            {routes(locale)[asPath]?.name ?? 404}
+            {routes(locale)[asPath].name ?? 404}
           </MenuButton>
           <MenuList>
             {Object.entries(routes(locale)).map(
               ([href, { name, ext = false }]) => (
                 <MenuItem
-                  fontWeight="bold"
                   key={name}
+                  fontWeight="bold"
                   onClick={() =>
                     ext ? window.open(href, "_blank") : router.push(href)
                   }

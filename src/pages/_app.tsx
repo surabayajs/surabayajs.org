@@ -1,22 +1,18 @@
-import "@/stylesheets/html.css";
-
 import * as React from "react";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
-import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
-
-import type { BoxProps } from "@chakra-ui/react";
 import { Drawer } from "@/components/drawer";
 import { Footer } from "@/components/footer";
-import Head from "next/head";
-import NProgress from "nprogress";
 import { Navbar } from "@/components/navbar";
-import type { AppProps as NextAppProps } from "next/app";
-import Router from "next/router";
-import siteConfig from "site-config";
+import siteConfig from "@/config/site";
 import theme from "@/theme";
+import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
+
 import { useShortcut } from "litkey";
+import { AppProps as NextAppProps } from "next/app";
+import Head from "next/head";
+import Router from "next/router";
+import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
+import NProgress from "nprogress";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -24,23 +20,22 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 type AppProps = NextAppProps;
 
-const MotionBox = motion.custom<BoxProps>(Box);
-
 function Inner(props: AppProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { Component, pageProps, router } = props;
 
   const { toggleColorMode } = useColorMode();
 
   useShortcut(["shift+h"], () => {
-    router.push("/");
+    void router.push("/");
   });
 
   useShortcut(["shift+e"], () => {
-    router.push("/events");
+    void router.push("/events");
   });
 
   useShortcut("shift+t", () => {
-    router.push("/todos");
+    void router.push("/todos");
   });
 
   useShortcut("shift+d", () => {
@@ -51,23 +46,9 @@ function Inner(props: AppProps) {
     <>
       <Stack justify="space-between" minH="100vh">
         <Navbar />
-        <AnimatePresence exitBeforeEnter>
-          <MotionBox
-            as="main"
-            animate="enter"
-            exit="exit"
-            flexGrow={1}
-            initial="initial"
-            key={router.route}
-            variants={{
-              initial: { opacity: 0, y: -80 },
-              enter: { opacity: 1, y: 0 },
-              exit: { opacity: 0, y: 80 },
-            }}
-          >
-            <Component {...pageProps} />
-          </MotionBox>
-        </AnimatePresence>
+        <Box as="main" flexGrow={1}>
+          <Component {...pageProps} />
+        </Box>
         <Footer />
       </Stack>
 
@@ -82,14 +63,12 @@ function App(props: AppProps) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
       </Head>
 
       <DefaultSeo
-        title="Welcome!"
-        titleTemplate={`%s · ${siteConfig.title}`}
-        description={siteConfig.description}
         canonical={siteConfig.url + (router.asPath || "")}
+        description={siteConfig.description}
         openGraph={{
           title: siteConfig.title,
           description: siteConfig.description,
@@ -104,6 +83,8 @@ function App(props: AppProps) {
             },
           ],
         }}
+        title="Welcome!"
+        titleTemplate={`%s · ${siteConfig.title}`}
         twitter={{
           cardType: "summary_large_image",
           handle: siteConfig.twitterUsername,
@@ -112,10 +93,10 @@ function App(props: AppProps) {
       />
 
       <SocialProfileJsonLd
-        type="person"
         name={siteConfig.title}
-        url={siteConfig.url}
         sameAs={Object.values(siteConfig.socials)}
+        type="person"
+        url={siteConfig.url}
       />
 
       <ChakraProvider resetCSS theme={theme}>

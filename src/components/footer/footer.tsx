@@ -1,5 +1,10 @@
 import * as React from "react";
 
+import { EmailTooltip } from "@/components/email-tooltip";
+import { VercelLogo } from "@/components/logo";
+import siteConfig from "@/config/site";
+import { useEmail } from "@/hooks/app";
+import routes from "@/routes";
 import {
   Box,
   Button,
@@ -12,19 +17,15 @@ import {
   useToken,
 } from "@chakra-ui/react";
 
-import { EmailTooltip } from "@/components/email-tooltip";
 import NextLink from "next/link";
-import { VercelLogo } from "@/components/logo";
-import routes from "@/routes";
-import siteConfig from "site-config";
-import { useEmail } from "@/hooks/app";
 import { useRouter } from "next/router";
 
 export const Footer: React.FC = () => {
   const [lightColor, darkColor] = useToken("colors", [
     "gator.200",
     "gator.800",
-  ]);
+  ]) as [string, string];
+
   const bgColor = useColorModeValue(lightColor, darkColor);
 
   const copyEmail = useEmail();
@@ -66,8 +67,8 @@ export const Footer: React.FC = () => {
               <Text>Business inquiries at</Text>
               <EmailTooltip>
                 <Button
-                  d="inline-block"
                   colorScheme="black"
+                  d="inline-block"
                   fontWeight="bold"
                   onClick={copyEmail}
                   size="sm"
@@ -102,14 +103,14 @@ export const Footer: React.FC = () => {
           <HStack
             align="flex-start"
             justify="center"
-            pt={{ base: 12, md: 0 }}
             pb={12}
+            pt={{ base: 12, md: 0 }}
             spacing={16}
           >
             <Stack>
               <Text variant="sitemap-title">Navigate</Text>
               {Object.entries(routes(locale)).map(([href, { name }]) => (
-                <NextLink href={href} key={name} passHref>
+                <NextLink key={name} href={href} passHref>
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <Link variant="sitemap-link">{name}</Link>
                 </NextLink>
@@ -118,7 +119,7 @@ export const Footer: React.FC = () => {
             <Stack>
               <Text variant="sitemap-title">Socials</Text>
               {Object.entries(siteConfig.socials).map(([name, href]) => (
-                <Link href={href} isExternal key={name} variant="sitemap-link">
+                <Link key={name} href={href} isExternal variant="sitemap-link">
                   {name}
                 </Link>
               ))}

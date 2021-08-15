@@ -1,0 +1,15 @@
+fragment EventMetadata on Event {
+  poster {
+    url
+  }
+  title
+  slug
+  description
+  category
+  startingDate
+  onlineEvent
+  location
+  url
+  quota
+  notes
+}

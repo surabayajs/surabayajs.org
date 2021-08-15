@@ -2,9 +2,8 @@
 
 import * as React from "react";
 
+import siteConfig from "@/config/site";
 import { useClipboard, useToast } from "@chakra-ui/react";
-
-import siteConfig from "site-config";
 
 export function useEmail() {
   const { onCopy } = useClipboard(siteConfig.email);

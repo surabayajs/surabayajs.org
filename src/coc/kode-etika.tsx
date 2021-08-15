@@ -1,6 +1,4 @@
 const KodeEtika = `
-# Kode Etika
-
 Berikut merupakan kode etika (code of conduct) komunitas SurabayaJS. Kode etika ini [sebagian besar didasarkan oleh kode etika Coding Train ](https://github.com/CodingTrain/Code-of-Conduct)dan berlaku untuk semua interaksi di Discord, Github, Twitch, dan Twitter.
 
 - **Perhatikan bahasa Anda.** Salah satu dari perilaku berikut ini tidak dapat diterima :

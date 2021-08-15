@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import i18n from "@/i18n";
 import {
   Button,
   Menu,
@@ -10,15 +11,15 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 
-import i18n from "@/i18n";
 import { useRouter } from "next/router";
 
 export const LocaleButton: React.FC = () => {
   const router = useRouter();
-  const { asPath, locale, replace, route } = router;
 
-  function change(locale: string) {
-    replace(route, asPath, { locale });
+  const locale = router.locale as string;
+
+  function change(_locale: string) {
+    void router.replace(router.route, router.asPath, { locale: _locale });
   }
 
   return (

@@ -1,15 +1,14 @@
 import * as React from "react";
 
-import { Box } from "@chakra-ui/react";
-import type { BoxProps } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 
 export const HorizontalLogo: React.FC<BoxProps> = (props) => {
   return (
     <Box
       as="svg"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 696 140"
+      xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path

@@ -1,5 +1,11 @@
 import * as React from "react";
 
+import { ColorModeButton } from "@/components/color-mode-button";
+import { EmailTooltip } from "@/components/email-tooltip";
+import { LocaleButton } from "@/components/locale-button";
+import siteConfig from "@/config/site";
+import { useEmail } from "@/hooks/app";
+import routes from "@/routes";
 import {
   Button,
   Container,
@@ -9,13 +15,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-import { ColorModeButton } from "@/components/color-mode-button";
-import { EmailTooltip } from "@/components/email-tooltip";
-import { LocaleButton } from "@/components/locale-button";
 import NextLink from "next/link";
-import routes from "@/routes";
-import siteConfig from "site-config";
-import { useEmail } from "@/hooks/app";
 import { useRouter } from "next/router";
 
 export const NavbarDesktop: React.FC = () => {
@@ -34,7 +34,7 @@ export const NavbarDesktop: React.FC = () => {
     >
       <HStack>
         {Object.entries(routes(locale)).map(([href, { name, ext = false }]) => (
-          <NextLink href={href} key={name} passHref>
+          <NextLink key={name} href={href} passHref>
             <Button
               as="a"
               {...(ext ? { target: "_blank" } : {})}

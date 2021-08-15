@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import i18n from "@/i18n";
 import {
   Button,
   Container,
@@ -10,14 +11,15 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import { FaArrowRight } from "react-icons/fa";
+import { NextPage } from "next";
 import NextLink from "next/link";
-import type { NextPage } from "next";
-import i18n from "@/i18n";
 import { useRouter } from "next/router";
+import { FaArrowRight } from "react-icons/fa";
 
 const NotFoundPage: NextPage = () => {
-  const { locale } = useRouter();
+  const router = useRouter();
+
+  const locale = router.locale as string;
 
   return (
     <Container as="section" maxW="6xl" p={[4, 8]}>
