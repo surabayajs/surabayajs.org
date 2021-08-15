@@ -23,8 +23,8 @@ module.exports = {
       },
     ],
     "import/newline-after-import": "warn",
-    "import/order": "on",
-    "sort-imports": "on",
+    "import/order": "off",
+    "sort-imports": "off",
 
     // simple import rules
     "simple-import-sort/exports": "warn",
