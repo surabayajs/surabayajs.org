@@ -2,37 +2,47 @@ import * as React from "react";
 
 import {
   Box,
-  Text,
-  Stack,
   Heading,
+  Link,
+  Stack,
+  Text,
   useColorModeValue,
   useToken,
 } from "@chakra-ui/react";
 
-export const LearningCard = () => {
+type LearningCardProps = {
+  data: {
+    title: string;
+    description: string;
+    url: string;
+  };
+};
+
+export const LearningCard: React.FC<LearningCardProps> = (props) => {
+  const { data } = props;
+
   const [bgColorLight, bgColorDark] = useToken("colors", ["white", "gray.700"]);
   const bgColor = useColorModeValue(bgColorLight, bgColorDark);
+
   return (
     <Box
-      bgColor={bgColor}
-      borderRadius="md"
-      boxShadow="base"
-      w="full"
-      cursor="pointer"
-      mb="2"
       _hover={{
         boxShadow: "lg",
       }}
+      bgColor={bgColor}
+      borderRadius="md"
+      boxShadow="base"
+      cursor="pointer"
+      mb="2"
+      w="full"
     >
       <Stack p="5">
-        <Heading as="h3" size="md">
-          Tata Cara Clean Code pada JavaScript
-        </Heading>
-        <Text>
-          Pada Course ini, kalian akan mempelajari bagaimana cara menulis
-          variable, function, serta tools yang digunakan untuk membuat Clean
-          Code di JavaScript.
-        </Text>
+        <Link href={data.url} isExternal textDecoration="none">
+          <Heading as="h3" size="md">
+            {data.title}
+          </Heading>
+          <Text>{data.description}</Text>
+        </Link>
       </Stack>
     </Box>
   );
