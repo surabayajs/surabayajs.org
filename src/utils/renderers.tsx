@@ -1,6 +1,13 @@
 import * as React from "react";
 
-import { Box, List } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Heading,
+  Link,
+  ListItem,
+  UnorderedList,
+} from "@chakra-ui/react";
 
 type RendererRecord = {
   [nodeType: string]: React.ElementType<any>;
@@ -18,6 +25,24 @@ export const contentRenderer: RendererRecord = {
       {...props}
     />
   ),
+
   // eslint-disable-next-line react/display-name
-  li: (props) => <List listStylePos="inside" {...props} pl={10} />,
+  li: (props) => {
+    return (
+      <UnorderedList>
+        <ListItem {...props} />
+      </UnorderedList>
+    );
+  },
+
+  // eslint-disable-next-line react/display-name
+  h1: (props) => (
+    <Box>
+      <Heading {...props} as="h1" size="xl" />
+      <Divider mb="4" mt="2" />
+    </Box>
+  ),
+
+  // eslint-disable-next-line react/display-name
+  a: (props) => <Link {...props} color="blue.400" isExternal />,
 };
