@@ -1,24 +1,34 @@
 import * as React from "react";
 
 import i18n from "@/i18n";
+import { contentRenderer } from "@/utils/renderers";
 import { Container, Heading, VStack } from "@chakra-ui/react";
 
-import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
+import { GetStaticPropsContext, NextPage } from "next";
 import { NextSeo } from "next-seo";
+import ReactMarkdown from "react-markdown";
+
+const cocUrl =
+  "https://raw.githubusercontent.com/surabayajs/code-of-conduct/main/code-of-conduct.mdx";
 
 export async function getStaticProps(args: GetStaticPropsContext) {
+  const content = await fetch(cocUrl).then((res) => res.text());
   const locale = args.locale as string;
   return {
     props: {
       locale,
+      content,
     },
   };
 }
 
-const CodeOfConductPage: NextPage<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = (props) => {
-  const { locale } = props;
+interface COCPageProps {
+  content: string;
+  locale: string;
+}
+
+const CodeOfConductPage: NextPage<COCPageProps> = (props) => {
+  const { locale, content } = props;
   return (
     <>
       <NextSeo title={i18n["coc-title"][locale] as string} />
@@ -28,9 +38,7 @@ const CodeOfConductPage: NextPage<
         </VStack>
       </Container>
       <Container as="section" maxW="6xl" pt={[4, 8]} px={[4, 8]}>
-        <Heading as="h1" color="gray.400" size="lg" textAlign="center">
-          Still on progress ...
-        </Heading>
+        <ReactMarkdown children={content} components={contentRenderer} />
       </Container>
     </>
   );
