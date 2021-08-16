@@ -3,11 +3,13 @@ const routes = {
     "/": { name: "Home" },
     "/events": { name: "Events" },
     "/coc": { name: "Code of Conduct" },
+    "/learn": { name: "Learning Resources" },
   },
   id: {
     "/": { name: "Beranda" },
     "/events": { name: "Kegiatan" },
     "/coc": { name: "Kode Etika" },
+    "/learn": { name: "Sumber Pembelajaran" },
   },
 };
 
