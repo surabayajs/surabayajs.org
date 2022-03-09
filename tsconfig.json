@@ -5,6 +5,7 @@
     "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -22,14 +23,5 @@
     "target": "es5"
   },
   "exclude": ["src/generated", "node_modules"],
-  "include": [
-    "env.d.ts",
-    "next-env.d.ts",
-    "**/*.d.ts",
-    "**/*.js",
-    "**/*.json",
-    "**/*.jsx",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["env.d.ts", "next-env.d.ts", "**/*.d.ts", "**/*.ts", "**/*.tsx"]
 }
