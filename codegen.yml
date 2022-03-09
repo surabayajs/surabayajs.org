@@ -8,6 +8,10 @@ schema:
     headers:
       Authorization: "Bearer ${CONTENTFUL_API_KEY}"
 
+hooks:
+  afterOneFileWrite:
+    - yarn prettier --write
+
 generates:
   "./schema.graphql":
     plugins:
@@ -28,6 +32,3 @@ generates:
       dedupeOperationSuffix: true
       pureMagicComment: true
       skipTypename: true
-    hooks:
-      afterAllFileWrite:
-        - prettier --write
