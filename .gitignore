@@ -1,10 +1,11 @@
+*.log
+*.tsbuildinfo
 .DS_Store
 .env*
 .eslintcache
-.next
+.next/
 .vercel
-*.log
-node_modules
+node_modules/
 public/**/*
 
 !.env.example
