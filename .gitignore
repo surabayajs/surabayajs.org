@@ -4,7 +4,6 @@
 .env*
 .eslintcache
 .next/
-.vercel
 dist/
 node_modules/
 out/

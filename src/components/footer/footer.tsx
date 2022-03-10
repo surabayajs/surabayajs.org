@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { EmailTooltip } from "@/components/email-tooltip";
-import { VercelLogo } from "@/components/logo";
 import siteConfig from "@/config/site";
 import { useEmail } from "@/hooks/app";
 import routes from "@/routes";
@@ -73,13 +72,6 @@ export const Footer: React.FC = () => {
                 <Link fontWeight="bold">{siteConfig.title}</Link>
               </NextLink>
               .
-            </Text>
-            <br />
-            <Text>
-              Powered by{" "}
-              <Link href="https://vercel.com/?utm_source=surabayajs&utm_campaign=oss" isExternal>
-                <VercelLogo h="auto" maxW={24} />
-              </Link>
             </Text>
           </Box>
 
