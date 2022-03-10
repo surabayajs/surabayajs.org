@@ -6,19 +6,15 @@
   "author": "Griko Nibras <griko@surabayajs.org>",
   "scripts": {
     "build": "node scripts/build.mjs && next build && yarn sitemap",
-    "build:local": "env-cmd yarn build",
-    "build:static": "yarn build && next export",
-    "build:static-local": "env-cmd yarn build:static",
     "clean": "rimraf \".next\" \"public/!(.gitkeep)\"",
     "codegen": "env-cmd yarn graphql-codegen",
-    "deduplicate": "npx yarn-deduplicate && yarn",
+    "deduplicate": "npx yarn-deduplicate && yarn install",
     "dev": "next",
-    "develop": "next",
-    "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "export": "next export",
+    "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\" && tsc --noEmit",
+    "prepare": "husky install",
     "sitemap": "next-sitemap --config src/config/sitemap.js",
-    "start": "next start",
-    "type-check": "tsc --noEmit",
-    "validate": "yarn lint && yarn type-check"
+    "start": "next start"
   },
   "dependencies": {
     "@chakra-ui/react": "^1",
