@@ -5,7 +5,7 @@
   "repository": "https://github.com/surabayajs/surabayajs.org.git",
   "author": "Griko Nibras <griko@surabayajs.org>",
   "scripts": {
-    "build": "node scripts/build.js && next build && yarn sitemap",
+    "build": "node scripts/build.mjs && next build && yarn sitemap",
     "build:local": "env-cmd yarn build",
     "build:static": "yarn build && next export",
     "build:static-local": "env-cmd yarn build:static",
