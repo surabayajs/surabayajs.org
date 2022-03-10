@@ -1,3 +1,6 @@
+import "@fontsource/cousine/latin.css";
+import "@fontsource/manrope/latin.css";
+
 import * as React from "react";
 
 import { Drawer } from "@/components/drawer";
