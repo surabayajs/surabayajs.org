@@ -1,16 +1,8 @@
 import * as React from "react";
 
 import i18n from "@/i18n";
-import {
-  Button,
-  Menu,
-  MenuButton,
-  MenuGroup,
-  MenuItem,
-  MenuList,
-  Tooltip,
-} from "@chakra-ui/react";
 
+import { Button, Menu, MenuButton, MenuGroup, MenuItem, MenuList, Tooltip } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 export const LocaleButton: React.FC = () => {

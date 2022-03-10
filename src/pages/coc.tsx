@@ -2,14 +2,13 @@ import * as React from "react";
 
 import i18n from "@/i18n";
 import { contentRenderer } from "@/utils/renderers";
-import { Container } from "@chakra-ui/react";
 
+import { Container } from "@chakra-ui/react";
 import { GetStaticPropsContext, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import ReactMarkdown from "react-markdown";
 
-const cocUrl =
-  "https://raw.githubusercontent.com/surabayajs/code-of-conduct/main/code-of-conduct.mdx";
+const cocUrl = "https://raw.githubusercontent.com/surabayajs/code-of-conduct/main/code-of-conduct.mdx";
 
 export async function getStaticProps(args: GetStaticPropsContext) {
   const content = await fetch(cocUrl).then((res) => res.text());

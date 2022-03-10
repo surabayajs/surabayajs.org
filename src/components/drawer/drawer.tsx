@@ -7,6 +7,7 @@ import { LocaleButton } from "@/components/locale-button";
 import siteConfig from "@/config/site";
 import { useEmail } from "@/hooks/app";
 import routes from "@/routes";
+
 import {
   Button,
   Drawer as ChakraDrawer,
@@ -22,7 +23,6 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
-
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { FaBars } from "react-icons/fa";
@@ -52,22 +52,20 @@ export const Drawer: React.FC = () => {
               spacing={4}
               textAlign="center"
             >
-              {Object.entries(routes(locale)).map(
-                ([href, { name, ext = false }]) => (
-                  <React.Fragment key={name}>
-                    {ext ? (
-                      <Link href={href} isExternal onClick={onClose}>
-                        {name}
-                      </Link>
-                    ) : (
-                      <NextLink href={href} passHref>
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <Link onClick={onClose}>{name}</Link>
-                      </NextLink>
-                    )}
-                  </React.Fragment>
-                ),
-              )}
+              {Object.entries(routes(locale)).map(([href, { name, ext = false }]) => (
+                <React.Fragment key={name}>
+                  {ext ? (
+                    <Link href={href} isExternal onClick={onClose}>
+                      {name}
+                    </Link>
+                  ) : (
+                    <NextLink href={href} passHref>
+                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                      <Link onClick={onClose}>{name}</Link>
+                    </NextLink>
+                  )}
+                </React.Fragment>
+              ))}
             </DrawerBody>
 
             <DrawerFooter as={HStack} justifyContent="center" spacing={4}>

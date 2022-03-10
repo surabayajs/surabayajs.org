@@ -3,16 +3,8 @@ import * as React from "react";
 import { EventCard } from "@/components/event-card";
 import i18n from "@/i18n";
 import cms from "@/lib/cms";
-import {
-  Box,
-  Container,
-  Heading,
-  Text,
-  useColorModeValue,
-  useToken,
-  VStack,
-} from "@chakra-ui/react";
 
+import { Box, Container, Heading, Text, useColorModeValue, useToken, VStack } from "@chakra-ui/react";
 import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 
@@ -32,15 +24,10 @@ export async function getStaticProps(args: GetStaticPropsContext) {
   };
 }
 
-const EventsPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
-  props,
-) => {
+const EventsPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { events, locale } = props;
 
-  const [lightColor, darkColor] = useToken("colors", [
-    "gator.200",
-    "gator.800",
-  ]) as [string, string];
+  const [lightColor, darkColor] = useToken("colors", ["gator.200", "gator.800"]) as [string, string];
 
   const bgColor = useColorModeValue(lightColor, darkColor);
 
@@ -56,10 +43,7 @@ const EventsPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
 
       <Container as="section" maxW="6xl" px={[4, 8]}>
         <VStack spacing={[2, 4]}>
-          {events?.map(
-            (event) =>
-              event && <EventCard key={event.slug} event={event} withNotes />,
-          )}
+          {events?.map((event) => event && <EventCard key={event.slug} event={event} withNotes />)}
         </VStack>
       </Container>
 

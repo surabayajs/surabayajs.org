@@ -5,8 +5,8 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import siteConfig from "@/config/site";
 import theme from "@/theme";
-import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
 
+import { Box, ChakraProvider, Stack, useColorMode } from "@chakra-ui/react";
 import { useShortcut } from "litkey";
 import { AppProps as NextAppProps } from "next/app";
 import Head from "next/head";
@@ -95,7 +95,7 @@ function App(props: AppProps) {
       <SocialProfileJsonLd
         name={siteConfig.title}
         sameAs={Object.values(siteConfig.socials)}
-        type="person"
+        type="Person"
         url={siteConfig.url}
       />
 

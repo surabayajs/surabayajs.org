@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { Icon, IconButton, Tooltip, useColorMode } from "@chakra-ui/react";
-
 import { FaMoon, FaSun } from "react-icons/fa";
 
 export const ColorModeButton: React.FC = () => {

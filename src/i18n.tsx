@@ -37,14 +37,13 @@ export default {
   "home-revents-subtitle": {
     en: (
       <>
-        View more recent meetups and workshops on the events page. Public API is
-        available at <code>/api/events</code>.
+        View more recent meetups and workshops on the events page. Public API is available at <code>/api/events</code>.
       </>
     ),
     id: (
       <>
-        Lihat meetup dan workshop selebihnya pada laman kegiatan. API publik
-        dapat diakses pada <code>/api/events</code>.
+        Lihat meetup dan workshop selebihnya pada laman kegiatan. API publik dapat diakses pada <code>/api/events</code>
+        .
       </>
     ),
   },
@@ -67,14 +66,12 @@ export default {
   "events-subtitle": {
     en: (
       <>
-        Here are our recent events. Public API is available at{" "}
-        <code>/api/events</code>.
+        Here are our recent events. Public API is available at <code>/api/events</code>.
       </>
     ),
     id: (
       <>
-        Berikut merupakan kegiatan kami sebelumnya. API publik dapat diakses
-        pada <code>/api/events</code>.
+        Berikut merupakan kegiatan kami sebelumnya. API publik dapat diakses pada <code>/api/events</code>.
       </>
     ),
   },

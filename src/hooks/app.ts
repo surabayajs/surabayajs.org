@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import siteConfig from "@/config/site";
+
 import { useClipboard, useToast } from "@chakra-ui/react";
 
 export function useEmail() {

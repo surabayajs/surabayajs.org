@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { RecentEventMetadataFragment } from "@/generated/graphql";
+
 import {
   Avatar,
   AvatarGroup,
@@ -17,7 +18,6 @@ import {
   useColorModeValue,
   useToken,
 } from "@chakra-ui/react";
-
 import format from "date-fns/format";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -33,10 +33,7 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
     throw new Error(`Event ${event.title as string} has no poster`);
   }
 
-  const [bgColorLight, bgColorDark] = useToken("colors", [
-    "white",
-    "gray.700",
-  ]) as [string, string];
+  const [bgColorLight, bgColorDark] = useToken("colors", ["white", "gray.700"]) as [string, string];
 
   const bgColor = useColorModeValue(bgColorLight, bgColorDark);
 
@@ -68,17 +65,12 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
 
         <AvatarGroup size="sm">
           {event.sessionsCollection?.items.map((s) => (
-            <Avatar
-              key={s?.sys.id}
-              name={s?.speaker?.name as string}
-              src={s?.speaker?.avatar?.url as string}
-            />
+            <Avatar key={s?.sys.id} name={s?.speaker?.name as string} src={s?.speaker?.avatar?.url as string} />
           ))}
         </AvatarGroup>
 
         <Text fontSize="sm" fontWeight="bold">
-          {event.location},{" "}
-          {format(new Date(event.startingDate as string), "PPpp")}
+          {event.location}, {format(new Date(event.startingDate as string), "PPpp")}
         </Text>
 
         <Divider />

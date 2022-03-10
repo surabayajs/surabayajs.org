@@ -5,26 +5,13 @@ import { VercelLogo } from "@/components/logo";
 import siteConfig from "@/config/site";
 import { useEmail } from "@/hooks/app";
 import routes from "@/routes";
-import {
-  Box,
-  Button,
-  Container,
-  HStack,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue,
-  useToken,
-} from "@chakra-ui/react";
 
+import { Box, Button, Container, HStack, Link, Stack, Text, useColorModeValue, useToken } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 
 export const Footer: React.FC = () => {
-  const [lightColor, darkColor] = useToken("colors", [
-    "gator.200",
-    "gator.800",
-  ]) as [string, string];
+  const [lightColor, darkColor] = useToken("colors", ["gator.200", "gator.800"]) as [string, string];
 
   const bgColor = useColorModeValue(lightColor, darkColor);
 
@@ -91,22 +78,13 @@ export const Footer: React.FC = () => {
             <br />
             <Text>
               Powered by{" "}
-              <Link
-                href="https://vercel.com/?utm_source=surabayajs&utm_campaign=oss"
-                isExternal
-              >
+              <Link href="https://vercel.com/?utm_source=surabayajs&utm_campaign=oss" isExternal>
                 <VercelLogo h="auto" maxW={24} />
               </Link>
             </Text>
           </Box>
 
-          <HStack
-            align="flex-start"
-            justify="center"
-            pb={12}
-            pt={{ base: 12, md: 0 }}
-            spacing={16}
-          >
+          <HStack align="flex-start" justify="center" pb={12} pt={{ base: 12, md: 0 }} spacing={16}>
             <Stack>
               <Text variant="sitemap-title">Navigate</Text>
               {Object.entries(routes(locale)).map(([href, { name }]) => (

@@ -6,15 +6,8 @@ import { LocaleButton } from "@/components/locale-button";
 import siteConfig from "@/config/site";
 import { useEmail } from "@/hooks/app";
 import routes from "@/routes";
-import {
-  Button,
-  Container,
-  Divider,
-  HStack,
-  Spacer,
-  Stack,
-} from "@chakra-ui/react";
 
+import { Button, Container, Divider, HStack, Spacer, Stack } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 
@@ -25,21 +18,11 @@ export const NavbarDesktop: React.FC = () => {
   const { locale } = router;
 
   return (
-    <Container
-      as={Stack}
-      d={{ base: "none", md: "flex" }}
-      maxW="6xl"
-      py={4}
-      spacing={4}
-    >
+    <Container as={Stack} d={{ base: "none", md: "flex" }} maxW="6xl" py={4} spacing={4}>
       <HStack>
         {Object.entries(routes(locale)).map(([href, { name, ext = false }]) => (
           <NextLink key={name} href={href} passHref>
-            <Button
-              as="a"
-              {...(ext ? { target: "_blank" } : {})}
-              variant="ghost"
-            >
+            <Button as="a" {...(ext ? { target: "_blank" } : {})} variant="ghost">
               {name}
             </Button>
           </NextLink>

@@ -1,16 +1,8 @@
 import * as React from "react";
 
 import i18n from "@/i18n";
-import {
-  Button,
-  Container,
-  Heading,
-  Icon,
-  Image,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
 
+import { Button, Container, Heading, Icon, Image, Text, VStack } from "@chakra-ui/react";
 import { NextPage } from "next";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -39,11 +31,7 @@ const NotFoundPage: NextPage = () => {
         <Text>{i18n["404-subtitle"][locale]}</Text>
 
         <NextLink href="/" passHref>
-          <Button
-            as="a"
-            colorScheme="green"
-            rightIcon={<Icon as={FaArrowRight} />}
-          >
+          <Button as="a" colorScheme="green" rightIcon={<Icon as={FaArrowRight} />}>
             {i18n["404-button"][locale]}
           </Button>
         </NextLink>
