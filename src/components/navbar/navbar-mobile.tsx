@@ -29,10 +29,10 @@ export const NavbarMobile: React.FC = () => {
       <HStack>
         <Menu>
           <MenuButton as={Button} leftIcon={<Icon as={FaBars} />} variant="ghost">
-            {routes(locale)[asPath].name ?? 404}
+            {routes(locale)[asPath]?.name ?? 404}
           </MenuButton>
           <MenuList>
-            {Object.entries(routes(locale)).map(([href, { name, ext = false }]) => (
+            {Object.entries(routes(locale))?.map(([href, { name, ext = false }]) => (
               <MenuItem
                 key={name}
                 fontWeight="bold"
