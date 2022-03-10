@@ -4,6 +4,7 @@ import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -35,192 +36,234 @@ export type Scalars = {
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type Asset = {
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  title: Maybe<Scalars['String']>;
-  description: Maybe<Scalars['String']>;
   contentType: Maybe<Scalars['String']>;
+  contentfulMetadata: ContentfulMetadata;
+  description: Maybe<Scalars['String']>;
   fileName: Maybe<Scalars['String']>;
-  size: Maybe<Scalars['Int']>;
-  url: Maybe<Scalars['String']>;
-  width: Maybe<Scalars['Int']>;
   height: Maybe<Scalars['Int']>;
   linkedFrom: Maybe<AssetLinkingCollections>;
+  size: Maybe<Scalars['Int']>;
+  sys: Sys;
+  title: Maybe<Scalars['String']>;
+  url: Maybe<Scalars['String']>;
+  width: Maybe<Scalars['Int']>;
 };
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
-export type AssetUrlArgs = {
-  transform: Maybe<ImageTransformOptions>;
+export type AssetContentTypeArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetDescriptionArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetFileNameArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetHeightArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetSizeArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetUrlArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  transform: InputMaybe<ImageTransformOptions>;
+};
+
+
+/** Represents a binary file in a space. An asset can be any file type. */
+export type AssetWidthArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 export type AssetCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Asset>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type AssetFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  title_exists: Maybe<Scalars['Boolean']>;
-  title: Maybe<Scalars['String']>;
-  title_not: Maybe<Scalars['String']>;
-  title_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains: Maybe<Scalars['String']>;
-  title_not_contains: Maybe<Scalars['String']>;
-  description_exists: Maybe<Scalars['Boolean']>;
-  description: Maybe<Scalars['String']>;
-  description_not: Maybe<Scalars['String']>;
-  description_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains: Maybe<Scalars['String']>;
-  description_not_contains: Maybe<Scalars['String']>;
-  url_exists: Maybe<Scalars['Boolean']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  size_exists: Maybe<Scalars['Boolean']>;
-  size: Maybe<Scalars['Int']>;
-  size_not: Maybe<Scalars['Int']>;
-  size_in: Maybe<Array<Maybe<Scalars['Int']>>>;
-  size_not_in: Maybe<Array<Maybe<Scalars['Int']>>>;
-  size_gt: Maybe<Scalars['Int']>;
-  size_gte: Maybe<Scalars['Int']>;
-  size_lt: Maybe<Scalars['Int']>;
-  size_lte: Maybe<Scalars['Int']>;
-  contentType_exists: Maybe<Scalars['Boolean']>;
-  contentType: Maybe<Scalars['String']>;
-  contentType_not: Maybe<Scalars['String']>;
-  contentType_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  contentType_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  contentType_contains: Maybe<Scalars['String']>;
-  contentType_not_contains: Maybe<Scalars['String']>;
-  fileName_exists: Maybe<Scalars['Boolean']>;
-  fileName: Maybe<Scalars['String']>;
-  fileName_not: Maybe<Scalars['String']>;
-  fileName_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  fileName_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  fileName_contains: Maybe<Scalars['String']>;
-  fileName_not_contains: Maybe<Scalars['String']>;
-  width_exists: Maybe<Scalars['Boolean']>;
-  width: Maybe<Scalars['Int']>;
-  width_not: Maybe<Scalars['Int']>;
-  width_in: Maybe<Array<Maybe<Scalars['Int']>>>;
-  width_not_in: Maybe<Array<Maybe<Scalars['Int']>>>;
-  width_gt: Maybe<Scalars['Int']>;
-  width_gte: Maybe<Scalars['Int']>;
-  width_lt: Maybe<Scalars['Int']>;
-  width_lte: Maybe<Scalars['Int']>;
-  height_exists: Maybe<Scalars['Boolean']>;
-  height: Maybe<Scalars['Int']>;
-  height_not: Maybe<Scalars['Int']>;
-  height_in: Maybe<Array<Maybe<Scalars['Int']>>>;
-  height_not_in: Maybe<Array<Maybe<Scalars['Int']>>>;
-  height_gt: Maybe<Scalars['Int']>;
-  height_gte: Maybe<Scalars['Int']>;
-  height_lt: Maybe<Scalars['Int']>;
-  height_lte: Maybe<Scalars['Int']>;
-  OR: Maybe<Array<Maybe<AssetFilter>>>;
-  AND: Maybe<Array<Maybe<AssetFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<AssetFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<AssetFilter>>>;
+  contentType: InputMaybe<Scalars['String']>;
+  contentType_contains: InputMaybe<Scalars['String']>;
+  contentType_exists: InputMaybe<Scalars['Boolean']>;
+  contentType_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contentType_not: InputMaybe<Scalars['String']>;
+  contentType_not_contains: InputMaybe<Scalars['String']>;
+  contentType_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  description: InputMaybe<Scalars['String']>;
+  description_contains: InputMaybe<Scalars['String']>;
+  description_exists: InputMaybe<Scalars['Boolean']>;
+  description_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  description_not: InputMaybe<Scalars['String']>;
+  description_not_contains: InputMaybe<Scalars['String']>;
+  description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  fileName: InputMaybe<Scalars['String']>;
+  fileName_contains: InputMaybe<Scalars['String']>;
+  fileName_exists: InputMaybe<Scalars['Boolean']>;
+  fileName_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  fileName_not: InputMaybe<Scalars['String']>;
+  fileName_not_contains: InputMaybe<Scalars['String']>;
+  fileName_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  height: InputMaybe<Scalars['Int']>;
+  height_exists: InputMaybe<Scalars['Boolean']>;
+  height_gt: InputMaybe<Scalars['Int']>;
+  height_gte: InputMaybe<Scalars['Int']>;
+  height_in: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  height_lt: InputMaybe<Scalars['Int']>;
+  height_lte: InputMaybe<Scalars['Int']>;
+  height_not: InputMaybe<Scalars['Int']>;
+  height_not_in: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  size: InputMaybe<Scalars['Int']>;
+  size_exists: InputMaybe<Scalars['Boolean']>;
+  size_gt: InputMaybe<Scalars['Int']>;
+  size_gte: InputMaybe<Scalars['Int']>;
+  size_in: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  size_lt: InputMaybe<Scalars['Int']>;
+  size_lte: InputMaybe<Scalars['Int']>;
+  size_not: InputMaybe<Scalars['Int']>;
+  size_not_in: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars['String']>;
+  title_contains: InputMaybe<Scalars['String']>;
+  title_exists: InputMaybe<Scalars['Boolean']>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not: InputMaybe<Scalars['String']>;
+  title_not_contains: InputMaybe<Scalars['String']>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url: InputMaybe<Scalars['String']>;
+  url_contains: InputMaybe<Scalars['String']>;
+  url_exists: InputMaybe<Scalars['Boolean']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url_not: InputMaybe<Scalars['String']>;
+  url_not_contains: InputMaybe<Scalars['String']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  width: InputMaybe<Scalars['Int']>;
+  width_exists: InputMaybe<Scalars['Boolean']>;
+  width_gt: InputMaybe<Scalars['Int']>;
+  width_gte: InputMaybe<Scalars['Int']>;
+  width_in: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  width_lt: InputMaybe<Scalars['Int']>;
+  width_lte: InputMaybe<Scalars['Int']>;
+  width_not: InputMaybe<Scalars['Int']>;
+  width_not_in: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
 };
 
 export type AssetLinkingCollections = {
   entryCollection: Maybe<EntryCollection>;
   eventCollection: Maybe<EventCollection>;
   externalResourceCollection: Maybe<ExternalResourceCollection>;
-  sponsorCollection: Maybe<SponsorCollection>;
   speakerCollection: Maybe<SpeakerCollection>;
+  sponsorCollection: Maybe<SponsorCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
 export type AssetLinkingCollectionsEventCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
 export type AssetLinkingCollectionsExternalResourceCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-export type AssetLinkingCollectionsSponsorCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
 export type AssetLinkingCollectionsSpeakerCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsSponsorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export enum AssetOrder {
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
-  SizeAsc = 'size_ASC',
-  SizeDesc = 'size_DESC',
   ContentTypeAsc = 'contentType_ASC',
   ContentTypeDesc = 'contentType_DESC',
   FileNameAsc = 'fileName_ASC',
   FileNameDesc = 'fileName_DESC',
-  WidthAsc = 'width_ASC',
-  WidthDesc = 'width_DESC',
   HeightAsc = 'height_ASC',
   HeightDesc = 'height_DESC',
+  SizeAsc = 'size_ASC',
+  SizeDesc = 'size_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC'
 }
-
 
 export type ContentfulMetadata = {
   tags: Array<Maybe<ContentfulTag>>;
 };
 
 export type ContentfulMetadataFilter = {
-  tags_exists: Maybe<Scalars['Boolean']>;
-  tags: Maybe<ContentfulMetadataTagsFilter>;
+  tags: InputMaybe<ContentfulMetadataTagsFilter>;
+  tags_exists: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ContentfulMetadataTagsFilter = {
-  id_contains_all: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_contains_some: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_contains_none: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains_all: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  id_contains_none: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  id_contains_some: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 /**
@@ -232,258 +275,256 @@ export type ContentfulTag = {
   name: Maybe<Scalars['String']>;
 };
 
-
-
 export type Entry = {
-  sys: Sys;
   contentfulMetadata: ContentfulMetadata;
+  sys: Sys;
 };
 
 export type EntryCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Entry>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type EntryFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  OR: Maybe<Array<Maybe<EntryFilter>>>;
-  AND: Maybe<Array<Maybe<EntryFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<EntryFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<EntryFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  sys: InputMaybe<SysFilter>;
 };
 
 export enum EntryOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
 export type Event = Entry & {
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom: Maybe<EventLinkingCollections>;
-  poster: Maybe<Asset>;
-  title: Maybe<Scalars['String']>;
-  slug: Maybe<Scalars['String']>;
-  description: Maybe<Scalars['String']>;
-  category: Maybe<Scalars['String']>;
-  startingDate: Maybe<Scalars['DateTime']>;
-  sessionsCollection: Maybe<EventSessionsCollection>;
-  onlineEvent: Maybe<Scalars['Boolean']>;
-  location: Maybe<Scalars['String']>;
-  coordinates: Maybe<Location>;
-  url: Maybe<Scalars['String']>;
   albumUrl: Maybe<Scalars['String']>;
-  quota: Maybe<Scalars['Int']>;
+  category: Maybe<Scalars['String']>;
+  contentfulMetadata: ContentfulMetadata;
+  coordinates: Maybe<Location>;
+  description: Maybe<Scalars['String']>;
+  linkedFrom: Maybe<EventLinkingCollections>;
+  location: Maybe<Scalars['String']>;
   notes: Maybe<Scalars['String']>;
+  onlineEvent: Maybe<Scalars['Boolean']>;
+  poster: Maybe<Asset>;
+  quota: Maybe<Scalars['Int']>;
+  sessionsCollection: Maybe<EventSessionsCollection>;
+  slug: Maybe<Scalars['String']>;
+  startingDate: Maybe<Scalars['DateTime']>;
+  sys: Sys;
+  title: Maybe<Scalars['String']>;
+  url: Maybe<Scalars['String']>;
   videoUrl: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventPosterArgs = {
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventTitleArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventSlugArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventDescriptionArgs = {
-  locale: Maybe<Scalars['String']>;
+export type EventAlbumUrlArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
 export type EventCategoryArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventStartingDateArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventSessionsCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventOnlineEventArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventLocationArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
 export type EventCoordinatesArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventUrlArgs = {
-  locale: Maybe<Scalars['String']>;
+export type EventDescriptionArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventAlbumUrlArgs = {
-  locale: Maybe<Scalars['String']>;
+export type EventLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
-export type EventQuotaArgs = {
-  locale: Maybe<Scalars['String']>;
+export type EventLocationArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
 export type EventNotesArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventOnlineEventArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventPosterArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventQuotaArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventSessionsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventSlugArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventStartingDateArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
+export type EventUrlArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/event) */
 export type EventVideoUrlArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 export type EventCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Event>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type EventFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  poster_exists: Maybe<Scalars['Boolean']>;
-  title_exists: Maybe<Scalars['Boolean']>;
-  title: Maybe<Scalars['String']>;
-  title_not: Maybe<Scalars['String']>;
-  title_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains: Maybe<Scalars['String']>;
-  title_not_contains: Maybe<Scalars['String']>;
-  slug_exists: Maybe<Scalars['Boolean']>;
-  slug: Maybe<Scalars['String']>;
-  slug_not: Maybe<Scalars['String']>;
-  slug_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  slug_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  slug_contains: Maybe<Scalars['String']>;
-  slug_not_contains: Maybe<Scalars['String']>;
-  description_exists: Maybe<Scalars['Boolean']>;
-  description: Maybe<Scalars['String']>;
-  description_not: Maybe<Scalars['String']>;
-  description_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains: Maybe<Scalars['String']>;
-  description_not_contains: Maybe<Scalars['String']>;
-  category_exists: Maybe<Scalars['Boolean']>;
-  category: Maybe<Scalars['String']>;
-  category_not: Maybe<Scalars['String']>;
-  category_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  category_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  category_contains: Maybe<Scalars['String']>;
-  category_not_contains: Maybe<Scalars['String']>;
-  startingDate_exists: Maybe<Scalars['Boolean']>;
-  startingDate: Maybe<Scalars['DateTime']>;
-  startingDate_not: Maybe<Scalars['DateTime']>;
-  startingDate_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  startingDate_not_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  startingDate_gt: Maybe<Scalars['DateTime']>;
-  startingDate_gte: Maybe<Scalars['DateTime']>;
-  startingDate_lt: Maybe<Scalars['DateTime']>;
-  startingDate_lte: Maybe<Scalars['DateTime']>;
-  sessionsCollection_exists: Maybe<Scalars['Boolean']>;
-  onlineEvent_exists: Maybe<Scalars['Boolean']>;
-  onlineEvent: Maybe<Scalars['Boolean']>;
-  onlineEvent_not: Maybe<Scalars['Boolean']>;
-  location_exists: Maybe<Scalars['Boolean']>;
-  location: Maybe<Scalars['String']>;
-  location_not: Maybe<Scalars['String']>;
-  location_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  location_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  location_contains: Maybe<Scalars['String']>;
-  location_not_contains: Maybe<Scalars['String']>;
-  coordinates_exists: Maybe<Scalars['Boolean']>;
-  coordinates_within_circle: Maybe<Scalars['Circle']>;
-  coordinates_within_rectangle: Maybe<Scalars['Rectangle']>;
-  url_exists: Maybe<Scalars['Boolean']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  albumUrl_exists: Maybe<Scalars['Boolean']>;
-  albumUrl: Maybe<Scalars['String']>;
-  albumUrl_not: Maybe<Scalars['String']>;
-  albumUrl_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  albumUrl_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  albumUrl_contains: Maybe<Scalars['String']>;
-  albumUrl_not_contains: Maybe<Scalars['String']>;
-  quota_exists: Maybe<Scalars['Boolean']>;
-  quota: Maybe<Scalars['Int']>;
-  quota_not: Maybe<Scalars['Int']>;
-  quota_in: Maybe<Array<Maybe<Scalars['Int']>>>;
-  quota_not_in: Maybe<Array<Maybe<Scalars['Int']>>>;
-  quota_gt: Maybe<Scalars['Int']>;
-  quota_gte: Maybe<Scalars['Int']>;
-  quota_lt: Maybe<Scalars['Int']>;
-  quota_lte: Maybe<Scalars['Int']>;
-  notes_exists: Maybe<Scalars['Boolean']>;
-  notes: Maybe<Scalars['String']>;
-  notes_not: Maybe<Scalars['String']>;
-  notes_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  notes_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  notes_contains: Maybe<Scalars['String']>;
-  notes_not_contains: Maybe<Scalars['String']>;
-  videoUrl_exists: Maybe<Scalars['Boolean']>;
-  videoUrl_contains_all: Maybe<Array<Maybe<Scalars['String']>>>;
-  videoUrl_contains_some: Maybe<Array<Maybe<Scalars['String']>>>;
-  videoUrl_contains_none: Maybe<Array<Maybe<Scalars['String']>>>;
-  OR: Maybe<Array<Maybe<EventFilter>>>;
-  AND: Maybe<Array<Maybe<EventFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<EventFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<EventFilter>>>;
+  albumUrl: InputMaybe<Scalars['String']>;
+  albumUrl_contains: InputMaybe<Scalars['String']>;
+  albumUrl_exists: InputMaybe<Scalars['Boolean']>;
+  albumUrl_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  albumUrl_not: InputMaybe<Scalars['String']>;
+  albumUrl_not_contains: InputMaybe<Scalars['String']>;
+  albumUrl_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  category: InputMaybe<Scalars['String']>;
+  category_contains: InputMaybe<Scalars['String']>;
+  category_exists: InputMaybe<Scalars['Boolean']>;
+  category_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  category_not: InputMaybe<Scalars['String']>;
+  category_not_contains: InputMaybe<Scalars['String']>;
+  category_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  coordinates_exists: InputMaybe<Scalars['Boolean']>;
+  coordinates_within_circle: InputMaybe<Scalars['Circle']>;
+  coordinates_within_rectangle: InputMaybe<Scalars['Rectangle']>;
+  description: InputMaybe<Scalars['String']>;
+  description_contains: InputMaybe<Scalars['String']>;
+  description_exists: InputMaybe<Scalars['Boolean']>;
+  description_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  description_not: InputMaybe<Scalars['String']>;
+  description_not_contains: InputMaybe<Scalars['String']>;
+  description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  location: InputMaybe<Scalars['String']>;
+  location_contains: InputMaybe<Scalars['String']>;
+  location_exists: InputMaybe<Scalars['Boolean']>;
+  location_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  location_not: InputMaybe<Scalars['String']>;
+  location_not_contains: InputMaybe<Scalars['String']>;
+  location_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  notes: InputMaybe<Scalars['String']>;
+  notes_contains: InputMaybe<Scalars['String']>;
+  notes_exists: InputMaybe<Scalars['Boolean']>;
+  notes_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  notes_not: InputMaybe<Scalars['String']>;
+  notes_not_contains: InputMaybe<Scalars['String']>;
+  notes_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  onlineEvent: InputMaybe<Scalars['Boolean']>;
+  onlineEvent_exists: InputMaybe<Scalars['Boolean']>;
+  onlineEvent_not: InputMaybe<Scalars['Boolean']>;
+  poster_exists: InputMaybe<Scalars['Boolean']>;
+  quota: InputMaybe<Scalars['Int']>;
+  quota_exists: InputMaybe<Scalars['Boolean']>;
+  quota_gt: InputMaybe<Scalars['Int']>;
+  quota_gte: InputMaybe<Scalars['Int']>;
+  quota_in: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  quota_lt: InputMaybe<Scalars['Int']>;
+  quota_lte: InputMaybe<Scalars['Int']>;
+  quota_not: InputMaybe<Scalars['Int']>;
+  quota_not_in: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  sessionsCollection_exists: InputMaybe<Scalars['Boolean']>;
+  slug: InputMaybe<Scalars['String']>;
+  slug_contains: InputMaybe<Scalars['String']>;
+  slug_exists: InputMaybe<Scalars['Boolean']>;
+  slug_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not: InputMaybe<Scalars['String']>;
+  slug_not_contains: InputMaybe<Scalars['String']>;
+  slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  startingDate: InputMaybe<Scalars['DateTime']>;
+  startingDate_exists: InputMaybe<Scalars['Boolean']>;
+  startingDate_gt: InputMaybe<Scalars['DateTime']>;
+  startingDate_gte: InputMaybe<Scalars['DateTime']>;
+  startingDate_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  startingDate_lt: InputMaybe<Scalars['DateTime']>;
+  startingDate_lte: InputMaybe<Scalars['DateTime']>;
+  startingDate_not: InputMaybe<Scalars['DateTime']>;
+  startingDate_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars['String']>;
+  title_contains: InputMaybe<Scalars['String']>;
+  title_exists: InputMaybe<Scalars['Boolean']>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not: InputMaybe<Scalars['String']>;
+  title_not_contains: InputMaybe<Scalars['String']>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url: InputMaybe<Scalars['String']>;
+  url_contains: InputMaybe<Scalars['String']>;
+  url_exists: InputMaybe<Scalars['Boolean']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url_not: InputMaybe<Scalars['String']>;
+  url_not_contains: InputMaybe<Scalars['String']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  videoUrl_contains_all: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  videoUrl_contains_none: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  videoUrl_contains_some: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  videoUrl_exists: InputMaybe<Scalars['Boolean']>;
 };
 
 export type EventLinkingCollections = {
@@ -492,124 +533,124 @@ export type EventLinkingCollections = {
 
 
 export type EventLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export enum EventOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  CategoryAsc = 'category_ASC',
-  CategoryDesc = 'category_DESC',
-  StartingDateAsc = 'startingDate_ASC',
-  StartingDateDesc = 'startingDate_DESC',
-  OnlineEventAsc = 'onlineEvent_ASC',
-  OnlineEventDesc = 'onlineEvent_DESC',
-  LocationAsc = 'location_ASC',
-  LocationDesc = 'location_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
   AlbumUrlAsc = 'albumUrl_ASC',
   AlbumUrlDesc = 'albumUrl_DESC',
+  CategoryAsc = 'category_ASC',
+  CategoryDesc = 'category_DESC',
+  LocationAsc = 'location_ASC',
+  LocationDesc = 'location_DESC',
+  OnlineEventAsc = 'onlineEvent_ASC',
+  OnlineEventDesc = 'onlineEvent_DESC',
   QuotaAsc = 'quota_ASC',
   QuotaDesc = 'quota_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  StartingDateAsc = 'startingDate_ASC',
+  StartingDateDesc = 'startingDate_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
 }
 
 export type EventSessionsCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Session>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 /** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
 export type ExternalResource = Entry & {
-  sys: Sys;
   contentfulMetadata: ContentfulMetadata;
-  linkedFrom: Maybe<ExternalResourceLinkingCollections>;
-  title: Maybe<Scalars['String']>;
-  image: Maybe<Asset>;
   description: Maybe<Scalars['String']>;
+  image: Maybe<Asset>;
+  linkedFrom: Maybe<ExternalResourceLinkingCollections>;
+  sys: Sys;
+  title: Maybe<Scalars['String']>;
   url: Maybe<Scalars['String']>;
-};
-
-
-/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
-export type ExternalResourceLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
-export type ExternalResourceTitleArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
-export type ExternalResourceImageArgs = {
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
 };
 
 
 /** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
 export type ExternalResourceDescriptionArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResourceImageArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResourceLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
+export type ExternalResourceTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** Place to add external resource such as Link, Contact, etc. [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/externalResource) */
 export type ExternalResourceUrlArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 export type ExternalResourceCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<ExternalResource>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type ExternalResourceFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  title_exists: Maybe<Scalars['Boolean']>;
-  title: Maybe<Scalars['String']>;
-  title_not: Maybe<Scalars['String']>;
-  title_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains: Maybe<Scalars['String']>;
-  title_not_contains: Maybe<Scalars['String']>;
-  image_exists: Maybe<Scalars['Boolean']>;
-  description_exists: Maybe<Scalars['Boolean']>;
-  description: Maybe<Scalars['String']>;
-  description_not: Maybe<Scalars['String']>;
-  description_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains: Maybe<Scalars['String']>;
-  description_not_contains: Maybe<Scalars['String']>;
-  url_exists: Maybe<Scalars['Boolean']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  OR: Maybe<Array<Maybe<ExternalResourceFilter>>>;
-  AND: Maybe<Array<Maybe<ExternalResourceFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<ExternalResourceFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<ExternalResourceFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  description: InputMaybe<Scalars['String']>;
+  description_contains: InputMaybe<Scalars['String']>;
+  description_exists: InputMaybe<Scalars['Boolean']>;
+  description_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  description_not: InputMaybe<Scalars['String']>;
+  description_not_contains: InputMaybe<Scalars['String']>;
+  description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  image_exists: InputMaybe<Scalars['Boolean']>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars['String']>;
+  title_contains: InputMaybe<Scalars['String']>;
+  title_exists: InputMaybe<Scalars['Boolean']>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not: InputMaybe<Scalars['String']>;
+  title_not_contains: InputMaybe<Scalars['String']>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url: InputMaybe<Scalars['String']>;
+  url_contains: InputMaybe<Scalars['String']>;
+  url_exists: InputMaybe<Scalars['Boolean']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url_not: InputMaybe<Scalars['String']>;
+  url_not_contains: InputMaybe<Scalars['String']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ExternalResourceLinkingCollections = {
@@ -618,31 +659,31 @@ export type ExternalResourceLinkingCollections = {
 
 
 export type ExternalResourceLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export enum ExternalResourceOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
 }
 
-
 export enum ImageFormat {
+  Avif = 'AVIF',
   /** JPG image format. */
   Jpg = 'JPG',
   /**
@@ -664,31 +705,35 @@ export enum ImageFormat {
 }
 
 export enum ImageResizeFocus {
-  /** Focus the resizing on the center. */
-  Center = 'CENTER',
-  /** Focus the resizing on the top. */
-  Top = 'TOP',
-  /** Focus the resizing on the top right. */
-  TopRight = 'TOP_RIGHT',
-  /** Focus the resizing on the right. */
-  Right = 'RIGHT',
-  /** Focus the resizing on the bottom right. */
-  BottomRight = 'BOTTOM_RIGHT',
   /** Focus the resizing on the bottom. */
   Bottom = 'BOTTOM',
   /** Focus the resizing on the bottom left. */
   BottomLeft = 'BOTTOM_LEFT',
-  /** Focus the resizing on the left. */
-  Left = 'LEFT',
-  /** Focus the resizing on the top left. */
-  TopLeft = 'TOP_LEFT',
+  /** Focus the resizing on the bottom right. */
+  BottomRight = 'BOTTOM_RIGHT',
+  /** Focus the resizing on the center. */
+  Center = 'CENTER',
   /** Focus the resizing on the largest face. */
   Face = 'FACE',
   /** Focus the resizing on the area containing all the faces. */
-  Faces = 'FACES'
+  Faces = 'FACES',
+  /** Focus the resizing on the left. */
+  Left = 'LEFT',
+  /** Focus the resizing on the right. */
+  Right = 'RIGHT',
+  /** Focus the resizing on the top. */
+  Top = 'TOP',
+  /** Focus the resizing on the top left. */
+  TopLeft = 'TOP_LEFT',
+  /** Focus the resizing on the top right. */
+  TopRight = 'TOP_RIGHT'
 }
 
 export enum ImageResizeStrategy {
+  /** Crops a part of the original image to fit into the specified dimensions. */
+  Crop = 'CROP',
+  /** Resizes the image to the specified dimensions, cropping the image if needed. */
+  Fill = 'FILL',
   /** Resizes the image to fit into the specified dimensions. */
   Fit = 'FIT',
   /**
@@ -696,44 +741,40 @@ export enum ImageResizeStrategy {
    *         Uses desired background color as padding color.
    */
   Pad = 'PAD',
-  /** Resizes the image to the specified dimensions, cropping the image if needed. */
-  Fill = 'FILL',
   /** Resizes the image to the specified dimensions, changing the original aspect ratio if needed. */
   Scale = 'SCALE',
-  /** Crops a part of the original image to fit into the specified dimensions. */
-  Crop = 'CROP',
   /** Creates a thumbnail from the image. */
   Thumb = 'THUMB'
 }
 
 export type ImageTransformOptions = {
-  /** Desired width in pixels. Defaults to the original image width. */
-  width: Maybe<Scalars['Dimension']>;
-  /** Desired height in pixels. Defaults to the original image height. */
-  height: Maybe<Scalars['Dimension']>;
   /**
-   * Desired quality of the image in percents.
-   *         Used for `PNG8`, `JPG`, `JPG_PROGRESSIVE` and `WEBP` formats.
+   * Desired background color, used with corner radius or `PAD` resize strategy.
+   *         Defaults to transparent (for `PNG`, `PNG8` and `WEBP`) or white (for `JPG` and `JPG_PROGRESSIVE`).
    */
-  quality: Maybe<Scalars['Quality']>;
+  backgroundColor: InputMaybe<Scalars['HexColor']>;
   /**
    * Desired corner radius in pixels.
    *         Results in an image with rounded corners (pass `-1` for a full circle/ellipse).
    *         Defaults to `0`. Uses desired background color as padding color,
    *         unless the format is `JPG` or `JPG_PROGRESSIVE` and resize strategy is `PAD`, then defaults to white.
    */
-  cornerRadius: Maybe<Scalars['Int']>;
-  /** Desired resize strategy. Defaults to `FIT`. */
-  resizeStrategy: Maybe<ImageResizeStrategy>;
-  /** Desired resize focus area. Defaults to `CENTER`. */
-  resizeFocus: Maybe<ImageResizeFocus>;
-  /**
-   * Desired background color, used with corner radius or `PAD` resize strategy.
-   *         Defaults to transparent (for `PNG`, `PNG8` and `WEBP`) or white (for `JPG` and `JPG_PROGRESSIVE`).
-   */
-  backgroundColor: Maybe<Scalars['HexColor']>;
+  cornerRadius: InputMaybe<Scalars['Int']>;
   /** Desired image format. Defaults to the original image format. */
-  format: Maybe<ImageFormat>;
+  format: InputMaybe<ImageFormat>;
+  /** Desired height in pixels. Defaults to the original image height. */
+  height: InputMaybe<Scalars['Dimension']>;
+  /**
+   * Desired quality of the image in percents.
+   *         Used for `PNG8`, `JPG`, `JPG_PROGRESSIVE` and `WEBP` formats.
+   */
+  quality: InputMaybe<Scalars['Quality']>;
+  /** Desired resize focus area. Defaults to `CENTER`. */
+  resizeFocus: InputMaybe<ImageResizeFocus>;
+  /** Desired resize strategy. Defaults to `FIT`. */
+  resizeStrategy: InputMaybe<ImageResizeStrategy>;
+  /** Desired width in pixels. Defaults to the original image width. */
+  width: InputMaybe<Scalars['Dimension']>;
 };
 
 export type Location = {
@@ -743,85 +784,85 @@ export type Location = {
 
 /** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
 export type Post = Entry & {
-  sys: Sys;
+  content: Maybe<Scalars['String']>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom: Maybe<PostLinkingCollections>;
   slug: Maybe<Scalars['String']>;
-  title: Maybe<Scalars['String']>;
   subtitle: Maybe<Scalars['String']>;
-  content: Maybe<Scalars['String']>;
-};
-
-
-/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
-export type PostLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
-export type PostSlugArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
-export type PostTitleArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
-export type PostSubtitleArgs = {
-  locale: Maybe<Scalars['String']>;
+  sys: Sys;
+  title: Maybe<Scalars['String']>;
 };
 
 
 /** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
 export type PostContentArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostSlugArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostSubtitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** A place to write blog post [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/post) */
+export type PostTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 export type PostCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Post>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type PostFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  slug_exists: Maybe<Scalars['Boolean']>;
-  slug: Maybe<Scalars['String']>;
-  slug_not: Maybe<Scalars['String']>;
-  slug_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  slug_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  slug_contains: Maybe<Scalars['String']>;
-  slug_not_contains: Maybe<Scalars['String']>;
-  title_exists: Maybe<Scalars['Boolean']>;
-  title: Maybe<Scalars['String']>;
-  title_not: Maybe<Scalars['String']>;
-  title_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains: Maybe<Scalars['String']>;
-  title_not_contains: Maybe<Scalars['String']>;
-  subtitle_exists: Maybe<Scalars['Boolean']>;
-  subtitle: Maybe<Scalars['String']>;
-  subtitle_not: Maybe<Scalars['String']>;
-  subtitle_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  subtitle_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  subtitle_contains: Maybe<Scalars['String']>;
-  subtitle_not_contains: Maybe<Scalars['String']>;
-  content_exists: Maybe<Scalars['Boolean']>;
-  content: Maybe<Scalars['String']>;
-  content_not: Maybe<Scalars['String']>;
-  content_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  content_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  content_contains: Maybe<Scalars['String']>;
-  content_not_contains: Maybe<Scalars['String']>;
-  OR: Maybe<Array<Maybe<PostFilter>>>;
-  AND: Maybe<Array<Maybe<PostFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<PostFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<PostFilter>>>;
+  content: InputMaybe<Scalars['String']>;
+  content_contains: InputMaybe<Scalars['String']>;
+  content_exists: InputMaybe<Scalars['Boolean']>;
+  content_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  content_not: InputMaybe<Scalars['String']>;
+  content_not_contains: InputMaybe<Scalars['String']>;
+  content_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  slug: InputMaybe<Scalars['String']>;
+  slug_contains: InputMaybe<Scalars['String']>;
+  slug_exists: InputMaybe<Scalars['Boolean']>;
+  slug_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not: InputMaybe<Scalars['String']>;
+  slug_not_contains: InputMaybe<Scalars['String']>;
+  slug_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  subtitle: InputMaybe<Scalars['String']>;
+  subtitle_contains: InputMaybe<Scalars['String']>;
+  subtitle_exists: InputMaybe<Scalars['Boolean']>;
+  subtitle_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  subtitle_not: InputMaybe<Scalars['String']>;
+  subtitle_not_contains: InputMaybe<Scalars['String']>;
+  subtitle_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars['String']>;
+  title_contains: InputMaybe<Scalars['String']>;
+  title_exists: InputMaybe<Scalars['Boolean']>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not: InputMaybe<Scalars['String']>;
+  title_not_contains: InputMaybe<Scalars['String']>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type PostLinkingCollections = {
@@ -830,278 +871,276 @@ export type PostLinkingCollections = {
 
 
 export type PostLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export enum PostOrder {
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
   SubtitleAsc = 'subtitle_ASC',
   SubtitleDesc = 'subtitle_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
 }
-
 
 export type Query = {
   asset: Maybe<Asset>;
   assetCollection: Maybe<AssetCollection>;
+  entryCollection: Maybe<EntryCollection>;
   event: Maybe<Event>;
   eventCollection: Maybe<EventCollection>;
-  resources: Maybe<Resources>;
-  resourcesCollection: Maybe<ResourcesCollection>;
   externalResource: Maybe<ExternalResource>;
   externalResourceCollection: Maybe<ExternalResourceCollection>;
   post: Maybe<Post>;
   postCollection: Maybe<PostCollection>;
-  sponsor: Maybe<Sponsor>;
-  sponsorCollection: Maybe<SponsorCollection>;
+  resources: Maybe<Resources>;
+  resourcesCollection: Maybe<ResourcesCollection>;
   session: Maybe<Session>;
   sessionCollection: Maybe<SessionCollection>;
   speaker: Maybe<Speaker>;
   speakerCollection: Maybe<SpeakerCollection>;
-  entryCollection: Maybe<EntryCollection>;
+  sponsor: Maybe<Sponsor>;
+  sponsorCollection: Maybe<SponsorCollection>;
 };
 
 
 export type QueryAssetArgs = {
   id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type QueryAssetCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<AssetFilter>;
-  order: Maybe<Array<Maybe<AssetOrder>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<AssetOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<AssetFilter>;
+};
+
+
+export type QueryEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<EntryOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<EntryFilter>;
 };
 
 
 export type QueryEventArgs = {
   id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type QueryEventCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<EventFilter>;
-  order: Maybe<Array<Maybe<EventOrder>>>;
-};
-
-
-export type QueryResourcesArgs = {
-  id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-export type QueryResourcesCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<ResourcesFilter>;
-  order: Maybe<Array<Maybe<ResourcesOrder>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<EventOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<EventFilter>;
 };
 
 
 export type QueryExternalResourceArgs = {
   id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type QueryExternalResourceCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<ExternalResourceFilter>;
-  order: Maybe<Array<Maybe<ExternalResourceOrder>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<ExternalResourceOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ExternalResourceFilter>;
 };
 
 
 export type QueryPostArgs = {
   id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type QueryPostCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<PostFilter>;
-  order: Maybe<Array<Maybe<PostOrder>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<PostOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<PostFilter>;
 };
 
 
-export type QuerySponsorArgs = {
+export type QueryResourcesArgs = {
   id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 
-export type QuerySponsorCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<SponsorFilter>;
-  order: Maybe<Array<Maybe<SponsorOrder>>>;
+export type QueryResourcesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<ResourcesOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ResourcesFilter>;
 };
 
 
 export type QuerySessionArgs = {
   id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type QuerySessionCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<SessionFilter>;
-  order: Maybe<Array<Maybe<SessionOrder>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<SessionOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SessionFilter>;
 };
 
 
 export type QuerySpeakerArgs = {
   id: Scalars['String'];
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type QuerySpeakerCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<SpeakerFilter>;
-  order: Maybe<Array<Maybe<SpeakerOrder>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<SpeakerOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SpeakerFilter>;
 };
 
 
-export type QueryEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-  where: Maybe<EntryFilter>;
-  order: Maybe<Array<Maybe<EntryOrder>>>;
+export type QuerySponsorArgs = {
+  id: Scalars['String'];
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
+
+export type QuerySponsorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  order: InputMaybe<Array<InputMaybe<SponsorOrder>>>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SponsorFilter>;
+};
 
 /** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
 export type Resources = Entry & {
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom: Maybe<ResourcesLinkingCollections>;
-  title: Maybe<Scalars['String']>;
-  description: Maybe<Scalars['String']>;
   buttonText: Maybe<Scalars['String']>;
+  contentfulMetadata: ContentfulMetadata;
+  description: Maybe<Scalars['String']>;
+  linkedFrom: Maybe<ResourcesLinkingCollections>;
+  sys: Sys;
+  title: Maybe<Scalars['String']>;
   url: Maybe<Scalars['String']>;
-};
-
-
-/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
-export type ResourcesLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
-export type ResourcesTitleArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
-export type ResourcesDescriptionArgs = {
-  locale: Maybe<Scalars['String']>;
 };
 
 
 /** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
 export type ResourcesButtonTextArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type ResourcesDescriptionArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type ResourcesLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
+export type ResourcesTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** What resource is for? (ex: Hacktoberfest, Basic javascript, etc.) [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/resources) */
 export type ResourcesUrlArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 export type ResourcesCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Resources>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type ResourcesFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  title_exists: Maybe<Scalars['Boolean']>;
-  title: Maybe<Scalars['String']>;
-  title_not: Maybe<Scalars['String']>;
-  title_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains: Maybe<Scalars['String']>;
-  title_not_contains: Maybe<Scalars['String']>;
-  description_exists: Maybe<Scalars['Boolean']>;
-  description: Maybe<Scalars['String']>;
-  description_not: Maybe<Scalars['String']>;
-  description_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains: Maybe<Scalars['String']>;
-  description_not_contains: Maybe<Scalars['String']>;
-  buttonText_exists: Maybe<Scalars['Boolean']>;
-  buttonText: Maybe<Scalars['String']>;
-  buttonText_not: Maybe<Scalars['String']>;
-  buttonText_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  buttonText_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  buttonText_contains: Maybe<Scalars['String']>;
-  buttonText_not_contains: Maybe<Scalars['String']>;
-  url_exists: Maybe<Scalars['Boolean']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  OR: Maybe<Array<Maybe<ResourcesFilter>>>;
-  AND: Maybe<Array<Maybe<ResourcesFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<ResourcesFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<ResourcesFilter>>>;
+  buttonText: InputMaybe<Scalars['String']>;
+  buttonText_contains: InputMaybe<Scalars['String']>;
+  buttonText_exists: InputMaybe<Scalars['Boolean']>;
+  buttonText_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  buttonText_not: InputMaybe<Scalars['String']>;
+  buttonText_not_contains: InputMaybe<Scalars['String']>;
+  buttonText_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  description: InputMaybe<Scalars['String']>;
+  description_contains: InputMaybe<Scalars['String']>;
+  description_exists: InputMaybe<Scalars['Boolean']>;
+  description_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  description_not: InputMaybe<Scalars['String']>;
+  description_not_contains: InputMaybe<Scalars['String']>;
+  description_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars['String']>;
+  title_contains: InputMaybe<Scalars['String']>;
+  title_exists: InputMaybe<Scalars['Boolean']>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not: InputMaybe<Scalars['String']>;
+  title_not_contains: InputMaybe<Scalars['String']>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url: InputMaybe<Scalars['String']>;
+  url_contains: InputMaybe<Scalars['String']>;
+  url_exists: InputMaybe<Scalars['Boolean']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url_not: InputMaybe<Scalars['String']>;
+  url_not_contains: InputMaybe<Scalars['String']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ResourcesLinkingCollections = {
@@ -1110,126 +1149,126 @@ export type ResourcesLinkingCollections = {
 
 
 export type ResourcesLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export enum ResourcesOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
   ButtonTextAsc = 'buttonText_ASC',
   ButtonTextDesc = 'buttonText_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
 export type Session = Entry & {
-  sys: Sys;
   contentfulMetadata: ContentfulMetadata;
+  deckUrl: Maybe<Scalars['String']>;
+  endDatetime: Maybe<Scalars['DateTime']>;
   linkedFrom: Maybe<SessionLinkingCollections>;
-  title: Maybe<Scalars['String']>;
   speaker: Maybe<Speaker>;
   startDatetime: Maybe<Scalars['DateTime']>;
-  endDatetime: Maybe<Scalars['DateTime']>;
-  deckUrl: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
-export type SessionLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
-export type SessionTitleArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
-export type SessionSpeakerArgs = {
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
-export type SessionStartDatetimeArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
-export type SessionEndDatetimeArgs = {
-  locale: Maybe<Scalars['String']>;
+  sys: Sys;
+  title: Maybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
 export type SessionDeckUrlArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionEndDatetimeArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionSpeakerArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionStartDatetimeArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/session) */
+export type SessionTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 export type SessionCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Session>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type SessionFilter = {
-  speaker: Maybe<CfSpeakerNestedFilter>;
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  title_exists: Maybe<Scalars['Boolean']>;
-  title: Maybe<Scalars['String']>;
-  title_not: Maybe<Scalars['String']>;
-  title_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains: Maybe<Scalars['String']>;
-  title_not_contains: Maybe<Scalars['String']>;
-  speaker_exists: Maybe<Scalars['Boolean']>;
-  startDatetime_exists: Maybe<Scalars['Boolean']>;
-  startDatetime: Maybe<Scalars['DateTime']>;
-  startDatetime_not: Maybe<Scalars['DateTime']>;
-  startDatetime_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  startDatetime_not_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  startDatetime_gt: Maybe<Scalars['DateTime']>;
-  startDatetime_gte: Maybe<Scalars['DateTime']>;
-  startDatetime_lt: Maybe<Scalars['DateTime']>;
-  startDatetime_lte: Maybe<Scalars['DateTime']>;
-  endDatetime_exists: Maybe<Scalars['Boolean']>;
-  endDatetime: Maybe<Scalars['DateTime']>;
-  endDatetime_not: Maybe<Scalars['DateTime']>;
-  endDatetime_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  endDatetime_not_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  endDatetime_gt: Maybe<Scalars['DateTime']>;
-  endDatetime_gte: Maybe<Scalars['DateTime']>;
-  endDatetime_lt: Maybe<Scalars['DateTime']>;
-  endDatetime_lte: Maybe<Scalars['DateTime']>;
-  deckUrl_exists: Maybe<Scalars['Boolean']>;
-  deckUrl: Maybe<Scalars['String']>;
-  deckUrl_not: Maybe<Scalars['String']>;
-  deckUrl_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  deckUrl_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  deckUrl_contains: Maybe<Scalars['String']>;
-  deckUrl_not_contains: Maybe<Scalars['String']>;
-  OR: Maybe<Array<Maybe<SessionFilter>>>;
-  AND: Maybe<Array<Maybe<SessionFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<SessionFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<SessionFilter>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  deckUrl: InputMaybe<Scalars['String']>;
+  deckUrl_contains: InputMaybe<Scalars['String']>;
+  deckUrl_exists: InputMaybe<Scalars['Boolean']>;
+  deckUrl_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  deckUrl_not: InputMaybe<Scalars['String']>;
+  deckUrl_not_contains: InputMaybe<Scalars['String']>;
+  deckUrl_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  endDatetime: InputMaybe<Scalars['DateTime']>;
+  endDatetime_exists: InputMaybe<Scalars['Boolean']>;
+  endDatetime_gt: InputMaybe<Scalars['DateTime']>;
+  endDatetime_gte: InputMaybe<Scalars['DateTime']>;
+  endDatetime_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  endDatetime_lt: InputMaybe<Scalars['DateTime']>;
+  endDatetime_lte: InputMaybe<Scalars['DateTime']>;
+  endDatetime_not: InputMaybe<Scalars['DateTime']>;
+  endDatetime_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  speaker: InputMaybe<CfSpeakerNestedFilter>;
+  speaker_exists: InputMaybe<Scalars['Boolean']>;
+  startDatetime: InputMaybe<Scalars['DateTime']>;
+  startDatetime_exists: InputMaybe<Scalars['Boolean']>;
+  startDatetime_gt: InputMaybe<Scalars['DateTime']>;
+  startDatetime_gte: InputMaybe<Scalars['DateTime']>;
+  startDatetime_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  startDatetime_lt: InputMaybe<Scalars['DateTime']>;
+  startDatetime_lte: InputMaybe<Scalars['DateTime']>;
+  startDatetime_not: InputMaybe<Scalars['DateTime']>;
+  startDatetime_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  sys: InputMaybe<SysFilter>;
+  title: InputMaybe<Scalars['String']>;
+  title_contains: InputMaybe<Scalars['String']>;
+  title_exists: InputMaybe<Scalars['Boolean']>;
+  title_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not: InputMaybe<Scalars['String']>;
+  title_not_contains: InputMaybe<Scalars['String']>;
+  title_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type SessionLinkingCollections = {
@@ -1239,139 +1278,139 @@ export type SessionLinkingCollections = {
 
 
 export type SessionLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
 export type SessionLinkingCollectionsEventCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export enum SessionOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  StartDatetimeAsc = 'startDatetime_ASC',
-  StartDatetimeDesc = 'startDatetime_DESC',
-  EndDatetimeAsc = 'endDatetime_ASC',
-  EndDatetimeDesc = 'endDatetime_DESC',
   DeckUrlAsc = 'deckUrl_ASC',
   DeckUrlDesc = 'deckUrl_DESC',
+  EndDatetimeAsc = 'endDatetime_ASC',
+  EndDatetimeDesc = 'endDatetime_DESC',
+  StartDatetimeAsc = 'startDatetime_ASC',
+  StartDatetimeDesc = 'startDatetime_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
 export type Speaker = Entry & {
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom: Maybe<SpeakerLinkingCollections>;
   avatar: Maybe<Asset>;
-  name: Maybe<Scalars['String']>;
-  jobTitle: Maybe<Scalars['String']>;
+  contentfulMetadata: ContentfulMetadata;
   employer: Maybe<Scalars['String']>;
+  jobTitle: Maybe<Scalars['String']>;
+  linkedFrom: Maybe<SpeakerLinkingCollections>;
+  name: Maybe<Scalars['String']>;
   showEmployer: Maybe<Scalars['Boolean']>;
+  sys: Sys;
   url: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
-export type SpeakerLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
 export type SpeakerAvatarArgs = {
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
-export type SpeakerNameArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
-export type SpeakerJobTitleArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
 export type SpeakerEmployerArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerJobTitleArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
+export type SpeakerNameArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
 export type SpeakerShowEmployerArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/speaker) */
 export type SpeakerUrlArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
 };
 
 export type SpeakerCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Speaker>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type SpeakerFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  avatar_exists: Maybe<Scalars['Boolean']>;
-  name_exists: Maybe<Scalars['Boolean']>;
-  name: Maybe<Scalars['String']>;
-  name_not: Maybe<Scalars['String']>;
-  name_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_contains: Maybe<Scalars['String']>;
-  name_not_contains: Maybe<Scalars['String']>;
-  jobTitle_exists: Maybe<Scalars['Boolean']>;
-  jobTitle: Maybe<Scalars['String']>;
-  jobTitle_not: Maybe<Scalars['String']>;
-  jobTitle_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  jobTitle_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  jobTitle_contains: Maybe<Scalars['String']>;
-  jobTitle_not_contains: Maybe<Scalars['String']>;
-  employer_exists: Maybe<Scalars['Boolean']>;
-  employer: Maybe<Scalars['String']>;
-  employer_not: Maybe<Scalars['String']>;
-  employer_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  employer_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  employer_contains: Maybe<Scalars['String']>;
-  employer_not_contains: Maybe<Scalars['String']>;
-  showEmployer_exists: Maybe<Scalars['Boolean']>;
-  showEmployer: Maybe<Scalars['Boolean']>;
-  showEmployer_not: Maybe<Scalars['Boolean']>;
-  url_exists: Maybe<Scalars['Boolean']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  OR: Maybe<Array<Maybe<SpeakerFilter>>>;
-  AND: Maybe<Array<Maybe<SpeakerFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<SpeakerFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<SpeakerFilter>>>;
+  avatar_exists: InputMaybe<Scalars['Boolean']>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  employer: InputMaybe<Scalars['String']>;
+  employer_contains: InputMaybe<Scalars['String']>;
+  employer_exists: InputMaybe<Scalars['Boolean']>;
+  employer_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  employer_not: InputMaybe<Scalars['String']>;
+  employer_not_contains: InputMaybe<Scalars['String']>;
+  employer_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  jobTitle: InputMaybe<Scalars['String']>;
+  jobTitle_contains: InputMaybe<Scalars['String']>;
+  jobTitle_exists: InputMaybe<Scalars['Boolean']>;
+  jobTitle_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  jobTitle_not: InputMaybe<Scalars['String']>;
+  jobTitle_not_contains: InputMaybe<Scalars['String']>;
+  jobTitle_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name: InputMaybe<Scalars['String']>;
+  name_contains: InputMaybe<Scalars['String']>;
+  name_exists: InputMaybe<Scalars['Boolean']>;
+  name_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name_not: InputMaybe<Scalars['String']>;
+  name_not_contains: InputMaybe<Scalars['String']>;
+  name_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  showEmployer: InputMaybe<Scalars['Boolean']>;
+  showEmployer_exists: InputMaybe<Scalars['Boolean']>;
+  showEmployer_not: InputMaybe<Scalars['Boolean']>;
+  sys: InputMaybe<SysFilter>;
+  url: InputMaybe<Scalars['String']>;
+  url_contains: InputMaybe<Scalars['String']>;
+  url_exists: InputMaybe<Scalars['Boolean']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url_not: InputMaybe<Scalars['String']>;
+  url_not_contains: InputMaybe<Scalars['String']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type SpeakerLinkingCollections = {
@@ -1381,137 +1420,137 @@ export type SpeakerLinkingCollections = {
 
 
 export type SpeakerLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
 export type SpeakerLinkingCollectionsSessionCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export enum SpeakerOrder {
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  JobTitleAsc = 'jobTitle_ASC',
-  JobTitleDesc = 'jobTitle_DESC',
   EmployerAsc = 'employer_ASC',
   EmployerDesc = 'employer_DESC',
+  JobTitleAsc = 'jobTitle_ASC',
+  JobTitleDesc = 'jobTitle_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
   ShowEmployerAsc = 'showEmployer_ASC',
   ShowEmployerDesc = 'showEmployer_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
 export type Sponsor = Entry & {
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom: Maybe<SponsorLinkingCollections>;
-  name: Maybe<Scalars['String']>;
-  category: Maybe<Scalars['String']>;
-  url: Maybe<Scalars['String']>;
-  logo: Maybe<Asset>;
   activeSponsor: Maybe<Scalars['Boolean']>;
+  category: Maybe<Scalars['String']>;
+  contentfulMetadata: ContentfulMetadata;
   exclusive: Maybe<Scalars['Boolean']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type SponsorLinkedFromArgs = {
-  allowedLocales: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type SponsorNameArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type SponsorCategoryArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type SponsorUrlArgs = {
-  locale: Maybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
-export type SponsorLogoArgs = {
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  linkedFrom: Maybe<SponsorLinkingCollections>;
+  logo: Maybe<Asset>;
+  name: Maybe<Scalars['String']>;
+  sys: Sys;
+  url: Maybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
 export type SponsorActiveSponsorArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorCategoryArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
 export type SponsorExclusiveArgs = {
-  locale: Maybe<Scalars['String']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorLinkedFromArgs = {
+  allowedLocales: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorLogoArgs = {
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorNameArgs = {
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/z273njukdgu1/content_types/sponsor) */
+export type SponsorUrlArgs = {
+  locale: InputMaybe<Scalars['String']>;
 };
 
 export type SponsorCollection = {
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
   items: Array<Maybe<Sponsor>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
 };
 
 export type SponsorFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  name_exists: Maybe<Scalars['Boolean']>;
-  name: Maybe<Scalars['String']>;
-  name_not: Maybe<Scalars['String']>;
-  name_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_contains: Maybe<Scalars['String']>;
-  name_not_contains: Maybe<Scalars['String']>;
-  category_exists: Maybe<Scalars['Boolean']>;
-  category: Maybe<Scalars['String']>;
-  category_not: Maybe<Scalars['String']>;
-  category_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  category_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  category_contains: Maybe<Scalars['String']>;
-  category_not_contains: Maybe<Scalars['String']>;
-  url_exists: Maybe<Scalars['Boolean']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  logo_exists: Maybe<Scalars['Boolean']>;
-  activeSponsor_exists: Maybe<Scalars['Boolean']>;
-  activeSponsor: Maybe<Scalars['Boolean']>;
-  activeSponsor_not: Maybe<Scalars['Boolean']>;
-  exclusive_exists: Maybe<Scalars['Boolean']>;
-  exclusive: Maybe<Scalars['Boolean']>;
-  exclusive_not: Maybe<Scalars['Boolean']>;
-  OR: Maybe<Array<Maybe<SponsorFilter>>>;
-  AND: Maybe<Array<Maybe<SponsorFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<SponsorFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<SponsorFilter>>>;
+  activeSponsor: InputMaybe<Scalars['Boolean']>;
+  activeSponsor_exists: InputMaybe<Scalars['Boolean']>;
+  activeSponsor_not: InputMaybe<Scalars['Boolean']>;
+  category: InputMaybe<Scalars['String']>;
+  category_contains: InputMaybe<Scalars['String']>;
+  category_exists: InputMaybe<Scalars['Boolean']>;
+  category_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  category_not: InputMaybe<Scalars['String']>;
+  category_not_contains: InputMaybe<Scalars['String']>;
+  category_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  exclusive: InputMaybe<Scalars['Boolean']>;
+  exclusive_exists: InputMaybe<Scalars['Boolean']>;
+  exclusive_not: InputMaybe<Scalars['Boolean']>;
+  logo_exists: InputMaybe<Scalars['Boolean']>;
+  name: InputMaybe<Scalars['String']>;
+  name_contains: InputMaybe<Scalars['String']>;
+  name_exists: InputMaybe<Scalars['Boolean']>;
+  name_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name_not: InputMaybe<Scalars['String']>;
+  name_not_contains: InputMaybe<Scalars['String']>;
+  name_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys: InputMaybe<SysFilter>;
+  url: InputMaybe<Scalars['String']>;
+  url_contains: InputMaybe<Scalars['String']>;
+  url_exists: InputMaybe<Scalars['Boolean']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url_not: InputMaybe<Scalars['String']>;
+  url_not_contains: InputMaybe<Scalars['String']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type SponsorLinkingCollections = {
@@ -1520,116 +1559,116 @@ export type SponsorLinkingCollections = {
 
 
 export type SponsorLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview: Maybe<Scalars['Boolean']>;
-  locale: Maybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  locale: InputMaybe<Scalars['String']>;
+  preview: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 export enum SponsorOrder {
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  CategoryAsc = 'category_ASC',
-  CategoryDesc = 'category_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
   ActiveSponsorAsc = 'activeSponsor_ASC',
   ActiveSponsorDesc = 'activeSponsor_DESC',
+  CategoryAsc = 'category_ASC',
+  CategoryDesc = 'category_DESC',
   ExclusiveAsc = 'exclusive_ASC',
   ExclusiveDesc = 'exclusive_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
 }
 
 export type Sys = {
-  id: Scalars['String'];
-  spaceId: Scalars['String'];
   environmentId: Scalars['String'];
-  publishedAt: Maybe<Scalars['DateTime']>;
   firstPublishedAt: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  publishedAt: Maybe<Scalars['DateTime']>;
   publishedVersion: Maybe<Scalars['Int']>;
+  spaceId: Scalars['String'];
 };
 
 export type SysFilter = {
-  id_exists: Maybe<Scalars['Boolean']>;
-  id: Maybe<Scalars['String']>;
-  id_not: Maybe<Scalars['String']>;
-  id_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_contains: Maybe<Scalars['String']>;
-  id_not_contains: Maybe<Scalars['String']>;
-  publishedAt_exists: Maybe<Scalars['Boolean']>;
-  publishedAt: Maybe<Scalars['DateTime']>;
-  publishedAt_not: Maybe<Scalars['DateTime']>;
-  publishedAt_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  publishedAt_not_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  publishedAt_gt: Maybe<Scalars['DateTime']>;
-  publishedAt_gte: Maybe<Scalars['DateTime']>;
-  publishedAt_lt: Maybe<Scalars['DateTime']>;
-  publishedAt_lte: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_exists: Maybe<Scalars['Boolean']>;
-  firstPublishedAt: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_not: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  firstPublishedAt_not_in: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  firstPublishedAt_gt: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_gte: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_lt: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_lte: Maybe<Scalars['DateTime']>;
-  publishedVersion_exists: Maybe<Scalars['Boolean']>;
-  publishedVersion: Maybe<Scalars['Float']>;
-  publishedVersion_not: Maybe<Scalars['Float']>;
-  publishedVersion_in: Maybe<Array<Maybe<Scalars['Float']>>>;
-  publishedVersion_not_in: Maybe<Array<Maybe<Scalars['Float']>>>;
-  publishedVersion_gt: Maybe<Scalars['Float']>;
-  publishedVersion_gte: Maybe<Scalars['Float']>;
-  publishedVersion_lt: Maybe<Scalars['Float']>;
-  publishedVersion_lte: Maybe<Scalars['Float']>;
+  firstPublishedAt: InputMaybe<Scalars['DateTime']>;
+  firstPublishedAt_exists: InputMaybe<Scalars['Boolean']>;
+  firstPublishedAt_gt: InputMaybe<Scalars['DateTime']>;
+  firstPublishedAt_gte: InputMaybe<Scalars['DateTime']>;
+  firstPublishedAt_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  firstPublishedAt_lt: InputMaybe<Scalars['DateTime']>;
+  firstPublishedAt_lte: InputMaybe<Scalars['DateTime']>;
+  firstPublishedAt_not: InputMaybe<Scalars['DateTime']>;
+  firstPublishedAt_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  id: InputMaybe<Scalars['String']>;
+  id_contains: InputMaybe<Scalars['String']>;
+  id_exists: InputMaybe<Scalars['Boolean']>;
+  id_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  id_not: InputMaybe<Scalars['String']>;
+  id_not_contains: InputMaybe<Scalars['String']>;
+  id_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publishedAt: InputMaybe<Scalars['DateTime']>;
+  publishedAt_exists: InputMaybe<Scalars['Boolean']>;
+  publishedAt_gt: InputMaybe<Scalars['DateTime']>;
+  publishedAt_gte: InputMaybe<Scalars['DateTime']>;
+  publishedAt_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedAt_lt: InputMaybe<Scalars['DateTime']>;
+  publishedAt_lte: InputMaybe<Scalars['DateTime']>;
+  publishedAt_not: InputMaybe<Scalars['DateTime']>;
+  publishedAt_not_in: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  publishedVersion: InputMaybe<Scalars['Float']>;
+  publishedVersion_exists: InputMaybe<Scalars['Boolean']>;
+  publishedVersion_gt: InputMaybe<Scalars['Float']>;
+  publishedVersion_gte: InputMaybe<Scalars['Float']>;
+  publishedVersion_in: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  publishedVersion_lt: InputMaybe<Scalars['Float']>;
+  publishedVersion_lte: InputMaybe<Scalars['Float']>;
+  publishedVersion_not: InputMaybe<Scalars['Float']>;
+  publishedVersion_not_in: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
 };
 
 export type CfSpeakerNestedFilter = {
-  sys: Maybe<SysFilter>;
-  contentfulMetadata: Maybe<ContentfulMetadataFilter>;
-  avatar_exists: Maybe<Scalars['Boolean']>;
-  name_exists: Maybe<Scalars['Boolean']>;
-  name: Maybe<Scalars['String']>;
-  name_not: Maybe<Scalars['String']>;
-  name_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_contains: Maybe<Scalars['String']>;
-  name_not_contains: Maybe<Scalars['String']>;
-  jobTitle_exists: Maybe<Scalars['Boolean']>;
-  jobTitle: Maybe<Scalars['String']>;
-  jobTitle_not: Maybe<Scalars['String']>;
-  jobTitle_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  jobTitle_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  jobTitle_contains: Maybe<Scalars['String']>;
-  jobTitle_not_contains: Maybe<Scalars['String']>;
-  employer_exists: Maybe<Scalars['Boolean']>;
-  employer: Maybe<Scalars['String']>;
-  employer_not: Maybe<Scalars['String']>;
-  employer_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  employer_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  employer_contains: Maybe<Scalars['String']>;
-  employer_not_contains: Maybe<Scalars['String']>;
-  showEmployer_exists: Maybe<Scalars['Boolean']>;
-  showEmployer: Maybe<Scalars['Boolean']>;
-  showEmployer_not: Maybe<Scalars['Boolean']>;
-  url_exists: Maybe<Scalars['Boolean']>;
-  url: Maybe<Scalars['String']>;
-  url_not: Maybe<Scalars['String']>;
-  url_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_not_in: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_contains: Maybe<Scalars['String']>;
-  url_not_contains: Maybe<Scalars['String']>;
-  OR: Maybe<Array<Maybe<CfSpeakerNestedFilter>>>;
-  AND: Maybe<Array<Maybe<CfSpeakerNestedFilter>>>;
+  AND: InputMaybe<Array<InputMaybe<CfSpeakerNestedFilter>>>;
+  OR: InputMaybe<Array<InputMaybe<CfSpeakerNestedFilter>>>;
+  avatar_exists: InputMaybe<Scalars['Boolean']>;
+  contentfulMetadata: InputMaybe<ContentfulMetadataFilter>;
+  employer: InputMaybe<Scalars['String']>;
+  employer_contains: InputMaybe<Scalars['String']>;
+  employer_exists: InputMaybe<Scalars['Boolean']>;
+  employer_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  employer_not: InputMaybe<Scalars['String']>;
+  employer_not_contains: InputMaybe<Scalars['String']>;
+  employer_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  jobTitle: InputMaybe<Scalars['String']>;
+  jobTitle_contains: InputMaybe<Scalars['String']>;
+  jobTitle_exists: InputMaybe<Scalars['Boolean']>;
+  jobTitle_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  jobTitle_not: InputMaybe<Scalars['String']>;
+  jobTitle_not_contains: InputMaybe<Scalars['String']>;
+  jobTitle_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name: InputMaybe<Scalars['String']>;
+  name_contains: InputMaybe<Scalars['String']>;
+  name_exists: InputMaybe<Scalars['Boolean']>;
+  name_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name_not: InputMaybe<Scalars['String']>;
+  name_not_contains: InputMaybe<Scalars['String']>;
+  name_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  showEmployer: InputMaybe<Scalars['Boolean']>;
+  showEmployer_exists: InputMaybe<Scalars['Boolean']>;
+  showEmployer_not: InputMaybe<Scalars['Boolean']>;
+  sys: InputMaybe<SysFilter>;
+  url: InputMaybe<Scalars['String']>;
+  url_contains: InputMaybe<Scalars['String']>;
+  url_exists: InputMaybe<Scalars['Boolean']>;
+  url_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url_not: InputMaybe<Scalars['String']>;
+  url_not_contains: InputMaybe<Scalars['String']>;
+  url_not_in: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export const EventMetadataFragmentDoc = /*#__PURE__*/ gql`
@@ -1666,7 +1705,7 @@ export const RecentEventMetadataFragmentDoc = /*#__PURE__*/ gql`
     }
   }
 }
-    ${EventMetadataFragmentDoc}`;
+    `;
 export const SponsorMetadataFragmentDoc = /*#__PURE__*/ gql`
     fragment SponsorMetadata on Sponsor {
   name
@@ -1720,18 +1759,18 @@ export const HomePageQueryDocument = /*#__PURE__*/ gql`
 ${EventMetadataFragmentDoc}
 ${SponsorMetadataFragmentDoc}`;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     eventsPageQuery(variables: EventsPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<EventsPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<EventsPageQuery>(EventsPageQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'eventsPageQuery');
+      return withWrapper((wrappedRequestHeaders) => client.request<EventsPageQuery>(EventsPageQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'eventsPageQuery', 'query');
     },
     homePageQuery(variables: HomePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HomePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<HomePageQuery>(HomePageQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'homePageQuery');
+      return withWrapper((wrappedRequestHeaders) => client.request<HomePageQuery>(HomePageQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'homePageQuery', 'query');
     }
   };
 }
@@ -1741,35 +1780,17 @@ export type EventsPageQueryVariables = Exact<{
 }>;
 
 
-export type EventsPageQuery = { eventCollection: Maybe<{ items: Array<Maybe<(
-      { sessionsCollection: Maybe<{ items: Array<Maybe<{ sys: Pick<Sys, 'id'>, speaker: Maybe<(
-            Pick<Speaker, 'name'>
-            & { avatar: Maybe<Pick<Asset, 'url'>> }
-          )> }>> }> }
-      & EventMetadataFragment
-    )>> }> };
+export type EventsPageQuery = { eventCollection: { items: Array<{ title: string | null, slug: string | null, description: string | null, category: string | null, startingDate: any | null, onlineEvent: boolean | null, location: string | null, url: string | null, quota: number | null, notes: string | null, sessionsCollection: { items: Array<{ sys: { id: string }, speaker: { name: string | null, avatar: { url: string | null } | null } | null } | null> } | null, poster: { url: string | null } | null } | null> } | null };
 
-export type EventMetadataFragment = (
-  Pick<Event, 'title' | 'slug' | 'description' | 'category' | 'startingDate' | 'onlineEvent' | 'location' | 'url' | 'quota' | 'notes'>
-  & { poster: Maybe<Pick<Asset, 'url'>> }
-);
+export type EventMetadataFragment = { title: string | null, slug: string | null, description: string | null, category: string | null, startingDate: any | null, onlineEvent: boolean | null, location: string | null, url: string | null, quota: number | null, notes: string | null, poster: { url: string | null } | null };
 
-export type RecentEventMetadataFragment = (
-  { sessionsCollection: Maybe<{ items: Array<Maybe<{ sys: Pick<Sys, 'id'>, speaker: Maybe<(
-        Pick<Speaker, 'name'>
-        & { avatar: Maybe<Pick<Asset, 'url'>> }
-      )> }>> }> }
-  & EventMetadataFragment
-);
+export type RecentEventMetadataFragment = { title: string | null, slug: string | null, description: string | null, category: string | null, startingDate: any | null, onlineEvent: boolean | null, location: string | null, url: string | null, quota: number | null, notes: string | null, sessionsCollection: { items: Array<{ sys: { id: string }, speaker: { name: string | null, avatar: { url: string | null } | null } | null } | null> } | null, poster: { url: string | null } | null };
 
-export type SponsorMetadataFragment = (
-  Pick<Sponsor, 'name' | 'category' | 'url' | 'activeSponsor'>
-  & { logo: Maybe<Pick<Asset, 'url'>>, sys: Pick<Sys, 'id'> }
-);
+export type SponsorMetadataFragment = { name: string | null, category: string | null, url: string | null, activeSponsor: boolean | null, logo: { url: string | null } | null, sys: { id: string } };
 
 export type HomePageQueryVariables = Exact<{
   locale: Scalars['String'];
 }>;
 
 
-export type HomePageQuery = { eventCollection: Maybe<{ items: Array<Maybe<RecentEventMetadataFragment>> }>, sponsorCollection: Maybe<{ items: Array<Maybe<SponsorMetadataFragment>> }> };
+export type HomePageQuery = { eventCollection: { items: Array<{ title: string | null, slug: string | null, description: string | null, category: string | null, startingDate: any | null, onlineEvent: boolean | null, location: string | null, url: string | null, quota: number | null, notes: string | null, sessionsCollection: { items: Array<{ sys: { id: string }, speaker: { name: string | null, avatar: { url: string | null } | null } | null } | null> } | null, poster: { url: string | null } | null } | null> } | null, sponsorCollection: { items: Array<{ name: string | null, category: string | null, url: string | null, activeSponsor: boolean | null, logo: { url: string | null } | null, sys: { id: string } } | null> } | null };
