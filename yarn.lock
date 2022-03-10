@@ -1179,6 +1179,16 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/cousine@^4":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/cousine/-/cousine-4.5.3.tgz#3bb49b64b78e3104b03e6bba6eb7f0a6443dafcd"
+  integrity sha512-9Yx6UqL1QxNQHXWouZj2xXNMEX46rGpuyjJCYd6hI7SNJFhcBadLqieXcxUMuoKro5M4uW5eJ0D2p+2Z3kJtiw==
+
+"@fontsource/manrope@^4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/manrope/-/manrope-4.5.4.tgz#d43540bf02659f3db76382cbfc596e084491ce20"
+  integrity sha512-1yv/1wW3x3wOKNYfuWMQORpKflAqiSRWc5rG+LLalRJJhED9sUDvk/FYBnKtT9IXCJ/VuL//bz2+i+Z+rtjlbg==
+
 "@graphql-codegen/add@^3":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-3.1.1.tgz#e161ff1c7cdf74ce20b32f75f640f9592b9a18ca"

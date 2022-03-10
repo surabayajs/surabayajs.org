@@ -22,6 +22,8 @@
     "@emotion/react": "^11",
     "@emotion/server": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/cousine": "^4",
+    "@fontsource/manrope": "^4",
     "cross-fetch": "^3",
     "date-fns": "^2",
     "framer-motion": "^4",
