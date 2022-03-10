@@ -1,5 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+// @ts-check
 
+/**
+ * @type {import("next").NextConfig}
+ * @see https://nextjs.org/docs/api-reference/next.config.js/introduction
+ */
 module.exports = {
   // https://nextjs.org/docs/api-reference/next.config.js/headers
   async headers() {
