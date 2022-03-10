@@ -1,16 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 module.exports = {
-  // https://github.com/vercel/next.js/blob/3b388c346c6990c98e83357ad68263edc7081210/packages/next/server/config-shared.ts#L73-L97
-  experimental: {
-    conformance: true,
-    optimizeCss: true,
-    optimizeImages: true,
-    workerThreads: true,
-  },
-
   // https://nextjs.org/docs/api-reference/next.config.js/headers
-  // https://github.com/leerob/leerob.io/blob/9adc510cbfb3da88c3b0ad15632eb876ca91b607/next.config.js#L51-L88
   async headers() {
     return [
       {
