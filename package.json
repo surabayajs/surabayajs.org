@@ -50,7 +50,6 @@
     "next-seo": "^4",
     "next-sitemap": "^1",
     "nprogress": "^0",
-    "preact": "^10",
     "react": "^17",
     "react-dom": "^17",
     "react-icons": "^4",
