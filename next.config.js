@@ -5,6 +5,11 @@
  * @see https://nextjs.org/docs/api-reference/next.config.js/introduction
  */
 module.exports = {
+  // https://nextjs.org/docs/api-reference/next.config.js/environment-variables
+  env: {
+    LOCALE: process.env.LOCALE || "en",
+  },
+
   // https://nextjs.org/docs/api-reference/next.config.js/headers
   async headers() {
     return [
@@ -38,12 +43,6 @@ module.exports = {
         ],
       },
     ];
-  },
-
-  // https://nextjs.org/docs/advanced-features/i18n-routing
-  i18n: {
-    defaultLocale: "id",
-    locales: ["en", "id"],
   },
 
   // https://nextjs.org/docs/api-reference/next.config.js/react-strict-mode

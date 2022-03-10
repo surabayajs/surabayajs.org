@@ -5,13 +5,10 @@ import i18n from "@/i18n";
 import { Button, Container, Heading, Icon, Image, Text, VStack } from "@chakra-ui/react";
 import { NextPage } from "next";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
 import { FaArrowRight } from "react-icons/fa";
 
 const NotFoundPage: NextPage = () => {
-  const router = useRouter();
-
-  const locale = router.locale as string;
+  const locale = process.env.LOCALE;
 
   return (
     <Container as="section" maxW="6xl" p={[4, 8]}>

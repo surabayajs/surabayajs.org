@@ -9,13 +9,11 @@ import routes from "@/routes";
 
 import { Button, Container, Divider, HStack, Spacer, Stack } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
 
 export const NavbarDesktop: React.FC = () => {
   const copyEmail = useEmail();
 
-  const router = useRouter();
-  const { locale } = router;
+  const locale = process.env.LOCALE;
 
   return (
     <Container as={Stack} d={{ base: "none", md: "flex" }} maxW="6xl" py={4} spacing={4}>

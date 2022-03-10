@@ -25,7 +25,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
+import { InferGetStaticPropsType, NextPage } from "next";
 import NextLink from "next/link";
 import { FaArrowRight, FaDiscord, FaTwitch, FaTwitter, FaYoutube } from "react-icons/fa";
 import { IconType } from "react-icons/lib";
@@ -37,8 +37,8 @@ const HOME_SOCIAL_BUTTONS: [string, string, IconType, string][] = [
   ["Youtube", siteConfig.socials.Youtube, FaYoutube, "red"],
 ];
 
-export async function getStaticProps(args: GetStaticPropsContext) {
-  const locale = args.locale as string;
+export async function getStaticProps() {
+  const locale = process.env.LOCALE;
 
   const data = await cms().homePageQuery({
     locale: i18n["i18n-code"][locale] as string,

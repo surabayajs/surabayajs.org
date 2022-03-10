@@ -24,7 +24,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
 import { FaBars } from "react-icons/fa";
 
 export const Drawer: React.FC = () => {
@@ -32,7 +31,7 @@ export const Drawer: React.FC = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const copyEmail = useEmail();
 
-  const { locale } = useRouter();
+  const locale = process.env.LOCALE;
 
   if (isDesktop) {
     return null;

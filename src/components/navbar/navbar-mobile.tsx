@@ -22,7 +22,8 @@ import { FaBars } from "react-icons/fa";
 
 export const NavbarMobile: React.FC = () => {
   const router = useRouter();
-  const { locale, asPath } = router;
+  const { asPath } = router;
+  const locale = process.env.LOCALE;
 
   return (
     <Container as={Stack} maxW="6xl" py={4} spacing={4}>

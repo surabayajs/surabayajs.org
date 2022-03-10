@@ -3,15 +3,12 @@ import * as React from "react";
 import i18n from "@/i18n";
 
 import { Button, Menu, MenuButton, MenuGroup, MenuItem, MenuList, Tooltip } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
 export const LocaleButton: React.FC = () => {
-  const router = useRouter();
-
-  const locale = router.locale as string;
+  const locale = process.env.LOCALE;
 
   function change(_locale: string) {
-    void router.replace(router.route, router.asPath, { locale: _locale });
+    window.location.href = `https://${_locale}.surabayajs.org`;
   }
 
   return (

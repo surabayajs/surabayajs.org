@@ -5,11 +5,11 @@ import i18n from "@/i18n";
 import cms from "@/lib/cms";
 
 import { Box, Container, Heading, Text, useColorModeValue, useToken, VStack } from "@chakra-ui/react";
-import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
+import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 
-export async function getStaticProps(args: GetStaticPropsContext) {
-  const locale = args.locale as string;
+export async function getStaticProps() {
+  const locale = process.env.LOCALE;
 
   const data = await cms().eventsPageQuery({
     locale: i18n["i18n-code"][locale] as string,

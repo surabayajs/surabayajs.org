@@ -23,10 +23,7 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 type AppProps = NextAppProps;
 
-function Inner(props: AppProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { Component, pageProps, router } = props;
-
+function Inner({ Component, pageProps, router }: AppProps) {
   const { toggleColorMode } = useColorMode();
 
   useShortcut(["shift+h"], () => {

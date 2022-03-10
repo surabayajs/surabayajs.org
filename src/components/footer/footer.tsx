@@ -8,7 +8,6 @@ import routes from "@/routes";
 
 import { Box, Button, Container, HStack, Link, Stack, Text, useColorModeValue, useToken } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
 
 export const Footer: React.FC = () => {
   const [lightColor, darkColor] = useToken("colors", ["gator.200", "gator.800"]) as [string, string];
@@ -16,7 +15,7 @@ export const Footer: React.FC = () => {
   const bgColor = useColorModeValue(lightColor, darkColor);
 
   const copyEmail = useEmail();
-  const { locale } = useRouter();
+  const locale = process.env.LOCALE;
 
   return (
     <Box fontSize={["xs", "sm"]}>

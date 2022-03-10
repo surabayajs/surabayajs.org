@@ -15,4 +15,4 @@ const routes = {
  * @param {string} locale
  * @returns {Record<string,{name:string;ext?:boolean;}>}
  */
-module.exports = (locale = "en") => routes[locale];
+module.exports = (_locale = "en") => routes[process.env.LOCALE];

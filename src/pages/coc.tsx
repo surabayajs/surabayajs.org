@@ -4,18 +4,16 @@ import i18n from "@/i18n";
 import { contentRenderer } from "@/utils/renderers";
 
 import { Container } from "@chakra-ui/react";
-import { GetStaticPropsContext, NextPage } from "next";
+import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import ReactMarkdown from "react-markdown";
 
 const cocUrl = "https://raw.githubusercontent.com/surabayajs/code-of-conduct/main/code-of-conduct.mdx";
 
-export async function getStaticProps(args: GetStaticPropsContext) {
+export async function getStaticProps() {
   const content = await fetch(cocUrl).then((res) => res.text());
-  const locale = args.locale as string;
   return {
     props: {
-      locale,
       content,
     },
   };
@@ -23,11 +21,11 @@ export async function getStaticProps(args: GetStaticPropsContext) {
 
 interface COCPageProps {
   content: string;
-  locale: string;
 }
 
 const CodeOfConductPage: NextPage<COCPageProps> = (props) => {
-  const { locale, content } = props;
+  const { content } = props;
+  const locale = process.env.LOCALE;
   return (
     <>
       <NextSeo title={i18n["coc-title"][locale] as string} />
