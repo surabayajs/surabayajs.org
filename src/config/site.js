@@ -10,6 +10,7 @@ const siteConfig = {
     Twitch: "https://twitch.tv/surabayajs",
     Twitter: "https://twitter.com/surabaya_js",
     Youtube: "https://www.youtube.com/channel/UCHkB77QEg1w-1E9bmsGKDYg",
+    Eventbrite: "https://www.eventbrite.com/o/surabayajs-19948370921",
   },
   themeColor: "#96D2AF",
 };
