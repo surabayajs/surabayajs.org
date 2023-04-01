@@ -73,6 +73,10 @@ export const Footer: React.FC = () => {
               </NextLink>
               .
             </Text>
+            <br />
+            <Link fontWeight="bold" href="https://link.surabayajs.org/logo" isExternal>
+              SurabayaJS Logo Download
+            </Link>
           </Box>
 
           <HStack align="flex-start" justify="center" pb={12} pt={{ base: 12, md: 0 }} spacing={16}>

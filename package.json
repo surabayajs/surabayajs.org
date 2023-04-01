@@ -1,5 +1,6 @@
 {
   "name": "surabayajs.org",
+  "packageManager": "yarn@3.5.0",
   "description": "Landing page for SurabayaJS 🐊",
   "version": "6.0.0",
   "repository": "https://github.com/surabayajs/surabayajs.org.git",
@@ -14,7 +15,8 @@
     "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\" && tsc --noEmit",
     "prepare": "husky install",
     "sitemap": "next-sitemap --config src/config/sitemap.js",
-    "start": "next start"
+    "start": "next start",
+    "publish": "yarn install && yarn build && yarn export"
   },
   "dependencies": {
     "@chakra-ui/react": "^1",
