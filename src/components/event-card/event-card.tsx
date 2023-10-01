@@ -36,6 +36,9 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
   const [bgColorLight, bgColorDark] = useToken("colors", ["white", "gray.700"]) as [string, string];
 
   const bgColor = useColorModeValue(bgColorLight, bgColorDark);
+  function truncate(str: string, n: number) {
+    return str.length > n ? str.slice(0, n - 1) + "..." : str;
+  }
 
   return (
     <Flex
@@ -95,7 +98,7 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
             target="_blank"
             variant="outline"
           >
-            {event.url}
+            {truncate(event.url as string, 40)}
           </Button>
         </HStack>
       </Stack>
